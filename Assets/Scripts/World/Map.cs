@@ -12,8 +12,12 @@ public class Map : MonoBehaviour
 
     [SerializeField] private Image mask;
     [SerializeField] private Sprite startMask;
+    [SerializeField] private Sprite startMaskEdge;
+    [Space]
+    [SerializeField] private LineRenderer ray;
     
     private Texture2D terrainMask;
+    private Texture2D terrainMaskEdges;
 
     public int MapWidth => terrainMask.width;
     public int MapHeight => terrainMask.height;
@@ -28,7 +32,7 @@ public class Map : MonoBehaviour
     private void InitMask()
     {
         terrainMask = Instantiate(startMask.texture);
-        terrainMask.alphaIsTransparency = true;
+        terrainMaskEdges = Instantiate(startMaskEdge.texture);
 
         mask.sprite = Sprite.Create(terrainMask, startMask.rect, new Vector2(0.5f, 0.5f), 100);
 
@@ -40,6 +44,8 @@ public class Map : MonoBehaviour
             }
 
         terrainMask.Apply();
+
+        UpdateRay();
     }
 
     public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team);
@@ -73,5 +79,41 @@ public class Map : MonoBehaviour
             }
 
         Instance.terrainMask.Apply();
+
+        Instance.UpdateEdges();
+        Instance.UpdateRay();
+    }
+
+    private void UpdateEdges()
+    {
+
+    }
+
+    private void UpdateRay()
+    {
+        return;
+
+        List<Vector3> points = new List<Vector3>();
+
+        Vector2Int start = new Vector2Int();
+
+        for(int i = 0; i < MapWidth; i++)
+            for(int j = 0; j < MapHeight; j++)
+            {
+                if (terrainMask.GetPixel(i, j).a > 0.5f) start = new Vector2Int(i, j);
+            }
+
+        int x = start.x;
+        int y = start.y;
+        Vector2Int previous = Vector2Int.zero;
+        do
+        {
+            points.Add(new Vector2(x, y));
+
+
+
+        } while (y < MapHeight);
+
+        ray.SetPositions(points.ToArray());
     }
 }
