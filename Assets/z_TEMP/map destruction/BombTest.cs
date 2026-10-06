@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Bomb : MonoBehaviour
+public class BombTest : MonoBehaviour
 {
     [SerializeField] private InputActionReference click;
     [SerializeField] private InputActionReference click2;

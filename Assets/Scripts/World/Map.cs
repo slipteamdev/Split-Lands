@@ -13,11 +13,9 @@ public class Map : MonoBehaviour
     [SerializeField] private Image mask;
     [SerializeField] private Sprite startMask;
     [SerializeField] private Sprite startMaskEdge;
-    [Space]
-    [SerializeField] private LineRenderer ray;
     
-    private Texture2D terrainMask;
-    private Texture2D terrainMaskEdges;
+    public Texture2D terrainMask;
+    public Texture2D terrainMaskEdges;
 
     public int MapWidth => terrainMask.width;
     public int MapHeight => terrainMask.height;
@@ -40,12 +38,12 @@ public class Map : MonoBehaviour
             for (int j = 0; j < terrainMask.height; j++)
             {
                 if (terrainMask.GetPixel(i, j).a < 0.5f)
-                    terrainMask.SetPixel(i, j, new Color(0, 0, 0, 0));
+                    terrainMask.SetPixel(i, j, new Color(1, 1, 1, 0));
             }
 
         terrainMask.Apply();
 
-        UpdateRay();
+        UpdateBorders();
     }
 
     public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team);
@@ -75,45 +73,36 @@ public class Map : MonoBehaviour
 
                 if (color.a < 0.5f) continue;
 
-                Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(0, 0, 0, team == Team.Team1 ? 0 : 1));
+                Color map = Instance.terrainMask.GetPixel(x_pos, y_pos);
+                Color edge = Instance.terrainMaskEdges.GetPixel(x_pos, y_pos);
+                bool on_enemy_side = (map.a == 0f && team == Team.Team2) || (map.a == 1f && team == Team.Team1);
+
+
+
+                if (color == Color.white)
+                {
+                    if (edge == Color.white || on_enemy_side) Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, Color.white);
+                }
+                else Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, Color.black);
+
+                //  Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, Color.black);
+                //  if (edge == Color.black && ()
+                //      Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, color);
+
+
+
+
+                Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? 0 : 1));
             }
 
         Instance.terrainMask.Apply();
+        Instance.terrainMaskEdges.Apply();
 
-        Instance.UpdateEdges();
-        Instance.UpdateRay();
+        Instance.UpdateBorders();
     }
 
-    private void UpdateEdges()
+    private void UpdateBorders()
     {
 
-    }
-
-    private void UpdateRay()
-    {
-        return;
-
-        List<Vector3> points = new List<Vector3>();
-
-        Vector2Int start = new Vector2Int();
-
-        for(int i = 0; i < MapWidth; i++)
-            for(int j = 0; j < MapHeight; j++)
-            {
-                if (terrainMask.GetPixel(i, j).a > 0.5f) start = new Vector2Int(i, j);
-            }
-
-        int x = start.x;
-        int y = start.y;
-        Vector2Int previous = Vector2Int.zero;
-        do
-        {
-            points.Add(new Vector2(x, y));
-
-
-
-        } while (y < MapHeight);
-
-        ray.SetPositions(points.ToArray());
     }
 }
