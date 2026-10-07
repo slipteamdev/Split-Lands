@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //Habilidad Dummy
-public class BasicSkill : Skill
+public class DebugSkill : Skill
 {
     public override void Execute()
     {
