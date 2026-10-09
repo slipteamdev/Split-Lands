@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,9 @@ public class Map : MonoBehaviour
     [SerializeField] private Image mask;
     [SerializeField] private Sprite startMask;
     [SerializeField] private Sprite startMaskEdge;
-    
+    [Space]
+    [SerializeField] private MeshFilter edgesMesh;
+
     public Texture2D terrainMask;
     private byte[,] terrainData;
 
@@ -62,7 +65,7 @@ public class Map : MonoBehaviour
 
         terrainMask.Apply();
 
-        UpdateBorders();
+        UpdateEdgesMesh();
     }
 
     public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team);
@@ -109,11 +112,164 @@ public class Map : MonoBehaviour
 
         Instance.terrainMask.Apply();
 
-        Instance.UpdateBorders();
+        Instance.UpdateEdgesMesh();
     }
 
-    private void UpdateBorders()
+    private void UpdateEdgesMesh()
     {
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
 
+        for (int i = 1; i < terrainMask.width - 1; i++)
+            for (int j = 1; j < terrainMask.height - 1; j++)
+            {
+                int a = Mathf.Max(terrainData[i, j] == 0 ? 1 : 0);
+                int b = terrainData[i + 1, j] == 0 ? 1 : 0;
+                int c = terrainData[i + 1, j + 1] == 0 ? 1 : 0;
+                int d = terrainData[i, j + 1] == 0 ? 1 : 0;
+
+                int value = a * 8 + b * 4 + c * 2 + d;
+                Vector3[] verts;
+                int[] triangs;
+
+                switch (value)
+                {
+                    case 0:
+                    default:
+                        continue;
+
+                    case 1:
+                        verts = new Vector3[]
+                        { new Vector3(0, 1f), new Vector3(0, 0.5f), new Vector3(0.5f, 1) };
+
+                        triangs = new int[]
+                        { 2, 1, 0};
+                        break;
+
+                    case 2:
+                        verts = new Vector3[]
+                        { new Vector3(1, 1), new Vector3(1, 0.5f), new Vector3(0.5f, 1) };
+
+                        triangs = new int[]
+                        { 0, 1, 2};
+                        break;
+
+                    case 3:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0.5f), new Vector3(0, 1), new Vector3(1, 1), new Vector3(1, 0.5f) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 0, 2, 3};
+                        break;
+
+                    case 4:
+                        verts = new Vector3[]
+                        { new Vector3(1, 0), new Vector3(0.5f, 0), new Vector3(1, 0.5f) };
+
+                        triangs = new int[]
+                        { 0, 1, 2};
+                        break;
+
+                    case 5:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0.5f), new Vector3(0, 1), new Vector3(0.5f, 1), new Vector3(1, 0), new Vector3(0.5f, 0), new Vector3(1, 0.5f) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 3, 4, 5, 4, 0, 5, 0, 2, 5};
+                        break;
+
+                    case 6:
+                        verts = new Vector3[]
+                        { new Vector3(0.5f, 0), new Vector3(0.5f, 1), new Vector3(1, 1), new Vector3(1, 0) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 0, 2, 3};
+                        break;
+
+                    case 7:
+                        verts = new Vector3[]
+                        { new Vector3(0, 1), new Vector3(1, 1), new Vector3(1, 0), new Vector3(0.5f, 0), new Vector3(0, 0.5f) };
+
+                        triangs = new int[]
+                        { 2, 3, 1, 3, 4, 1, 4, 0, 1};
+                        break;
+
+                    case 8:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0.5f), new Vector3(0, 0), new Vector3(0.5f, 0) };
+
+                        triangs = new int[]
+                        { 2, 1, 0};
+                        break;
+
+                    case 9:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0), new Vector3(0.5f, 0), new Vector3(0.5f, 1), new Vector3(0, 1) };
+
+                        triangs = new int[]
+                        { 1, 0, 2, 0, 3, 2};
+                        break;
+
+                    case 10:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0), new Vector3(0, 0.5f), new Vector3(0.5f, 0), new Vector3(1, 1), new Vector3(0.5f, 1), new Vector3(1, 0.5f) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 5, 4, 3, 1, 4, 2, 4, 5, 1 };
+                        break;
+
+                    case 11:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0), new Vector3(0, 1), new Vector3(1, 1), new Vector3(1, 0.5f), new Vector3(0.5f, 0) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 0, 2, 3, 4, 0, 3};
+                        break;
+
+                    case 12:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0), new Vector3(1, 0), new Vector3(1, 0.5f), new Vector3(0, 0.5f) };
+
+                        triangs = new int[]
+                        { 0, 3, 2, 0, 2, 1};
+                        break;
+
+                    case 13:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0), new Vector3(0, 1), new Vector3(0.5f, 1), new Vector3(1, 0.5f), new Vector3(1, 0) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 0, 2, 3, 0, 3, 4};
+                        break;
+
+                    case 14:
+                        verts = new Vector3[]
+                        { new Vector3(1, 1), new Vector3(1, 0), new Vector3(0, 0), new Vector3(0, 0.5f), new Vector3(0.5f, 1) };
+
+                        triangs = new int[]
+                        { 0, 1, 4, 1, 3, 4, 1, 2, 3};
+                        break;
+
+                    case 15:
+                        verts = new Vector3[]
+                        { new Vector3(0, 0), new Vector3(0, 1), new Vector3(1, 1), new Vector3(1, 0) };
+
+                        triangs = new int[]
+                        { 0, 1, 2, 0, 2, 3};
+                        break;
+                }
+
+                foreach (int t in triangs) triangles.Add(vertices.Count + t);
+                foreach (Vector3 v in verts) vertices.Add(2 * v + new Vector3(i, j));
+            }
+
+        Mesh mesh = new Mesh
+        {
+            indexFormat = vertices.Count >= short.MaxValue ? UnityEngine.Rendering.IndexFormat.UInt32 : UnityEngine.Rendering.IndexFormat.UInt16
+        };
+        mesh.SetVertices(vertices);
+        mesh.SetTriangles(triangles, 0);
+
+        edgesMesh.mesh = mesh;
     }
 }
