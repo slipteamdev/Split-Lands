@@ -8,7 +8,8 @@ public class BombTest : MonoBehaviour
     [SerializeField] private InputActionReference cursor;
     [Space]
     [SerializeField] private RectTransform hit;
-    [SerializeField] private Sprite set;
+    [SerializeField] private Sprite setteam1;
+    [SerializeField] private Sprite setteam2;
 
     private void Update()
     {
@@ -16,11 +17,11 @@ public class BombTest : MonoBehaviour
 
         if (click.action.WasPerformedThisFrame())
         {
-            Map.Draw(hit.localPosition, set, Map.Team.Team1);
+            Map.Draw(hit.localPosition, setteam1, Map.Team.Team1);
         }
         if (click2.action.WasPerformedThisFrame())
         {
-            Map.Draw(hit.localPosition, set, Map.Team.Team2);
+            Map.Draw(hit.localPosition, setteam2, Map.Team.Team2);
         }
     }
 }

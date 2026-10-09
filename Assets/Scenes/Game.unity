@@ -842,7 +842,8 @@ MonoBehaviour:
   click2: {fileID: -4090225696740746782, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   cursor: {fileID: -1654692200621890270, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   hit: {fileID: 1906698043}
-  set: {fileID: 21300000, guid: f4817c29a6a312644bb4050700341006, type: 3}
+  setteam1: {fileID: 21300000, guid: a6e337bc824ef5a44925c59781acaf82, type: 3}
+  setteam2: {fileID: 21300000, guid: ec5cd1ac339ed884886748ec2145712d, type: 3}
 --- !u!4 &1915726990
 Transform:
   m_ObjectHideFlags: 0

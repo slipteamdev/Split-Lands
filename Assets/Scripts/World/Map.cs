@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +14,14 @@ public class Map : MonoBehaviour
     [SerializeField] private Sprite startMaskEdge;
     
     public Texture2D terrainMask;
-    public Texture2D terrainMaskEdges;
+    private byte[,] terrainData;
 
     public int MapWidth => terrainMask.width;
     public int MapHeight => terrainMask.height;
+
+    private const float TEAM1_MASK_VALUE = 0f;
+    private const float TEAM2_MASK_VALUE = 1f;
+
 
     private void Awake()
     {
@@ -30,15 +33,31 @@ public class Map : MonoBehaviour
     private void InitMask()
     {
         terrainMask = Instantiate(startMask.texture);
-        terrainMaskEdges = Instantiate(startMaskEdge.texture);
+
+        terrainData = new byte[terrainMask.width, terrainMask.height];
 
         mask.sprite = Sprite.Create(terrainMask, startMask.rect, new Vector2(0.5f, 0.5f), 100);
 
         for (int i = 0; i < terrainMask.width; i++)
             for (int j = 0; j < terrainMask.height; j++)
             {
-                if (terrainMask.GetPixel(i, j).a < 0.5f)
-                    terrainMask.SetPixel(i, j, new Color(1, 1, 1, 0));
+                Color color = startMaskEdge.texture.GetPixel(i, j);
+
+                if (color.r < 0.5f && color.b > 0.5f)
+                {
+                    terrainMask.SetPixel(i, j, new Color(1f, 1f, 1f, TEAM1_MASK_VALUE));
+                    terrainData[i, j] = 1;
+                }
+                else if(color.r > 0.5f && color.b < 0.5f)
+                {
+                    terrainMask.SetPixel(i, j, new Color(1f, 1f, 1f, TEAM2_MASK_VALUE));
+                    terrainData[i, j] = 2;
+                }
+                else
+                {
+                    terrainMask.SetPixel(i, j, new Color(1f, 1f, 1f, TEAM2_MASK_VALUE));
+                    terrainData[i, j] = 0;
+                }
             }
 
         terrainMask.Apply();
@@ -73,30 +92,22 @@ public class Map : MonoBehaviour
 
                 if (color.a < 0.5f) continue;
 
-                Color map = Instance.terrainMask.GetPixel(x_pos, y_pos);
-                Color edge = Instance.terrainMaskEdges.GetPixel(x_pos, y_pos);
-                bool on_enemy_side = (map.a == 0f && team == Team.Team2) || (map.a == 1f && team == Team.Team1);
+                byte teamIndex = (byte)(team + 1);
 
-
-
-                if (color == Color.white)
+                if (Instance.terrainData[x_pos, y_pos] != teamIndex)
                 {
-                    if (edge == Color.white || on_enemy_side) Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, Color.white);
+                    Instance.terrainData[x_pos, y_pos] = color == Color.white ? (byte)0 : teamIndex;
                 }
-                else Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, Color.black);
-
-                //  Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, Color.black);
-                //  if (edge == Color.black && ()
-                //      Instance.terrainMaskEdges.SetPixel(x_pos, y_pos, color);
 
 
 
 
-                Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? 0 : 1));
+
+
+                Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? TEAM1_MASK_VALUE : TEAM2_MASK_VALUE));
             }
 
         Instance.terrainMask.Apply();
-        Instance.terrainMaskEdges.Apply();
 
         Instance.UpdateBorders();
     }
