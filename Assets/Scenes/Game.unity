@@ -733,8 +733,7 @@ MonoBehaviour:
   mask: {fileID: 1494343236}
   startMask: {fileID: 21300000, guid: b4d56be7dca48a146936e7cd10f536d6, type: 3}
   startMaskEdge: {fileID: 21300000, guid: b170a39ffaeef2744b51f8746197cfab, type: 3}
-  edgesMesh: {fileID: 401690961}
-  terrainMask: {fileID: 0}
+  edgesMeshFilter: {fileID: 401690961}
 --- !u!1 &1494343230
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,12 +928,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72415f024accd7143a41f686416d35e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  click: {fileID: 3001919216989983466, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  click2: {fileID: -4090225696740746782, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  click: {fileID: 2411907206095950430, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  click2: {fileID: 7476244043514120974, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   cursor: {fileID: -1654692200621890270, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   hit: {fileID: 1906698043}
-  setteam1: {fileID: 21300000, guid: a6e337bc824ef5a44925c59781acaf82, type: 3}
-  setteam2: {fileID: 21300000, guid: ec5cd1ac339ed884886748ec2145712d, type: 3}
+  set: {fileID: 21300000, guid: a6e337bc824ef5a44925c59781acaf82, type: 3}
 --- !u!4 &1915726990
 Transform:
   m_ObjectHideFlags: 0

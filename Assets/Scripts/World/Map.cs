@@ -14,9 +14,9 @@ public class Map : MonoBehaviour
     [SerializeField] private Sprite startMask;
     [SerializeField] private Sprite startMaskEdge;
     [Space]
-    [SerializeField] private MeshFilter edgesMesh;
+    [SerializeField] private MeshFilter edgesMeshFilter;
 
-    public Texture2D terrainMask;
+    private Texture2D terrainMask;
     private byte[,] terrainData;
 
     public int MapWidth => terrainMask.width;
@@ -38,6 +38,7 @@ public class Map : MonoBehaviour
         terrainMask = Instantiate(startMask.texture);
 
         terrainData = new byte[terrainMask.width, terrainMask.height];
+        edgesMesh = new Mesh();
 
         mask.sprite = Sprite.Create(terrainMask, startMask.rect, new Vector2(0.5f, 0.5f), 100);
 
@@ -76,11 +77,11 @@ public class Map : MonoBehaviour
         int half_width = width / 2;
         int half_height = height / 2;
 
-        float viewportX = ((float)x / Screen.width) + 0.5f;
-        float viewportY = ((float)y / Screen.height) + 0.5f;
+        float viewport_x = ((float)x / Screen.width) + 0.5f;
+        float viewport_y = ((float)y / Screen.height) + 0.5f;
 
-        x = Mathf.FloorToInt(viewportX * Instance.MapWidth);
-        y = Mathf.FloorToInt(viewportY * Instance.MapHeight);
+        x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
+        y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
 
         for (int i = 0; i < width; i++)
             for (int j = 0; j < height; j++)
@@ -95,26 +96,69 @@ public class Map : MonoBehaviour
 
                 if (color.a < 0.5f) continue;
 
-                byte teamIndex = (byte)(team + 1);
+                byte team_index = (byte)(team + 1);
 
-                if (Instance.terrainData[x_pos, y_pos] != teamIndex)
-                {
-                    Instance.terrainData[x_pos, y_pos] = color == Color.white ? (byte)0 : teamIndex;
-                }
-
-
-
-
-
+                if (Instance.terrainData[x_pos, y_pos] != team_index) Instance.terrainData[x_pos, y_pos] = color == Color.white ? (byte)0 : team_index;
 
                 Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? TEAM1_MASK_VALUE : TEAM2_MASK_VALUE));
             }
+
+        //  FixNonsenseEdges(x - half_width, y - half_height, destruction, team);
 
         Instance.terrainMask.Apply();
 
         Instance.UpdateEdgesMesh();
     }
+    private static void FixNonsenseEdges(int x, int y, Sprite destruction, Team team)
+    {
+        int width = destruction.texture.width;
+        int height = destruction.texture.height;
 
+        byte target = team == Team.Team1 ? (byte)2 : (byte)1;
+
+        for (int a = 0; a < width; a++)
+            for (int b = 0; b < height; b++)
+            {
+                Color color = destruction.texture.GetPixel(a, b);
+
+                if (color != Color.white) continue;
+
+                int x_pos = x + a;
+                int y_pos = y + b;
+
+                if (x_pos < 0 || x_pos >= Instance.MapWidth
+                    || y_pos < 0 || y_pos >= Instance.MapHeight) continue;
+
+                bool found_target = false;
+
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (i == 0 && j == 0) continue;
+
+                        int x_pixel_pos = x_pos + i;
+                        int y_pixel_pos = y_pos + i;
+
+                        if (Instance.terrainData[x_pixel_pos, y_pixel_pos] == target)
+                        {
+                            found_target = true;
+                            break;
+                        }
+                    }
+
+                    if (found_target) break;
+                }
+
+                if (!found_target)
+                {
+                    Instance.terrainData[x_pos, y_pos] = (byte)(team + 1);
+                    Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? TEAM1_MASK_VALUE : TEAM2_MASK_VALUE));
+                }
+            }
+    }
+
+    private Mesh edgesMesh;
     private void UpdateEdgesMesh()
     {
         List<Vector3> vertices = new List<Vector3>();
@@ -263,16 +307,16 @@ public class Map : MonoBehaviour
                 foreach (Vector3 v in verts) vertices.Add(3 * v + new Vector3(i - 0.5f, j - 0.5f));
             }
 
-        Mesh mesh = new Mesh
-        {
-            indexFormat = vertices.Count >= short.MaxValue ? UnityEngine.Rendering.IndexFormat.UInt32 : UnityEngine.Rendering.IndexFormat.UInt16
-        };
-        mesh.SetVertices(vertices);
-        mesh.SetTriangles(triangles, 0);
+        edgesMesh.Clear();
 
-        mesh.RecalculateNormals();
-        mesh.RecalculateTangents();
+        edgesMesh.indexFormat = vertices.Count >= short.MaxValue ? UnityEngine.Rendering.IndexFormat.UInt32 : UnityEngine.Rendering.IndexFormat.UInt16;
 
-        edgesMesh.mesh = mesh;
+        edgesMesh.SetVertices(vertices);
+        edgesMesh.SetTriangles(triangles, 0);
+
+        edgesMesh.RecalculateNormals();
+        edgesMesh.RecalculateTangents();
+
+        edgesMeshFilter.mesh = edgesMesh;
     }
 }
