@@ -260,7 +260,7 @@ public class Map : MonoBehaviour
                 }
 
                 foreach (int t in triangs) triangles.Add(vertices.Count + t);
-                foreach (Vector3 v in verts) vertices.Add(2 * v + new Vector3(i, j));
+                foreach (Vector3 v in verts) vertices.Add(3 * v + new Vector3(i - 0.5f, j - 0.5f));
             }
 
         Mesh mesh = new Mesh
@@ -269,6 +269,9 @@ public class Map : MonoBehaviour
         };
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
+
+        mesh.RecalculateNormals();
+        mesh.RecalculateTangents();
 
         edgesMesh.mesh = mesh;
     }
