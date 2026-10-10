@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour
@@ -70,8 +71,10 @@ public class Map : MonoBehaviour
         UpdateEdgesMesh();
     }
 
-    public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team);
-    public static void Draw(int x, int y, Sprite destruction, Team team)
+    public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team, Vector2.right);
+    public static void Draw(Vector2 position, Sprite destruction, Team team, Vector2 direction) => Draw(((int)position.x), ((int)position.y), destruction, team, direction);
+    public static void Draw(int x, int y, Sprite destruction, Team team) => Draw(x, y, destruction, team, Vector2.right);
+    public static void Draw(int x, int y, Sprite destruction, Team team, Vector2 direction)
     {
         int width = destruction.texture.width;
         int height = destruction.texture.height;
@@ -87,8 +90,18 @@ public class Map : MonoBehaviour
         for (int i = 0; i < width; i++)
             for (int j = 0; j < height; j++)
             {
+                /*
                 int x_pos = x + i - half_width;
                 int y_pos = y + j - half_height;
+                */
+                float x_local = i - half_width;
+                float y_local = j - half_height;
+
+                int x_pos = x + Mathf.RoundToInt(x_local * direction.x - y_local * direction.y);
+
+                int y_pos = y + Mathf.RoundToInt(x_local * direction.y + y_local * direction.x);
+
+                /* */
 
                 if (x_pos < 0 || x_pos >= Instance.MapWidth
                     || y_pos < 0 || y_pos >= Instance.MapHeight) continue;
