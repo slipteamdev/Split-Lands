@@ -817,6 +817,10 @@ PrefabInstance:
       propertyPath: specialSkill
       value: 
       objectReference: {fileID: 2079451017}
+    - target: {fileID: 3527263303390687235, guid: 003067b1f8017ff47ac8099d947894e2, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: WASD
+      objectReference: {fileID: 0}
     - target: {fileID: 4535851116322417075, guid: 003067b1f8017ff47ac8099d947894e2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -984,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 1349478990681218522, guid: 003067b1f8017ff47ac8099d947894e2, type: 3}
       propertyPath: team
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527263303390687235, guid: 003067b1f8017ff47ac8099d947894e2, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Arrows
       objectReference: {fileID: 0}
     - target: {fileID: 3527263303390687235, guid: 003067b1f8017ff47ac8099d947894e2, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
