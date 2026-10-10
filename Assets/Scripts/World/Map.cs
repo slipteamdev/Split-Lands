@@ -15,6 +15,7 @@ public class Map : MonoBehaviour
     [SerializeField] private Sprite startMaskEdge;
     [Space]
     [SerializeField] private MeshFilter edgesMeshFilter;
+    [SerializeField] private MeshCollider edgesMeshCollider;
 
     private Texture2D terrainMask;
     private byte[,] terrainData;
@@ -318,5 +319,6 @@ public class Map : MonoBehaviour
         edgesMesh.RecalculateTangents();
 
         edgesMeshFilter.mesh = edgesMesh;
+        edgesMeshCollider.sharedMesh = edgesMesh;
     }
 }
