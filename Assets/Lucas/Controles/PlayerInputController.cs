@@ -8,6 +8,8 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField] private SkillManager skillManager;
 
 
+    [SerializeField] public Map.Team team;
+    public Vector2 orientation;
 
     Vector2 moveInput;
     void Start()
@@ -21,6 +23,8 @@ public class PlayerInputController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
         if (moveInput.magnitude <= 0.01) { moveInput = Vector2.zero; } // Si el movimiento de joystick es muy bajo, ignorarlo (ayuda con el drifting)
         movement.AssignInput(moveInput);
+
+        if (moveInput != Vector2.zero) { orientation = moveInput; }
     }
 
     public void OnBasicButton(InputAction.CallbackContext context)
