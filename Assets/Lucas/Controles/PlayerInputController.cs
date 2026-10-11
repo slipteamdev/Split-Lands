@@ -6,6 +6,7 @@ public class PlayerInputController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Movement movement;
     [SerializeField] private SkillManager skillManager;
+    [SerializeField] private PlayerItemsManager itemsManager;
 
 
     [SerializeField] public Map.Team team;
@@ -31,10 +32,23 @@ public class PlayerInputController : MonoBehaviour
     {
         if (context.performed && context.ReadValueAsButton())
         {
-            //if (itemManager.Interactable==true){
-            //   itemManager.BasicPressed();
-            //} else
-            skillManager.BasicPressed();
+            if (itemsManager.hasItem())
+            {
+                // usar item
+                itemsManager.UseItem();
+            }
+            else
+            {
+                skillManager.BasicPressed(); // usa la habilidad
+
+                // ahora si hay item cerca lo agarra
+                itemsManager.TryGetOne();
+                // if (itemsManager.hasItem())
+
+            }
+                //if (itemManager.Interactable==true){
+                //   itemManager.BasicPressed();
+                //} else
         }
 
 
