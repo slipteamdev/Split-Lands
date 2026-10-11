@@ -1,36 +1,58 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class ItemsManager : MonoBehaviour
 {
-    // lo hago serializefield para probarlo
-    [SerializeField] private static GameObject[] allItems;
+    private static List<GameObject> allItems = new List<GameObject>();
+
+
+    // esto es para probarlo
+    [SerializeField] private GameObject[] array;
+    public void Start()
+    {
+        foreach (GameObject item in array)
+        {
+            AddObject(item);
+        }
+    }
+
+    public static void AddObject(GameObject obj)
+    {
+        allItems.Add(obj);
+    }
 
     public static GameObject TryGetOne(Vector2 pos, float minDistance)
     {
         GameObject nearest = null;
-        foreach (var item in allItems)
+        float minDist = float.MaxValue;
+
+        foreach (GameObject item in allItems)
         {
-            if (nearest == null)
+            if (item == null) continue;
+
+            RectTransform rect = item.GetComponent<RectTransform>();
+            if (rect == null) continue;
+            float distance = Vector2.Distance(rect.anchoredPosition, pos);
+
+            if (distance < minDist)
             {
-                nearest = item;
-            }
-            else if (Vector2.Distance(nearest.transform.position, pos) > Vector2.Distance(item.transform.position, pos))
-            {
+                minDist = distance;
                 nearest = item;
             }
         }
-        if (nearest != null)
+
+        if (nearest != null && minDist < minDistance)
         {
-            if (Vector2.Distance(nearest.transform.position, pos) < minDistance)
-            {
 
-                // aqui lo sacaba de la lista
+            allItems.Remove(nearest);
 
-                return nearest;
-            }
+            return nearest;
         }
+
         return null;
     }
-
 }
+
+

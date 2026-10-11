@@ -46,11 +46,14 @@ public class DashNSplash : Skill
         }
 
         rb.linearVelocity = Vector2.zero;
+        this.transform.localRotation = Quaternion.identity;
 
 
         area.SetActive(true);
-        this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        area.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         Map.Draw(this.transform.localPosition, destruction, player.team, direction);
+
+        this.transform.localRotation = Quaternion.identity;
 
         yield return new WaitForSeconds(showAreaTime);
         area.SetActive(false);
