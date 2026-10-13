@@ -7,6 +7,11 @@ public class Movement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
 
+    private void Start()
+    {
+        Screen.fullScreen = true;
+    }
+
     void Update()
     {
         velocity = new Vector3(moveInput.x, moveInput.y, 0.0f).normalized * speed * Time.deltaTime;
