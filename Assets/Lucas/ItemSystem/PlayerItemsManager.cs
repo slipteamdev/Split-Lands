@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static ItemsManager;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.Progress;
 
 public class PlayerItemsManager : MonoBehaviour
 {
