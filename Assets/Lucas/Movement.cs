@@ -7,12 +7,6 @@ public class Movement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 velocity;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         velocity = new Vector3(moveInput.x, moveInput.y, 0.0f).normalized * speed * Time.deltaTime;

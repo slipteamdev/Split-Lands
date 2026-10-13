@@ -1,5 +1,4 @@
-using Mono.Cecil.Cil;
-using Unity.ProjectAuditor.Editor;
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
