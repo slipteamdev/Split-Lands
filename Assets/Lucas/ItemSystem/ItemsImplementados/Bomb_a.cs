@@ -18,7 +18,6 @@ public class Bomb_a : Item
     {
         area = this.gameObject.transform.GetChild(0).gameObject;
         area.SetActive(false);
-        rb = this.gameObject.GetComponent<Rigidbody>();
     }
     public override void Execute()
     {
@@ -32,6 +31,16 @@ public class Bomb_a : Item
 
         Vector2 direction = player.orientation;
         transform.position = player.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);
+
+        // LE VAMOS A CREAR ELL PUTO RIGIDBODY CUANDO YA NO TIENE DE PADRE AL JUGADOR XQ SINO PETA, ASI QUE AQUI LE PONGO TOS LOS VALORES DE MIERDA PARA QUE NO EXPLOTE
+        rb = this.gameObject.AddComponent<Rigidbody>();
+        rb.constraints =
+            RigidbodyConstraints.FreezePositionZ |
+            RigidbodyConstraints.FreezeRotationX |
+            RigidbodyConstraints.FreezeRotationY |
+            RigidbodyConstraints.FreezeRotationZ;
+        rb.useGravity = false;
+
         this.GetComponent<Collider>().enabled = true;
         rb.linearVelocity = direction * speed;
 
