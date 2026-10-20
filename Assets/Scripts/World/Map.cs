@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
@@ -21,6 +22,9 @@ public class Map : MonoBehaviour
     private Texture2D terrainMask;
     private byte[,] terrainData;
 
+    public static int[] pixelCount;
+    [SerializeField] private Slider progresSlider;
+
     public int MapWidth => terrainMask.width;
     public int MapHeight => terrainMask.height;
 
@@ -31,6 +35,9 @@ public class Map : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        pixelCount = new int[2];
+        pixelCount[0] = 0;
+        pixelCount[1] = 0;
 
         InitMask();
     }
@@ -53,11 +60,13 @@ public class Map : MonoBehaviour
                 {
                     terrainMask.SetPixel(i, j, new Color(1f, 1f, 1f, TEAM1_MASK_VALUE));
                     terrainData[i, j] = 1;
+                    pixelCount[0]++;
                 }
                 else if(color.r > 0.5f && color.b < 0.5f)
                 {
                     terrainMask.SetPixel(i, j, new Color(1f, 1f, 1f, TEAM2_MASK_VALUE));
                     terrainData[i, j] = 2;
+                    pixelCount[1]++;
                 }
                 else
                 {
@@ -69,6 +78,8 @@ public class Map : MonoBehaviour
         terrainMask.Apply();
 
         UpdateEdgesMesh();
+
+        UpdateSlider();
     }
 
     public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team, Vector2.right);
@@ -112,7 +123,26 @@ public class Map : MonoBehaviour
 
                 byte team_index = (byte)(team + 1);
 
-                if (Instance.terrainData[x_pos, y_pos] != team_index) Instance.terrainData[x_pos, y_pos] = color == Color.white ? (byte)0 : team_index;
+                if (Instance.terrainData[x_pos, y_pos] != team_index)
+                {
+                    if (color == Color.white)
+                    {
+                        if (Instance.terrainData[x_pos, y_pos] != (byte)0)
+                        {
+                            pixelCount[Instance.terrainData[x_pos, y_pos] - 1] -= 1;
+                        }
+                        Instance.terrainData[x_pos, y_pos] = (byte)0;
+                    }
+                    else
+                    {
+                        if (Instance.terrainData[x_pos, y_pos] != (byte)0)
+                        {
+                            pixelCount[Instance.terrainData[x_pos, y_pos] - 1] -= 1;
+                        }
+                        pixelCount[team_index - 1]++;
+                        Instance.terrainData[x_pos, y_pos] = team_index;
+                    }
+                }
 
                 Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? TEAM1_MASK_VALUE : TEAM2_MASK_VALUE));
             }
@@ -122,6 +152,8 @@ public class Map : MonoBehaviour
         Instance.terrainMask.Apply();
 
         Instance.UpdateEdgesMesh();
+
+        Instance.UpdateSlider();
     }
     private static void FixNonsenseEdges(int x, int y, Sprite destruction, Team team)
     {
@@ -333,5 +365,15 @@ public class Map : MonoBehaviour
 
         edgesMeshFilter.mesh = edgesMesh;
         edgesMeshCollider.sharedMesh = edgesMesh;
+    }
+
+    private void UpdateSlider()
+    {
+        int totalPixels = pixelCount[0] + pixelCount[1];
+
+        if (progresSlider != null)
+        {
+            progresSlider.value = ((float)pixelCount[0] / (float)totalPixels);
+        }
     }
 }
