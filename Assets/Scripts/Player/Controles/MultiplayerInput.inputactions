@@ -190,7 +190,7 @@
                 {
                     "name": "",
                     "id": "92450bfd-8e80-41bd-99f2-90c92653197a",
-                    "path": "<Keyboard>/backslash",
+                    "path": "<Keyboard>/slash",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Arrows",
@@ -223,7 +223,7 @@
                 {
                     "name": "",
                     "id": "1dc84c61-79df-4838-b09f-4c5f6402de60",
-                    "path": "<Keyboard>/quote",
+                    "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Arrows",
@@ -256,7 +256,7 @@
                 {
                     "name": "",
                     "id": "7dea65fa-0605-4739-b323-f9edf97dc669",
-                    "path": "<Keyboard>/semicolon",
+                    "path": "<Keyboard>/comma",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Arrows",
