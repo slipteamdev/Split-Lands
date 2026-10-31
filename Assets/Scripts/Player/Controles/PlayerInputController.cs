@@ -10,13 +10,12 @@ public class PlayerInputController : MonoBehaviour
 
 
     [SerializeField] public Map.Team team;
-    public Vector2 orientation;
+    public Vector2 orientation = Vector2.right;
 
     Vector2 moveInput;
     void Start()
     {
-        //movement = GetComponent<Movement>();
-        //skillManager = GetComponent<SkillManager>();
+        orientation = Vector2.right;
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -32,23 +31,18 @@ public class PlayerInputController : MonoBehaviour
     {
         if (context.performed && context.ReadValueAsButton())
         {
-            if (itemsManager.hasItem())
+            if (itemsManager.ItemInReach() || itemsManager.hasItem())
             {
                 // usar item
-                itemsManager.UseItem();
+                itemsManager.BasicPressed();
             }
             else
             {
                 skillManager.BasicPressed(); // usa la habilidad
-
-                // ahora si hay item cerca lo agarra
-                itemsManager.TryGetOne();
-                // if (itemsManager.hasItem())
-
             }
-                //if (itemManager.Interactable==true){
-                //   itemManager.BasicPressed();
-                //} else
+            //if (itemManager.Interactable==true){
+            //   itemManager.BasicPressed();
+            //} else
         }
 
 

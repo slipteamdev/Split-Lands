@@ -16,7 +16,12 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        velocity = new Vector3(moveInput.x, moveInput.y, 0.0f).normalized * speed;
+        if (moveInput.magnitude > 1)
+        {
+            moveInput = moveInput.normalized;
+        }
+        velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * speed;
+
         if (rb == null) //por si no tiene rigidbody que se mueva con el transform, ESTO IGUAL DA PROBLEMAS PERO DE MOMENTO LO DEJO
         {
             transform.position = transform.position + velocity * Time.deltaTime;

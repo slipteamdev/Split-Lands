@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using static Map;
 
 public class BasicSkill : Skill
 {
     [SerializeField] private Sprite destruction;
-    
+
     private PlayerInputController player;
     private GameObject area;
     private float showAreaTime = 0.25f;
@@ -38,3 +37,4 @@ public class BasicSkill : Skill
         area.SetActive(false);
     }
 }
+

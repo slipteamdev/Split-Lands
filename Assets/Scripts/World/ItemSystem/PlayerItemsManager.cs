@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static ItemsManager;
 
 public class PlayerItemsManager : MonoBehaviour
@@ -14,6 +12,23 @@ public class PlayerItemsManager : MonoBehaviour
     {
         return (playerItem != null);
     }
+    public bool ItemInReach()
+    {
+        return ItemNear(this.GetComponent<RectTransform>().anchoredPosition, minDistance);
+    }
+
+    public void BasicPressed()
+    {
+        if (hasItem())
+        {
+            UseItem();
+        }
+        else
+        {
+            TryGetOne();
+        }
+    }
+
     public void TryGetOne()
     {
         if (playerItem != null) return; // si tiene un objeto no coges mas
