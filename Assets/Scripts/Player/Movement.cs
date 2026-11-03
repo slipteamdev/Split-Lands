@@ -6,15 +6,18 @@ public class Movement : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 velocity;
+    private PlayerContext playerContext;
     private Rigidbody rb;
 
     private void Start()
     {
         Screen.fullScreen = true;
-        rb = this.gameObject.GetComponent<Rigidbody>();
+
+        playerContext = GetComponent<PlayerContext>();
+        rb = playerContext.Rb;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (moveInput.magnitude > 1)
         {
@@ -36,5 +39,7 @@ public class Movement : MonoBehaviour
     public void AssignInput(Vector2 input)
     {
         moveInput = input;
+        if (moveInput != Vector2.zero) playerContext.SetOrientation(moveInput.normalized);
+
     }
 }

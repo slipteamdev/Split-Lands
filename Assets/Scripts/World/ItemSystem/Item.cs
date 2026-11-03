@@ -13,6 +13,7 @@ public abstract class Item : MonoBehaviour
     public Sprite Icon => icon;
     public float BaseCooldown => baseCooldown;
     public GameObject PlayerOwner => playerOwner;
+    public PlayerContext playerContext;
 
 
     public void Use()
