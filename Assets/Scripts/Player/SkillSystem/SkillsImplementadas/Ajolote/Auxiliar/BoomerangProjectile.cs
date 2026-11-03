@@ -66,10 +66,8 @@ public class BoomerangProjectile : MonoBehaviour
         destruction = newDestruction;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-
-        rectTransform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
         Map.Draw(this.transform.localPosition, destruction, team);
 
         // maquina de estados
@@ -83,6 +81,11 @@ public class BoomerangProjectile : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        rectTransform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
+    }
+
     private void MoveOutward()
     {
         float distanceTraveled = Vector2.Distance(startPosition, rectTransform.anchoredPosition);
@@ -93,7 +96,7 @@ public class BoomerangProjectile : MonoBehaviour
         float curveFactor = outwardSpeedCurve.Evaluate(t);
         float currentSpeed = Mathf.Lerp(minSpeed, maxSpeed, curveFactor); //devuelve la velocidad correspondiente al valor de t actual
 
-        rectTransform.anchoredPosition += travelDirection * (currentSpeed * Time.deltaTime);
+        rectTransform.anchoredPosition += travelDirection * (currentSpeed * Time.fixedDeltaTime);
 
         // Si ha recorrido lo suficiente, empieza a volver
         if (distanceTraveled >= maxDistance)
@@ -136,7 +139,7 @@ public class BoomerangProjectile : MonoBehaviour
 
         // Direccion hacia la posicion actual del jugador
         Vector2 directionToPlayer = (targetPos - currentPos).normalized;
-        rectTransform.anchoredPosition += directionToPlayer * (currentSpeed * Time.deltaTime);
+        rectTransform.anchoredPosition += directionToPlayer * (currentSpeed * Time.fixedDeltaTime);
     }
 
 }

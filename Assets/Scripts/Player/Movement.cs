@@ -19,6 +19,14 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!playerContext.MoveInputAllowed) return; // Si no se permite input, acaba el bucle
+
+        if (!playerContext.MoveAllowed) // Si se prohibe movimiento, velocidad cero y acaba
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
         if (moveInput.magnitude > 1)
         {
             moveInput = moveInput.normalized;

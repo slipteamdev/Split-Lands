@@ -7,6 +7,7 @@ public class DashNSplash : Skill
     [SerializeField] private Sprite destructionDash;
     [SerializeField] private float dashDistance = 70f;   // Distancia total a recorrer
     [SerializeField] private float dashSpeed = 500f;
+    [SerializeField] private float endLag = 1f; // Tiempo que el jugador se queda sin poder actuar tras el ataque (balanceo)
 
     private Rigidbody rb;
     private GameObject area;
@@ -31,9 +32,12 @@ public class DashNSplash : Skill
 
     IEnumerator Dash()
     {
-        float angle = Random.Range(0f, 360f);
+        //float angle = Random.Range(0f, 360f);
         //Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
 
+        playerContext.BlockMoveInput();
+        playerContext.BlockItem();
+        playerContext.BlockSkill();
         float dashDuration = dashDistance / dashSpeed;
         float tiempo = 0f;
 
@@ -62,5 +66,9 @@ public class DashNSplash : Skill
 
         yield return new WaitForSeconds(showAreaTime);
         area.SetActive(false);
+        yield return new WaitForSeconds(endLag);
+        playerContext.AllowMoveInput();
+        playerContext.AllowItem();
+        playerContext.AllowSkill();
     }
 }

@@ -40,7 +40,7 @@ public class WhirlpoolProjectile : MonoBehaviour
         UpdateOrbitPosition();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (targetPlayerRect == null)
         {
@@ -48,24 +48,29 @@ public class WhirlpoolProjectile : MonoBehaviour
             return;
         }
 
-        lifeTimer -= Time.deltaTime;
+        lifeTimer -= Time.fixedDeltaTime;
         if (lifeTimer <= 0f)
         {
             Destroy(gameObject);
             return;
         }
 
-        currentAngle += orbitSpeed * Time.deltaTime;
+        currentAngle += orbitSpeed * Time.fixedDeltaTime;
         if (currentAngle >= 360f) currentAngle -= 360f;
 
         UpdateOrbitPosition();
 
-        rectTransform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
+
 
         if (destruction != null)
         {
             Map.Draw(transform.localPosition, destruction, team);
         }
+    }
+
+    private void Update()
+    {
+        rectTransform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
     }
 
     private void UpdateOrbitPosition()
