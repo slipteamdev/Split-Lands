@@ -110,6 +110,7 @@ public class Map : MonoBehaviour
         y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
 
         Color[] brush_pixels = destruction.texture.GetPixels();
+        bool has_updated = false;
 
         for (int i = 0; i < width; i++)
         {
@@ -130,18 +131,20 @@ public class Map : MonoBehaviour
 
                 if (Instance.terrainData[x_pos, y_pos] != team_index)
                 {
+                    has_updated = true;
+
                     if (color == Color.white)
                     {
-                        if (Instance.terrainData[x_pos, y_pos] != (byte)0)
+                        if (Instance.terrainData[x_pos, y_pos] != 0)
                             pixelCount[Instance.terrainData[x_pos, y_pos] - 1] -= 1;
 
-                        Instance.terrainData[x_pos, y_pos] = (byte)0;
+                        Instance.terrainData[x_pos, y_pos] = 0;
 
                         Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, TEAM2_MASK_VALUE));
                     }
                     else
                     {
-                        if (Instance.terrainData[x_pos, y_pos] != (byte)0)
+                        if (Instance.terrainData[x_pos, y_pos] != 0)
                             pixelCount[Instance.terrainData[x_pos, y_pos] - 1] -= 1;
 
                         pixelCount[team_index - 1]++;
@@ -152,6 +155,8 @@ public class Map : MonoBehaviour
                 }
             }
         }
+
+        if (!has_updated) return;
 
         FixNonsenseEdges(x - half_width, y - half_height, destruction, team);
 
@@ -263,15 +268,12 @@ public class Map : MonoBehaviour
     */
     private readonly Vector3[] PIXEL_VERTS = new Vector3[4]
     {
-            new Vector3(0, 0),
-            new Vector3(1, 0),
-            new Vector3(0, 1),
-            new Vector3(1, 1)
+        new Vector3(0, 0),
+        new Vector3(1, 0),
+        new Vector3(0, 1),
+        new Vector3(1, 1)
     };
-    private readonly int[] PIXEL_TRIANGS = new int[6]
-    {
-            2, 1, 0, 2, 3, 1
-    };
+    private readonly int[] PIXEL_TRIANGS = new int[6] { 2, 1, 0, 2, 3, 1 };
     private void UpdateEdgesMesh()
     {
         edgesVertices.Clear();
