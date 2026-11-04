@@ -11,20 +11,18 @@ public class WhirlpoolSkill : Skill
     [SerializeField] private float orbitSpeed = 180f;
     [SerializeField] private float duration = 5f;
 
-    private PlayerInputController player;
     private RectTransform playerRect;
     private Canvas parentCanvas;
 
-    private void Awake()
+    private void Start()
     {
-        player = GetComponent<PlayerInputController>();
         playerRect = GetComponent<RectTransform>();
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
     public override void Execute()
     {
-        if (projectilePrefab == null || player == null || parentCanvas == null) return;
+        if (projectilePrefab == null || parentCanvas == null) return;
 
         float angleStep = 360f / Mathf.Max(1, projectileCount);
 
@@ -37,7 +35,7 @@ public class WhirlpoolSkill : Skill
             projectile.Initialize(
                 playerRect,
                 startingAngle,
-                player.team,
+                playerContext.Team,
                 orbitRadius,
                 orbitSpeed,
                 duration,

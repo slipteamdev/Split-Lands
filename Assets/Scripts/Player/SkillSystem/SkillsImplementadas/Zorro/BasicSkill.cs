@@ -17,11 +17,11 @@ public class BasicSkill : Skill
     }
     public override void Execute()
     {
-        float angle = Mathf.Atan2(player.orientation.y, player.orientation.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(playerContext.Orientation.y, playerContext.Orientation.x) * Mathf.Rad2Deg;
         area.SetActive(true);
         this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        Map.Draw(this.transform.localPosition, destruction, player.team, player.orientation);
+        Draw(destruction, playerContext.Orientation);
 
         StartCoroutine(hideArea());
 

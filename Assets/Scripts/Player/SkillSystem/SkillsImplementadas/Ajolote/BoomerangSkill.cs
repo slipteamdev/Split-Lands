@@ -29,24 +29,22 @@ public class BoomerangSkill : Skill
         new Keyframe(1f, 1f)
     );
 
-    private PlayerInputController player;
     private RectTransform playerRect;
     private Canvas parentCanvas;
 
-    private void Awake()
+    private void Start()
     {
-        player = GetComponent<PlayerInputController>();
         playerRect = GetComponent<RectTransform>();
 
-        // Busca el Canvas padre para instanciar el proyectil dentro de su jerarquía
+        // Busca el Canvas padre para instanciar el proyectil dentro de su jerarquia
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
     public override void Execute()
     {
-        if (boomerangPrefab == null || player == null || parentCanvas == null) return;
+        if (boomerangPrefab == null || parentCanvas == null) return;
 
-        Vector2 shootDirection = player.orientation;
+        Vector2 shootDirection = playerContext.Orientation;
 
         // Instanciamos el boomerang como hijo del Canvas
         BoomerangProjectile projectile = Instantiate(boomerangPrefab, parentCanvas.transform);
@@ -59,7 +57,7 @@ public class BoomerangSkill : Skill
         projectile.Initialize(
             playerRect,
             shootDirection,
-            player.team,
+            playerContext.Team,
             maxSpeed,
             minSpeed,
             maxDistance,

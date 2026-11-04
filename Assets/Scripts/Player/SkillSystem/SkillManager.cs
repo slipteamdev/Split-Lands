@@ -7,6 +7,8 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private Skill specialSkill;
     [SerializeField] private Skill ultimateSkill;
 
+    private PlayerContext playerContext;
+
     public Skill BasicSlot { get; private set; }
     public Skill SpecialSlot { get; private set; }
     public Skill UltimateSlot { get; private set; }
@@ -20,6 +22,8 @@ public class SkillManager : MonoBehaviour
         BasicSlot = basicSkill;
         SpecialSlot = specialSkill;
         UltimateSlot = ultimateSkill;
+
+        playerContext = GetComponent<PlayerContext>();
 
         allSlots = new Skill[] { BasicSlot, SpecialSlot, UltimateSlot };
     }
@@ -52,18 +56,21 @@ public class SkillManager : MonoBehaviour
     // Pregunta a las habilidades si su cooldown ha acabado, y si lo ha hecho, las activa
     private void TryUse(int id)
     {
-        if (allSlots[id] == null)
+        if (playerContext.SkillAllowed) // Ver si se han bloqueado las habilidades
         {
-            return;
-        }
-        if (allSlots[id].IsReady)
-        {
-            allSlots[id].Use();
-        }
-        else
-        {
-            Debug.LogWarning($"[{gameObject.name}] No puede usar [{allSlots[id].SkillName}]. " +
-            $"Cooldown restante: {allSlots[id].RemainingRealSeconds:F1}s | Porcentaje de carga: {allSlots[id].CooldownNormalized * 100:F0}%");
+            if (allSlots[id] == null)
+            {
+                return;
+            }
+            if (allSlots[id].IsReady)
+            {
+                allSlots[id].Use();
+            }
+            else
+            {
+                Debug.LogWarning($"[{gameObject.name}] No puede usar [{allSlots[id].SkillName}]. " +
+                $"Cooldown restante: {allSlots[id].RemainingRealSeconds:F1}s | Porcentaje de carga: {allSlots[id].CooldownNormalized * 100:F0}%");
+            }
         }
     }
 

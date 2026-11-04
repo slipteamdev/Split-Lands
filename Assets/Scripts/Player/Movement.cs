@@ -6,16 +6,27 @@ public class Movement : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 velocity;
+    private PlayerContext playerContext;
     private Rigidbody rb;
 
     private void Start()
     {
         Screen.fullScreen = true;
-        rb = this.gameObject.GetComponent<Rigidbody>();
+
+        playerContext = GetComponent<PlayerContext>();
+        rb = playerContext.Rb;
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (!playerContext.MoveInputAllowed) return; // Si no se permite input, acaba el bucle
+
+        if (!playerContext.MoveAllowed) // Si se prohibe movimiento, velocidad cero y acaba
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
         if (moveInput.magnitude > 1)
         {
             moveInput = moveInput.normalized;
@@ -28,7 +39,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            Debug.Log(velocity.sqrMagnitude);
+            //Debug.Log(velocity.sqrMagnitude);
             rb.linearVelocity = velocity;
         }
     }
@@ -36,5 +47,7 @@ public class Movement : MonoBehaviour
     public void AssignInput(Vector2 input)
     {
         moveInput = input;
+        if (moveInput != Vector2.zero) playerContext.SetOrientation(moveInput.normalized);
+
     }
 }

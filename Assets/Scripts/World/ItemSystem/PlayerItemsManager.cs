@@ -6,6 +6,8 @@ public class PlayerItemsManager : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private GameObject topOfMyHead;
 
+    private PlayerContext playerContext;
+
     private GameObject playerItem = null;
 
     public bool hasItem()
@@ -19,6 +21,7 @@ public class PlayerItemsManager : MonoBehaviour
 
     public void BasicPressed()
     {
+        if (!playerContext.ItemAllowed) return; // Si no se permite uso de objetos, se ignora
         if (hasItem())
         {
             UseItem();

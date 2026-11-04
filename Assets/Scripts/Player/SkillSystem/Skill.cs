@@ -9,6 +9,12 @@ public enum SkillType
 }
 public abstract class Skill : MonoBehaviour
 {
+    protected PlayerContext playerContext;
+    protected virtual void Awake()
+    {
+        playerContext = GetComponent<PlayerContext>();
+    }
+
     #region Atributos Básicos
     [SerializeField] private string skillName;
     [SerializeField] private Sprite icon; // Icono para UI
@@ -92,6 +98,14 @@ public abstract class Skill : MonoBehaviour
 
     #endregion
 
+    public void Draw(Sprite destruction)
+    {
+        Map.Draw(this.transform.localPosition, destruction, playerContext.Team);
+    }
+    public void Draw(Sprite destruction, Vector2 orientation)
+    {
+        Map.Draw(this.transform.localPosition, destruction, playerContext.Team, orientation);
+    }
     // Este es el método que hay que definir en los scripts individuales de cada habilidad
     public abstract void Execute();
 

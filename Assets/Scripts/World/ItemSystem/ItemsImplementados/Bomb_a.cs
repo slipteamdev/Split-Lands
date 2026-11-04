@@ -1,6 +1,6 @@
 
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Bomb_a : Item
@@ -8,7 +8,6 @@ public class Bomb_a : Item
     [SerializeField] private Sprite destruction;
     [SerializeField] private float speed;
 
-    private PlayerInputController player;
     private Rigidbody rb;
     private GameObject area;
     private float showAreaTime = 0.25f;
@@ -21,7 +20,7 @@ public class Bomb_a : Item
     }
     public override void Execute()
     {
-        player = this.PlayerOwner.GetComponent<PlayerInputController>();
+        playerContext = this.PlayerOwner.GetComponent<PlayerContext>(); // Nota de Lucas: Esta asignacion intentaria mirar si se puede hacer en el script base, para no tener que ponerla en todos los objetos
 
         GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra
 
@@ -29,8 +28,8 @@ public class Bomb_a : Item
 
 
 
-        Vector2 direction = player.orientation;
-        transform.position = player.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);
+        Vector2 direction = playerContext.Orientation;
+        transform.position = playerContext.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);
 
         // LE VAMOS A CREAR ELL PUTO RIGIDBODY CUANDO YA NO TIENE DE PADRE AL JUGADOR XQ SINO PETA, ASI QUE AQUI LE PONGO TOS LOS VALORES DE MIERDA PARA QUE NO EXPLOTE
         rb = this.gameObject.AddComponent<Rigidbody>();
@@ -52,7 +51,7 @@ public class Bomb_a : Item
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ( collision.gameObject.GetComponent<MeshCollider>() != null ) //si choca con un mesh colider que deberia ser el rayito
+        if (collision.gameObject.GetComponent<MeshCollider>() != null) //si choca con un mesh colider que deberia ser el rayito
         {
             rb.linearVelocity = Vector2.zero;
             this.GetComponent<Collider>().enabled = false;
@@ -70,7 +69,7 @@ public class Bomb_a : Item
         float angle = Random.Range(0f, 360f);
         Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
         this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        Map.Draw(this.transform.localPosition, destruction, player.team, direction);
+        Map.Draw(this.transform.localPosition, destruction, playerContext.Team, direction);
 
         yield return new WaitForSeconds(showAreaTime);
         area.SetActive(false);
