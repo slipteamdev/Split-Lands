@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            Debug.Log(velocity.sqrMagnitude);
+            //Debug.Log(velocity.sqrMagnitude);
             rb.linearVelocity = velocity;
         }
     }
