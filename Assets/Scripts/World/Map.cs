@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Map : MonoBehaviour
 {
@@ -222,6 +223,7 @@ public class Map : MonoBehaviour
         }
     }
 
+    /*
     private static readonly Vector3[][] VertsTable = new Vector3[][]
     {
         null, // 0
@@ -258,6 +260,18 @@ public class Map : MonoBehaviour
         new[] { 0, 1, 2, 0, 2, 3, 0, 3, 4 }, // 13
         new[] { 0, 1, 4, 1, 3, 4, 1, 2, 3 } // 14
     };
+    */
+    private readonly Vector3[] PIXEL_VERTS = new Vector3[4]
+    {
+            new Vector3(0, 0),
+            new Vector3(1, 0),
+            new Vector3(0, 1),
+            new Vector3(1, 1)
+    };
+    private readonly int[] PIXEL_TRIANGS = new int[6]
+    {
+            2, 1, 0, 2, 3, 1
+    };
     private void UpdateEdgesMesh()
     {
         edgesVertices.Clear();
@@ -275,24 +289,21 @@ public class Map : MonoBehaviour
                 int c = terrainData[i + 1, j + 1] == 1 ? 1 : 0;
                 int d = terrainData[i, j + 1] == 1 ? 1 : 0;
 
-                int value = a * 8 + b * 4 + c * 2 + d;
+                int result = a + b + c + d;
 
-                if (value == 0 || value == 15) continue;
-
-                Vector3[] verts = VertsTable[value];
-                int[] triangs = TriangsTable[value];
+                if (result == 0 || result == 4) continue;
 
                 int vertices_count = edgesVertices.Count;
                 Vector3 offset = new Vector3(i + 0.5f, j + 0.5f, 0f);
 
-                for (int k = 0; k < verts.Length; k++)
+                for (int k = 0; k < PIXEL_VERTS.Length; k++)
                 {
-                    edgesVertices.Add(verts[k] + offset);
+                    edgesVertices.Add(PIXEL_VERTS[k] + offset);
                 }
 
-                for (int k = 0; k < triangs.Length; k++)
+                for (int k = 0; k < PIXEL_TRIANGS.Length; k++)
                 {
-                    edgesTriangles.Add(vertices_count + triangs[k]);
+                    edgesTriangles.Add(vertices_count + PIXEL_TRIANGS[k]);
                 }
             }
         }
