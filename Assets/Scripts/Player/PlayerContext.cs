@@ -20,6 +20,12 @@ public class PlayerContext : MonoBehaviour
         orientation = Vector2.right;
     }
 
+    public void Init(Map.Team team, Vector2 orientation)
+    {
+        this.team = team;
+        this.orientation = orientation;
+    }
+
 
     // Contadores internos de bloqueos activos. Usar un contador en vez de un bool permite que bloqueos de causas distintas coexistan, cada vez que algo bloquea, suma 1. Cada vez que algo libera, resta 1
     private int moveBlockCount = 0;

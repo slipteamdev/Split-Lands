@@ -1,18 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputManager : MonoBehaviour
+public static class PlayerInputManagerInitialicer
 {
-
     //Este script asigna los controles (wasd, mando, flechas...) a cada jugador
-    [SerializeField] private PlayerInput player1;
-    [SerializeField] private PlayerInput player2;
-
-    void Start()
+    public static void Init(GameObject player1Obj, GameObject player2Obj)
     {
         int gamepadsConnected = Gamepad.all.Count;
+        PlayerInput player1 = player1Obj.GetComponent<PlayerInput>();
+        PlayerInput player2 = player2Obj.GetComponent<PlayerInput>();
 
-        // Caso 1: Hay 2 o más mandos -> Ambos juegan con mando
+        // Caso 1: Hay 2 o mas mandos -> Ambos juegan con mando
         if (gamepadsConnected >= 2)
         {
             player1.SwitchCurrentControlScheme("GamePad", Gamepad.all[0]);
@@ -30,11 +28,5 @@ public class PlayerInputManager : MonoBehaviour
             player1.SwitchCurrentControlScheme("WASD", Keyboard.current);
             player2.SwitchCurrentControlScheme("Arrows", Keyboard.current);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -10,6 +10,11 @@ public class PlayerItemsManager : MonoBehaviour
 
     private GameObject playerItem = null;
 
+    public void Start()
+    {
+        playerContext = GetComponent<PlayerContext>();
+    }
+
     public bool hasItem()
     {
         return (playerItem != null);
