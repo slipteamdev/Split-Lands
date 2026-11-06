@@ -1,13 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class DashNSplash : Skill
+public class DashNSplashSkill : Skill
 {
-    [SerializeField] private Sprite destructionSplash;
-    [SerializeField] private Sprite destructionDash;
-    [SerializeField] private float dashDistance = 70f;   // Distancia total a recorrer
-    [SerializeField] private float dashSpeed = 500f;
-    [SerializeField] private float endLag = 1f; // Tiempo que el jugador se queda sin poder actuar tras el ataque (balanceo)
+    [Header("Atributos Base")]
+    [SerializeField] private Sprite BaseDestructionSplash;
+    [SerializeField] private Sprite BaseDestructionDash;
+    [SerializeField] private float BaseDashDistance = 70f;   // Distancia total a recorrer
+    [SerializeField] private float BaseDashSpeed = 500f;
+    [SerializeField] private float BaseEndLag = 1f; // Tiempo que el jugador se queda sin poder actuar tras el ataque (balanceo)
+
+    [Header("Atributos Berserk")]
+    [SerializeField] private Sprite BerserkDestructionSplash;
+    [SerializeField] private Sprite BerserkDestructionDash;
+    [SerializeField] private float BerserkDashDistance = 100f;   // Distancia total a recorrer
+    [SerializeField] private float BerserkDashSpeed = 700f;
+    [SerializeField] private float BerserkEndLag = 0.4f; // Tiempo que el jugador se queda sin poder actuar tras el ataque (balanceo)
+
+    // Variables reales que se usan en ejecucion
+    private Sprite destructionSplash;
+    private Sprite destructionDash;
+    private float dashDistance;   // Distancia total a recorrer
+    private float dashSpeed;
+    private float endLag; // Tiempo que el jugador se queda sin poder actuar tras el ataque (balanceo)
 
     private Rigidbody rb;
     private GameObject area;
@@ -18,6 +33,7 @@ public class DashNSplash : Skill
         area = this.gameObject.transform.GetChild(0).GetChild(1).gameObject;
         area.SetActive(false);
         rb = playerContext.Rb;
+        NormalMode();
     }
     public override void Execute()
     {
@@ -71,4 +87,24 @@ public class DashNSplash : Skill
         playerContext.AllowItem();
         playerContext.AllowSkill();
     }
+
+    public void NormalMode()
+    {
+        destructionSplash = BaseDestructionSplash;
+        destructionDash = BaseDestructionDash;
+        dashDistance = BaseDashDistance;
+        dashSpeed = BaseDashSpeed;
+        endLag = BaseEndLag;
+    }
+
+    public void BerserkMode()
+    {
+        destructionSplash = BerserkDestructionSplash;
+        destructionDash = BerserkDestructionDash;
+        dashDistance = BerserkDashDistance;
+        dashSpeed = BerserkDashSpeed;
+        endLag = BerserkEndLag;
+    }
+
+
 }

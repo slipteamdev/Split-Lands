@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class BasicSkill : Skill
+public class SlashSkill : Skill
 {
-    [SerializeField] private Sprite destruction;
+    [SerializeField] private Sprite BaseDestruction;
+    [SerializeField] private Sprite BerserkDestruction;
+    private Sprite destruction;
 
     private PlayerInputController player;
     private GameObject area;
@@ -14,6 +16,7 @@ public class BasicSkill : Skill
         player = this.gameObject.GetComponent<PlayerInputController>();
         area = this.gameObject.transform.GetChild(0).GetChild(0).gameObject;
         area.SetActive(false);
+        NormalMode();
     }
     public override void Execute()
     {
@@ -35,6 +38,16 @@ public class BasicSkill : Skill
     {
         yield return new WaitForSeconds(showAreaTime);
         area.SetActive(false);
+    }
+
+    public void NormalMode()
+    {
+        destruction = BaseDestruction;
+    }
+
+    public void BerserkMode()
+    {
+        destruction = BerserkDestruction;
     }
 }
 
