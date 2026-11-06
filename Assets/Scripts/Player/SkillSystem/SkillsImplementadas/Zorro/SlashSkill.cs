@@ -5,6 +5,7 @@ public class SlashSkill : Skill
 {
     [SerializeField] private Sprite BaseDestruction;
     [SerializeField] private Sprite BerserkDestruction;
+    [SerializeField] private float BerserkCooldownSpeedMultiplier = 1f;
     private Sprite destruction;
 
     private PlayerInputController player;
@@ -43,11 +44,13 @@ public class SlashSkill : Skill
     public void NormalMode()
     {
         destruction = BaseDestruction;
+        SelfCooldownMultiplier = 1f;
     }
 
     public void BerserkMode()
     {
         destruction = BerserkDestruction;
+        SelfCooldownMultiplier = BerserkCooldownSpeedMultiplier;
     }
 }
 

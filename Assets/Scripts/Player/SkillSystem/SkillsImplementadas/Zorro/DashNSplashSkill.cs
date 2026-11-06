@@ -16,6 +16,7 @@ public class DashNSplashSkill : Skill
     [SerializeField] private float BerserkDashDistance = 100f;   // Distancia total a recorrer
     [SerializeField] private float BerserkDashSpeed = 700f;
     [SerializeField] private float BerserkEndLag = 0.4f; // Tiempo que el jugador se queda sin poder actuar tras el ataque (balanceo)
+    [SerializeField] private float BerserkCooldownSpeedMultiplier = 1f;
 
     // Variables reales que se usan en ejecucion
     private Sprite destructionSplash;
@@ -95,6 +96,7 @@ public class DashNSplashSkill : Skill
         dashDistance = BaseDashDistance;
         dashSpeed = BaseDashSpeed;
         endLag = BaseEndLag;
+        SelfCooldownMultiplier = 1f;
     }
 
     public void BerserkMode()
@@ -104,6 +106,7 @@ public class DashNSplashSkill : Skill
         dashDistance = BerserkDashDistance;
         dashSpeed = BerserkDashSpeed;
         endLag = BerserkEndLag;
+        SelfCooldownMultiplier = BerserkCooldownSpeedMultiplier;
     }
 
 

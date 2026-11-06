@@ -30,12 +30,17 @@ public abstract class Skill : MonoBehaviour
     #endregion
 
     #region Cooldowns
+
+    public float PlayerCooldownMultiplier => playerContext != null ? playerContext.CooldownSpeedMultiplier : 1f;
+
+    public float SelfCooldownMultiplier { get; protected set; } = 1f;
+
     // Contador de segundos restantes para que el cooldown termine (0 = lista)
     private float currentCooldown;
 
     // Multiplicador de velocidad de recarga (para buffs y debuffs)
     // Actualmente siempre es 1, pero se deja aquí para cuando se implementen alteraciones de velocidad de recarga
-    public float CooldownSpeedMultiplier { get; set; } = 1f;
+    public float CooldownSpeedMultiplier => Mathf.Max((PlayerCooldownMultiplier - 1) + (SelfCooldownMultiplier - 1) + 1, 0);
 
     // Comprueba si la habilidad está lista para ser ejecutada
     public bool IsReady => currentCooldown <= 0f;

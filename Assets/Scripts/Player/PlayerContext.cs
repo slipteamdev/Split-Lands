@@ -11,6 +11,8 @@ public class PlayerContext : MonoBehaviour
     public RectTransform RectTransform { get; private set; }
     public Rigidbody Rb { get; private set; }
 
+    public float CooldownSpeedMultiplier { get; private set; } = 1.0f;
+
     public void Awake()
     {
         RectTransform = GetComponent<RectTransform>();
