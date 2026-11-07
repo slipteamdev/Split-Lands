@@ -36,7 +36,7 @@ public abstract class Skill : MonoBehaviour
     public float SelfCooldownMultiplier { get; protected set; } = 1f;
 
     // Contador de segundos restantes para que el cooldown termine (0 = lista)
-    private float currentCooldown;
+    public float currentCooldown;
 
     // Multiplicador de velocidad de recarga (para buffs y debuffs)
     // Actualmente siempre es 1, pero se deja aquí para cuando se implementen alteraciones de velocidad de recarga

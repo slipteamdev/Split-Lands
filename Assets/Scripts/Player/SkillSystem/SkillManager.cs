@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SkillManager : MonoBehaviour
     // Array con las habilidades, se usa para bucles
     private Skill[] allSlots;
 
+    public Image[] icons;
 
     void Awake()
     {
@@ -43,6 +45,10 @@ public class SkillManager : MonoBehaviour
             if (allSlots[i] != null)
             {
                 allSlots[i].Tick(dt);
+                if (icons[i] != null)
+                {
+                    icons[i].fillAmount = allSlots[i].currentCooldown / allSlots[i].BaseCooldown;
+                }
             }
         }
     }
