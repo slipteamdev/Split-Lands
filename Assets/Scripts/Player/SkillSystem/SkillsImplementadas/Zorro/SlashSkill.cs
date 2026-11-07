@@ -24,6 +24,7 @@ public class SlashSkill : Skill
         float angle = Mathf.Atan2(playerContext.Orientation.y, playerContext.Orientation.x) * Mathf.Rad2Deg;
         area.SetActive(true);
         this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        this.GetComponent<Movement>().UpdateSpritePos(); //pa que no se vuelva loco
 
         Draw(destruction, playerContext.Orientation);
 

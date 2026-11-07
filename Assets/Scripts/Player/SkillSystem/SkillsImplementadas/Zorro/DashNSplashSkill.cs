@@ -74,6 +74,8 @@ public class DashNSplashSkill : Skill
         rb.linearVelocity = Vector2.zero;
         this.transform.localRotation = Quaternion.identity;
 
+        this.GetComponent<Movement>().UpdateSpritePos(); //pa que no se vuelva loco
+
 
         area.SetActive(true);
         //area.transform.rotation = Quaternion.Euler(0f, 0f, angle);

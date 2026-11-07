@@ -552,6 +552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   speed: 6
+  CharacterSprite: {fileID: 9075238138168690014}
+  animator: {fileID: 799071102428985512}
 --- !u!114 &2322735144181499251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +583,7 @@ MonoBehaviour:
   basicSkill: {fileID: 8324392057716922342}
   specialSkill: {fileID: 4778663574898220405}
   ultimateSkill: {fileID: 3485531841016437428}
+  icons: []
 --- !u!114 &8324392057716922342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,9 +600,11 @@ MonoBehaviour:
   icon: {fileID: 0}
   baseCooldown: 0.5
   type: 0
+  currentCooldown: 0
   BaseDestruction: {fileID: 21300000, guid: 5d600e9e39154ee4d942c99ac6dc79c4, type: 3}
   BerserkDestruction: {fileID: 21300000, guid: 43b93c2ed5b84cd4ca89626b6baa7311, type: 3}
   BerserkCooldownSpeedMultiplier: 1.5
+  CharacterSprite: {fileID: 9075238138168690014}
 --- !u!114 &4778663574898220405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,6 +621,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   baseCooldown: 8
   type: 1
+  currentCooldown: 0
   BaseDestructionSplash: {fileID: 21300000, guid: b9612ba60bc926349b65111de2bc45dc, type: 3}
   BaseDestructionDash: {fileID: 21300000, guid: 0ae23830c50ef1b4f9da33c40c3ba297, type: 3}
   BaseDashDistance: 6
@@ -643,6 +649,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   baseCooldown: 30
   type: 2
+  currentCooldown: 0
   duration: 10
 --- !u!1 &9075238138168690014
 GameObject:
@@ -655,6 +662,7 @@ GameObject:
   - component: {fileID: 860624966561955640}
   - component: {fileID: 1731751227311679866}
   - component: {fileID: 6943045426325335051}
+  - component: {fileID: 799071102428985512}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -678,8 +686,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 65}
+  m_SizeDelta: {x: 172.6262, y: 230.1635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1731751227311679866
 CanvasRenderer:
@@ -709,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 97daa22db33bad34ba983e209e1ab101, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -719,3 +727,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &799071102428985512
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075238138168690014}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: be08aac1e8d04614baa7f649d409c30c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

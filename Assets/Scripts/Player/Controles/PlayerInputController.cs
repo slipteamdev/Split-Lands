@@ -18,6 +18,7 @@ public class PlayerInputController : MonoBehaviour
         if (moveInput.sqrMagnitude <= 0.01) { moveInput = Vector2.zero; } // Si el movimiento de joystick es muy bajo, ignorarlo (ayuda con el drifting)
         movement.AssignInput(moveInput);
 
+
     }
 
     public void OnBasicButton(InputAction.CallbackContext context)
