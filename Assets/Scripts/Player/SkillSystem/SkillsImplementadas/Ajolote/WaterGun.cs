@@ -19,6 +19,8 @@ public class WaterGun : Skill
         area.SetActive(true);
         this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
+        this.GetComponent<Movement>().UpdateSpritePos(); //pa que no se vuelva loco
+
         Draw(destruction, playerContext.Orientation);
 
         StartCoroutine(hideArea());
