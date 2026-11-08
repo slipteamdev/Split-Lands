@@ -11,6 +11,8 @@ public class PlayerContext : MonoBehaviour
     public RectTransform RectTransform { get; private set; }
     public Rigidbody Rb { get; private set; }
 
+    public Canvas canvas { get; private set; }
+
     public float CooldownSpeedMultiplier { get; private set; } = 1.0f;
 
     public void Awake()
@@ -18,6 +20,7 @@ public class PlayerContext : MonoBehaviour
         RectTransform = GetComponent<RectTransform>();
         Rb = this.gameObject.GetComponent<Rigidbody>();
         orientation = Vector2.right;
+        canvas = this.transform.GetComponentInParent<Canvas>();
     }
 
     public void Init(Map.Team team, Vector2 orientation)

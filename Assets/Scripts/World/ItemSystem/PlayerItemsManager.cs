@@ -21,7 +21,14 @@ public class PlayerItemsManager : MonoBehaviour
     }
     public bool ItemInReach()
     {
-        return ItemNear(this.GetComponent<RectTransform>().anchoredPosition, minDistance);
+        Vector2 posicionJugador;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle( // HAY QUE PONER ESTA MIERDA PORQUE SINO NO COMPARA BIEN LAS POSICIONES
+            playerContext.canvas.gameObject.GetComponent<RectTransform>(),
+            this.transform.position,
+            null,
+            out posicionJugador
+        );
+        return ItemNear(posicionJugador, minDistance);
     }
 
     public void BasicPressed()
@@ -41,8 +48,15 @@ public class PlayerItemsManager : MonoBehaviour
     {
         if (playerItem != null) return; // si tiene un objeto no coges mas
 
+        Vector2 posicionJugador;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle( // HAY QUE PONER ESTA MIERDA PORQUE SINO NO COMPARA BIEN LAS POSICIONES
+            playerContext.canvas.gameObject.GetComponent<RectTransform>(),
+            this.transform.position,
+            null,
+            out posicionJugador
+        );
+        playerItem = ItemsManager.TryGetOne(posicionJugador, minDistance);
 
-        playerItem = ItemsManager.TryGetOne(this.GetComponent<RectTransform>().anchoredPosition, minDistance);
         //playerItem = ItemsManager.TryGetOne(this.transform.position, minDistance);
 
         if (playerItem == null) return;
@@ -54,8 +68,11 @@ public class PlayerItemsManager : MonoBehaviour
         playerItem.transform.localPosition = Vector3.zero;
 
         // ESTA MIERDA HAY QUE PONERLA XQ POR ALGUNA RAZON SE EMPIEZAN A GIRAR SOLAS LAS COSAS AL JUGAR CON LOS PADRES
+        this.gameObject.GetComponent<Movement>().UpdateSpritePos();
         this.transform.localRotation = Quaternion.identity;
         playerItem.transform.localRotation = Quaternion.identity;
+
+        this.gameObject.GetComponent<Movement>().UpdateSpritePos();
 
     }
     public void UseItem()
