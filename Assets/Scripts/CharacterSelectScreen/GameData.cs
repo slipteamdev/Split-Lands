@@ -9,14 +9,15 @@ public struct PlayerSelectionData
     public int characterId;
     public Map.Team team;
 }
-public class CharacterSelectionData : MonoBehaviour
+public class GameData : MonoBehaviour
 {
 
-    public static CharacterSelectionData Instance { get; private set; }
+    public static GameData Instance { get; private set; }
 
     [SerializeField] private GameObject[] characterPrefabs;
 
     public List<PlayerSelectionData> PlayersData { get; private set; } = new List<PlayerSelectionData>();
+    public float gameResult;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -33,6 +34,10 @@ public class CharacterSelectionData : MonoBehaviour
     public void SetPlayersData(List<PlayerSelectionData> selections)
     {
         PlayersData = new List<PlayerSelectionData>(selections);
+    }
+    public void SetGameResult(float gameResult)
+    {
+        this.gameResult = gameResult;
     }
 
     // Devuelve el prefab asociado al indice dado

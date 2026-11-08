@@ -12,7 +12,7 @@ public class GameStarter : MonoBehaviour
 
     void Start()
     {
-        if (CharacterSelectionData.Instance == null || CharacterSelectionData.Instance.PlayersData.Count == 0)
+        if (GameData.Instance == null || GameData.Instance.PlayersData.Count == 0)
         {
             Debug.LogWarning("[PlayerSpawner] No hay datos de selección previos. ¿Arrancaste directamente desde la escena de juego?");
             // TODO: Annadir inicializacion por defecto
@@ -20,7 +20,7 @@ public class GameStarter : MonoBehaviour
         }
 
         // Coge las elecciones de jugador desde la instancia
-        var players = CharacterSelectionData.Instance.PlayersData;
+        var players = GameData.Instance.PlayersData;
 
         for (int i = 0; i < players.Count; i++)
         {
@@ -30,7 +30,7 @@ public class GameStarter : MonoBehaviour
             Transform spawn = (i < spawnPoints.Length) ? spawnPoints[i] : transform;
 
             // Sacamos el prefab a partir de la instancia
-            GameObject prefab = CharacterSelectionData.Instance.GetCharacterPrefab(data.characterId);
+            GameObject prefab = GameData.Instance.GetCharacterPrefab(data.characterId);
 
             // Instanciamos el prefab como hijo del canvas
             GameObject playerObj = Instantiate(prefab, spawn.position, spawn.rotation, canvas.transform);

@@ -96,10 +96,10 @@ public class CharacterSelectionUI : MonoBehaviour
             }
         };
 
-        if (CharacterSelectionData.Instance != null)
+        if (GameData.Instance != null)
         {
             // Guardamos la lista
-            CharacterSelectionData.Instance.SetPlayersData(matchSelections);
+            GameData.Instance.SetPlayersData(matchSelections);
         }
         else
         {

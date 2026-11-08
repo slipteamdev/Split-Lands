@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Map : MonoBehaviour
 {
@@ -22,7 +21,7 @@ public class Map : MonoBehaviour
     private byte[,] terrainData;
 
     public static int[] pixelCount;
-    [SerializeField] private Slider progresSlider;
+    public static float normalicedProgress => (float)pixelCount[0] / (pixelCount[0] + pixelCount[1]); // Devuelve el porcentaje de terreno controlado por el equipo 1, normalizado
 
     public int MapWidth => terrainMask.width;
     public int MapHeight => terrainMask.height;
@@ -34,7 +33,6 @@ public class Map : MonoBehaviour
     private List<Vector3> edgesVertices = new List<Vector3>(32000);
     private List<int> edgesTriangles = new List<int>(32000);
     private Mesh edgesMesh;
-
     private void Awake()
     {
         Instance = this;
@@ -71,7 +69,7 @@ public class Map : MonoBehaviour
                     terrainData[i, j] = 1;
                     pixelCount[0]++;
                 }
-                else if(color.r > 0.5f && color.b < 0.5f)
+                else if (color.r > 0.5f && color.b < 0.5f)
                 {
                     mask_pixels[index] = new Color(1f, 1f, 1f, TEAM2_MASK_VALUE);
                     terrainData[i, j] = 2;
@@ -89,7 +87,6 @@ public class Map : MonoBehaviour
         terrainMask.Apply();
 
         UpdateEdgesMesh();
-        UpdateSlider();
     }
 
     public static void Draw(Vector2 position, Sprite destruction, Team team) => Draw(((int)position.x), ((int)position.y), destruction, team, Vector2.right);
@@ -162,7 +159,6 @@ public class Map : MonoBehaviour
 
         Instance.terrainMask.Apply();
         Instance.UpdateEdgesMesh();
-        Instance.UpdateSlider();
     }
 
     private static void FixNonsenseEdges(int x, int y, Sprite destruction, Team team)
@@ -321,12 +317,5 @@ public class Map : MonoBehaviour
         edgesMeshCollider.sharedMesh = edgesMesh;
     }
 
-    private void UpdateSlider()
-    {
-        int totalPixels = pixelCount[0] + pixelCount[1];
-        if (progresSlider != null && totalPixels > 0)
-        {
-            progresSlider.value = (float)pixelCount[0] / totalPixels;
-        }
-    }
+
 }

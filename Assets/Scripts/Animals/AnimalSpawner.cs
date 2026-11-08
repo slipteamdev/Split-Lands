@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class AnimalSpawner : MonoBehaviour
 {
@@ -12,8 +10,6 @@ public class AnimalSpawner : MonoBehaviour
     public List<GameObject> animals = new List<GameObject>();
     public List<Transform> puntosSpawn = new List<Transform>();
     public List<GameObject> objects = new List<GameObject>();
-
-    [SerializeField] private Slider slider;
 
     [SerializeField] private GameObject animalsParent;
 
@@ -53,12 +49,12 @@ public class AnimalSpawner : MonoBehaviour
 
         int numPunto;
         int numObjetive;
-        if (slider.value < 0.45) //le dice donde aparece en funcion de quien vaya ganagdo
+        if (Map.normalicedProgress < 0.45) //le dice donde aparece en funcion de quien vaya ganagdo
         {
             numPunto = Random.Range(0, 4);
             numObjetive = Random.Range(4, 8);
         }
-        else if (slider.value > 0.55)
+        else if (Map.normalicedProgress > 0.55)
         {
             numPunto = Random.Range(4, 8);
             numObjetive = Random.Range(0, 4);
@@ -79,7 +75,7 @@ public class AnimalSpawner : MonoBehaviour
         animal.GetComponent<AnimalMovement>().AssignObjetive(puntosSpawn[numObjetive].position);
         AddAnimal(animal);
 
-        GameObject itemPrefab = objects[Random.Range(0, objects.Count)].gameObject ; //elige un objeto aleatorio, luego habra que marcar rarezas entre ellos
+        GameObject itemPrefab = objects[Random.Range(0, objects.Count)].gameObject; //elige un objeto aleatorio, luego habra que marcar rarezas entre ellos
         punto = animal.transform.GetChild(0).transform;
         GameObject obj = Instantiate(itemPrefab, punto.position, punto.rotation, animal.transform); //le meto como hijo pa que se muevan juntos
         ItemsManager.AddObject(obj);
