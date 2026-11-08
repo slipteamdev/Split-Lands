@@ -604,7 +604,6 @@ MonoBehaviour:
   BaseDestruction: {fileID: 21300000, guid: 5d600e9e39154ee4d942c99ac6dc79c4, type: 3}
   BerserkDestruction: {fileID: 21300000, guid: 43b93c2ed5b84cd4ca89626b6baa7311, type: 3}
   BerserkCooldownSpeedMultiplier: 1.5
-  CharacterSprite: {fileID: 9075238138168690014}
 --- !u!114 &4778663574898220405
 MonoBehaviour:
   m_ObjectHideFlags: 0

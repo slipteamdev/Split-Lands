@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,10 @@ public class ItemsManager : MonoBehaviour
     {
         allItems.Add(obj);
     }
+    public static void RemoveObject(GameObject obj)
+    {
+        allItems.Remove(obj);
+    }
 
     public static bool ItemNear(Vector2 pos, float minDistance)
     {
@@ -30,9 +35,15 @@ public class ItemsManager : MonoBehaviour
         {
             if (item == null) continue;
 
-            RectTransform rect = item.GetComponent<RectTransform>();
-            if (rect == null) continue;
-            float distance = Vector2.Distance(rect.anchoredPosition, pos);
+            Vector2 posicionObjeto;
+            RectTransform rect = item.gameObject.transform.GetComponentInParent<Canvas>().gameObject.GetComponent<RectTransform>();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle( // HAY QUE PONER ESTA MIERDA PORQUE SINO NO COMPARA BIEN LAS POSICIONES
+                rect,
+                item.transform.position,
+                null,
+                out posicionObjeto
+            );
+            float distance = Vector2.Distance(posicionObjeto, pos);
 
             if (distance < minDist)
             {
@@ -58,9 +69,15 @@ public class ItemsManager : MonoBehaviour
         {
             if (item == null) continue;
 
-            RectTransform rect = item.GetComponent<RectTransform>();
-            if (rect == null) continue;
-            float distance = Vector2.Distance(rect.anchoredPosition, pos);
+            Vector2 posicionObjeto;
+            RectTransform rect = item.gameObject.transform.GetComponentInParent<Canvas>().gameObject.GetComponent<RectTransform>();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle( // HAY QUE PONER ESTA MIERDA PORQUE SINO NO COMPARA BIEN LAS POSICIONES
+                rect,
+                item.transform.position,
+                null,
+                out posicionObjeto
+            );
+            float distance = Vector2.Distance(posicionObjeto, pos);
 
             if (distance < minDist)
             {
