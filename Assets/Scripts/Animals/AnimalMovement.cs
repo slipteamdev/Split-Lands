@@ -33,10 +33,18 @@ public class AnimalMovement : MonoBehaviour
 
     private void Die()
     {
-        GameObject item = this.gameObject.GetComponentInChildren<Item>().gameObject;
+        Transform[] children = transform.GetComponentsInChildren<Transform>();
+        GameObject item = null;
+        foreach (Transform child in children)
+            if(child.TryGetComponent<Item>(out Item i))
+            {
+                item = child.gameObject;
+                break;
+            }
+
         AnimalSpawner.RemoveAnimal(this.gameObject);
         if (item != null) { ItemsManager.RemoveObject(item); }
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     public void AssignObjetive(Vector3 pos)
