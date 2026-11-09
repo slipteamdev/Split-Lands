@@ -1,12 +1,12 @@
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
-    //  TEMP
-    public enum Team { Team1, Team2 }
-    //
+    public enum Team { Team1, Team2, None }
+    
 
     private static Map Instance;
 
@@ -100,6 +100,8 @@ public class Map : MonoBehaviour
         int half_width = width / 2;
         int half_height = height / 2;
 
+        direction = direction.normalized;
+
         float viewport_x = ((float)x / Screen.width) + 0.5f;
         float viewport_y = ((float)y / Screen.height) + 0.5f;
 
@@ -116,8 +118,8 @@ public class Map : MonoBehaviour
                 float x_local = i - half_width;
                 float y_local = j - half_height;
 
-                int x_pos = x + Mathf.RoundToInt(x_local * direction.x - y_local * direction.y);
-                int y_pos = y + Mathf.RoundToInt(x_local * direction.y + y_local * direction.x);
+                int x_pos = x + Mathf.FloorToInt(x_local * direction.x - y_local * direction.y);
+                int y_pos = y + Mathf.FloorToInt(x_local * direction.y + y_local * direction.x);
 
                 if (x_pos < 0 || x_pos >= Instance.MapWidth || y_pos < 0 || y_pos >= Instance.MapHeight) continue;
 
@@ -317,5 +319,14 @@ public class Map : MonoBehaviour
         edgesMeshCollider.sharedMesh = edgesMesh;
     }
 
+    public static Team ReadPixelAt(float x, float y)
+    {
+        float viewport_x = (x / Screen.width) + 0.5f;
+        float viewport_y = (y / Screen.height) + 0.5f;
 
+        x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
+        y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+
+        return Instance.terrainData[(int)x, (int)y] == 1 ? Team.Team1 : Instance.terrainData[(int)x, (int)y] == 2 ? Team.Team2 : Team.None;
+    }
 }

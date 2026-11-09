@@ -12,6 +12,7 @@ public class Bomb_a : Item
     private GameObject area;
     private float showAreaTime = 0.25f;
 
+    private bool moving = false;
 
     private void Start()
     {
@@ -47,18 +48,43 @@ public class Bomb_a : Item
 
         // Mensaje identificador
         Debug.Log($" ha usado el objeto " + $"{ItemName} .");
+
+        moving = true;
+        if (Map.ReadPixelAt(transform.position.x, transform.position.y) != playerContext.Team)
+        {
+            Explode();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<MeshCollider>() != null) //si choca con un mesh colider que deberia ser el rayito
         {
-            rb.linearVelocity = Vector2.zero;
-            this.GetComponent<Collider>().enabled = false;
-            this.gameObject.GetComponent<Image>().enabled = false;
-
-            StartCoroutine(ShowArea());
+            Explode();
         }
+    }
+    private void Update()
+    {
+
+        if (moving)
+        {
+            // Debug.Log(transform.localPosition);
+            if (Map.ReadPixelAt(transform.localPosition.x, transform.localPosition.y) != playerContext.Team)
+            {
+                Explode();
+                moving = false;
+            }
+        }
+    }
+
+    private void Explode()
+    {
+        moving = false;
+        rb.linearVelocity = Vector2.zero;
+        this.GetComponent<Collider>().enabled = false;
+        this.gameObject.GetComponent<Image>().enabled = false;
+
+        StartCoroutine(ShowArea());
     }
 
     IEnumerator ShowArea()

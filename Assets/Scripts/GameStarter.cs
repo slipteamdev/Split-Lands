@@ -54,6 +54,16 @@ public class GameStarter : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            PlayerContext context = playerList[i].GetComponent<PlayerContext>();
+            if (context != null)
+            {
+                context.EnemyPlayer = playerList[(i + 1) % 2];
+            }
+
+        }
+
         // Asignamos input
         PlayerInputManagerInitialicer.Init(playerList[0], playerList[1]);
     }
