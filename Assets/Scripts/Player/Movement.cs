@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
         Screen.fullScreen = true;
 
         playerContext = GetComponent<PlayerContext>();
+
+        playerContext.speed = speed;
         rb = playerContext.Rb;
         desfase = CharacterSprite.transform.position - CharacterSprite.transform.parent.position;
     }
@@ -40,7 +42,7 @@ public class Movement : MonoBehaviour
         {
             moveInput = moveInput.normalized;
         }
-        velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * speed;
+        velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * playerContext.speed;
 
         if (rb == null) //por si no tiene rigidbody que se mueva con el transform, ESTO IGUAL DA PROBLEMAS PERO DE MOMENTO LO DEJO
         {

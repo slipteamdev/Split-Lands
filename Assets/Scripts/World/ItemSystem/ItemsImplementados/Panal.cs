@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class Panal : Item
 {
+    [SerializeField] private float desvanecimiento;
 
+    [SerializeField] private float duracion; // cuanto tiempo dura el efecto de ralentizar
+    [SerializeField] private float multiplicador; // cuanta ralentizacion aplica
 
+    private Image im;
     private void Start()
     {
-
+        im = GetComponent<Image>();
     }
 
     public override void Execute()
@@ -20,7 +24,7 @@ public class Panal : Item
 
         this.transform.SetParent(canva.transform);
         Vector2 direction = playerContext.Orientation;
-        transform.position = playerContext.transform.position + new Vector3(2, 0, 0);
+        transform.position = playerContext.transform.position + new Vector3(0, 2, 0);
 
         StartCoroutine(GoToEnemy());
 
@@ -29,23 +33,45 @@ public class Panal : Item
 
     IEnumerator GoToEnemy()
     {
-        Vector3 desfase = new Vector3(0, 2, 0);
-        for (int i = 20; i > 0; i--)
+        Vector3 desfase = new Vector3(0, 40, 0); // posicion ligeramente sobre la cabeza
+        for (int i = 120; i > 0; i--) // 120 por ejemplo
         {
-            yield return new WaitForSeconds(Time.time);
+            yield return null;
             Vector3 mov = (playerContext.EnemyPlayer.transform.localPosition + desfase - this.transform.localPosition) / i;
             this.transform.localPosition += mov;
         }
-        /*
-        float incremento = 0.02f;
-        while () //mientras tenga color
-        {
-            yield return new WaitForSeconds(Time.time);
-            Vector3 mov = (playerContext.EnemyPlayer.transform.position + desfase - this.transform.position) / i;
-            this.transform.position += mov;
-        }
-        */
+        this.transform.SetParent(playerContext.EnemyPlayer.transform.transform);
+        
+        float ralentizacion = playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed * multiplicador;
+        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed -= ralentizacion;
+        
+        Color colorInicial = im.color;
+        Color colorFinal = colorInicial;
+        colorFinal.a = 0f;
 
+        Vector3 escalaInicial = im.transform.localScale;
+        Vector3 escalaFinal = escalaInicial * 2f;
+
+        float tiempo = 0f;
+        while (tiempo < desvanecimiento)
+        {
+            tiempo += Time.deltaTime;
+            float t = tiempo / desvanecimiento;
+
+            im.color = Color.Lerp(colorInicial, colorFinal, t);
+            im.transform.localScale = Vector3.Lerp(escalaInicial, escalaFinal, t);
+
+            yield return null;
+        }
+        im.color = colorFinal;
+        im.transform.localScale = escalaFinal;
+
+        yield return new WaitForSeconds(duracion - tiempo);
+
+        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed += ralentizacion;
+
+
+        Destroy(this.gameObject);
     }
 
 
