@@ -12,6 +12,7 @@ public class PlayerContext : MonoBehaviour
     public Rigidbody Rb { get; private set; }
 
     public GameObject EnemyPlayer;
+    public float speed;
 
     public Canvas canvas { get; private set; }
 
