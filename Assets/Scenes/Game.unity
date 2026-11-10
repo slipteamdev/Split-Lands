@@ -287,6 +287,114 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163144987}
   m_CullTransparentMesh: 1
+--- !u!1 &172297461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 172297462}
+  - component: {fileID: 172297466}
+  - component: {fileID: 172297465}
+  - component: {fileID: 172297464}
+  - component: {fileID: 172297463}
+  m_Layer: 0
+  m_Name: Caracol de tinta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &172297462
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172297461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 588657803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -265, y: 237}
+  m_SizeDelta: {x: 110.39, y: 110.39}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &172297463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172297461}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf40eadfc40f4b40af25ada22ad780d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalMovement
+  speed: 1
+  moving: 1
+--- !u!114 &172297464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172297461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351454b8a2fad34439ce8719f450ac98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Caracol
+  itemName: Caracol
+  icon: {fileID: 0}
+  baseCooldown: 3
+  playerContext: {fileID: 0}
+  destruction: {fileID: 21300000, guid: 0929496ece493c148902dbadc5a2701b, type: 3}
+--- !u!114 &172297465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172297461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b6b54ee581592fd489747a38b8552474, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &172297466
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172297461}
+  m_CullTransparentMesh: 1
 --- !u!1 &175472461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,6 +1581,7 @@ RectTransform:
   - {fileID: 314284016}
   - {fileID: 1961468645}
   - {fileID: 1583316560}
+  - {fileID: 172297462}
   - {fileID: 1014184733}
   - {fileID: 1174899951}
   - {fileID: 1510270018}
@@ -2681,6 +2790,7 @@ MonoBehaviour:
   - {fileID: 314284015}
   - {fileID: 1961468639}
   - {fileID: 1583316559}
+  - {fileID: 172297461}
 --- !u!1 &1494343230
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,19 +4100,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062568359976374798, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9946954
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2062568359976374798, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2062568359976374798, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2062568359976374798, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.10286431
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2062568359976374798, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4022,7 +4132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062568359976374798, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 11.808
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2533459818770220003, guid: 1112a3889d3e34e4e982ca787c3826eb, type: 3}
       propertyPath: m_Name

@@ -23,7 +23,7 @@ public class Panal : Item
         GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra
 
         this.transform.SetParent(canva.transform);
-        Vector2 direction = playerContext.Orientation;
+
         transform.position = playerContext.transform.position + new Vector3(0, 2, 0);
 
         StartCoroutine(GoToEnemy());
@@ -42,8 +42,7 @@ public class Panal : Item
         }
         this.transform.SetParent(playerContext.EnemyPlayer.transform.transform);
         
-        float ralentizacion = playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed * multiplicador;
-        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed -= ralentizacion;
+        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed *= multiplicador; // le aplica la ralentizacion
         
         Color colorInicial = im.color;
         Color colorFinal = colorInicial;
@@ -68,7 +67,7 @@ public class Panal : Item
 
         yield return new WaitForSeconds(duracion - tiempo);
 
-        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed += ralentizacion;
+        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed /= multiplicador; // le quita la ralentizacion
 
 
         Destroy(this.gameObject);
