@@ -348,8 +348,9 @@ public class Map : MonoBehaviour
             {
                 for (int j = -radio; j <= radio; j++)
                 {
-                    if (Mathf.Abs(i) != radio && Mathf.Abs(j) != radio)
-                        continue;
+                    /*
+                    if (Mathf.Abs(i) != radio || Mathf.Abs(j) != radio)
+                        continue;*/
 
                     int nx = x + i;
                     int ny = y + j;
@@ -361,7 +362,7 @@ public class Map : MonoBehaviour
 
                     if (Instance.terrainData[nx, ny] == equipoEnemigo)
                     {
-                        return new Vector2(i, j);
+                        return new Vector2(nx, ny);
 
                     }
                 }
