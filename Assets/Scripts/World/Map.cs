@@ -329,4 +329,49 @@ public class Map : MonoBehaviour
 
         return Instance.terrainData[(int)x, (int)y] == 1 ? Team.Team1 : Instance.terrainData[(int)x, (int)y] == 2 ? Team.Team2 : Team.None;
     }
+
+    public static Vector2 FindNearestEnemyPixel(float x_local, float y_local, Team team)
+    {
+        float viewport_x = (x_local / Screen.width) + 0.5f;
+        float viewport_y = (y_local / Screen.height) + 0.5f;
+
+        int x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
+        int y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+
+        int equipoEnemigo = team == Team.Team1 ? 2 : 1;
+
+        int radioMaximo = 20;
+
+        for (int radio = 1; radio <= radioMaximo; radio++)
+        {
+            for (int i = radio; i >= -radio; i--)
+            {
+                for (int j = -radio; j <= radio; j++)
+                {
+                    if (Mathf.Abs(i) != radio && Mathf.Abs(j) != radio)
+                        continue;
+
+                    int nx = x + i;
+                    int ny = y + j;
+
+                    if (nx < 0 || ny < 0 ||
+                        nx >= Instance.MapWidth ||
+                        ny >= Instance.MapHeight)
+                        continue;
+
+                    if (Instance.terrainData[nx, ny] == equipoEnemigo)
+                    {
+                        return new Vector2(i, j);
+
+                    }
+                }
+            }
+
+        }
+
+        return Vector2.zero; // no me deja devolver null, puta mierda
+    }
+
+
 }
+

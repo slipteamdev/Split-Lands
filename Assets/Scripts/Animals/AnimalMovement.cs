@@ -9,8 +9,12 @@ public class AnimalMovement : MonoBehaviour
     private Rigidbody rb;
 
     private Vector2 moveInput;
+
+    public bool moving = true;
     void FixedUpdate()
     {
+        if (!moving) return;
+
         if (Vector3.Distance(this.transform.position, objetive) < 1.0f)
         {
             //matar al bicho
@@ -31,7 +35,7 @@ public class AnimalMovement : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         Transform[] children = transform.GetComponentsInChildren<Transform>();
         GameObject item = null;
