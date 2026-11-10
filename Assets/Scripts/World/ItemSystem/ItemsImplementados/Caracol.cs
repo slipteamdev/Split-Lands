@@ -1,8 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UI;
-using static Map;
 
 public class Caracol : Item
 {
@@ -32,8 +28,6 @@ public class Caracol : Item
 
         Map.Draw(this.transform.localPosition, destruction, playerContext.Team, Vector2.right);
         moving = true;
-        
-
     }
 
     Vector2 obj;
@@ -41,12 +35,15 @@ public class Caracol : Item
     {
         if (!moving) return;
 
-        if (Map.ReadPixelAt(this.transform.localPosition.x, this.transform.localPosition.y) != playerContext.Team)
+        Map.Team current_pixel_team = Map.ReadPixelAt(this.transform.localPosition.x, this.transform.localPosition.y);
+        if (current_pixel_team != playerContext.Team && current_pixel_team != Map.Team.None)
         {
             am.Die();
         }
 
         obj = Map.FindNearestEnemyPixel(this.transform.localPosition.x, this.transform.localPosition.y, playerContext.Team);
+        Debug.Log(obj);
+
         if (obj == Vector2.zero)
         {
             am.AssignObjetive(playerContext.EnemyPlayer.transform.localPosition);
