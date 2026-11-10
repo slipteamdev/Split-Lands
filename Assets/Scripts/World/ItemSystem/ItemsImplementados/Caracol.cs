@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Caracol : Item
 {
@@ -38,11 +39,17 @@ public class Caracol : Item
         Map.Team current_pixel_team = Map.ReadPixelAt(this.transform.localPosition.x, this.transform.localPosition.y);
         if (current_pixel_team != playerContext.Team && current_pixel_team != Map.Team.None)
         {
-            am.Die();
+            moving = false;
+            am.enabled = false;
+
+
+            // meter animacion de muerte del caracol
+
+
+            Die();
         }
 
         obj = Map.FindNearestEnemyPixel(this.transform.localPosition.x, this.transform.localPosition.y, playerContext.Team);
-        // Debug.Log(obj + " desde " + this.transform.localPosition);
 
         if (obj == Vector2.zero)
         {
@@ -52,11 +59,16 @@ public class Caracol : Item
         {
             Vector3 ob = new Vector3(obj.x, obj.y, 0);
             am.AssignObjetive(transform.position + ob);
-            // am.AssignObjetive(this.transform.localPosition + Vector3.right * 2);
-
         }
         Map.Draw(this.transform.localPosition, destruction, playerContext.Team, Vector2.right);
 
+    }
+
+    private void Die()
+    {
+
+        AnimalSpawner.RemoveAnimal(this.gameObject);
+        Destroy(this.gameObject);
     }
 
 }

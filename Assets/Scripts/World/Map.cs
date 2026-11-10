@@ -344,8 +344,12 @@ public class Map : MonoBehaviour
 
         int radioMaximo = 480;
 
+        Vector2 mejorCasilla = Vector2.zero;
+        float distanciaMinima = float.MaxValue;
+
         for (int radio = 1; radio <= radioMaximo; radio++)
         {
+
             for (int i = radio; i >= -radio; i--)
             {
                 for (int j = -radio; j <= radio; j++)
@@ -364,11 +368,26 @@ public class Map : MonoBehaviour
 
                     if (Instance.terrainData[nx, ny] != equipo)
                     {
-                        return new Vector2(i, j);
+                        float distancia = i * i + j * j;
+
+                        if (distancia < distanciaMinima)
+                        {
+                            distanciaMinima = distancia;
+                            mejorCasilla = new Vector2(i, j);
+                        }
                     }
                 }
             }
+            if (radioMaximo == 480 && mejorCasilla != Vector2.zero)
+            {
+                radioMaximo = radio + 2;
+            }
 
+
+        }
+        if (mejorCasilla != Vector2.zero)
+        {
+            return mejorCasilla;
         }
 
         return Vector2.zero; // no me deja devolver null, puta mierda
