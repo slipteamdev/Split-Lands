@@ -340,20 +340,18 @@ public class Map : MonoBehaviour
         int x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
         int y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
 
-        int equipoEnemigo = team == Team.Team1 ? 2 : 1;
+        int equipo = team == Team.Team1 ? 1 : 2;
 
         int radioMaximo = 480;
 
         for (int radio = 1; radio <= radioMaximo; radio++)
         {
-            for (int i = -radio; i <= radio; i++)
+            for (int i = radio; i >= -radio; i--)
             {
                 for (int j = -radio; j <= radio; j++)
                 {
-                    /*
-                    if (Mathf.Abs(i) != radio || Mathf.Abs(j) != radio)
+                    if (Mathf.Abs(i) != radio && Mathf.Abs(j) != radio)
                         continue;
-                    */
 
                     int nx = x + i;
                     int ny = y + j;
@@ -364,15 +362,9 @@ public class Map : MonoBehaviour
                         ny >= Instance.MapHeight)
                         continue;
 
-                    if (Instance.terrainData[nx, ny] == equipoEnemigo)
+                    if (Instance.terrainData[nx, ny] != equipo)
                     {
-                        float enemy_viewport_x = (nx + 0.5f) / Instance.MapWidth;
-                        float enemy_viewport_y = (ny + 0.5f) / Instance.MapHeight;
-
-                        float enemy_x_local = (enemy_viewport_x - 0.5f) * Screen.width;
-                        float enemy_y_local = (enemy_viewport_y - 0.5f) * Screen.height;
-
-                        return new Vector2(enemy_x_local, enemy_y_local);
+                        return new Vector2(i, j);
                     }
                 }
             }

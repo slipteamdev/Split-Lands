@@ -42,7 +42,7 @@ public class Caracol : Item
         }
 
         obj = Map.FindNearestEnemyPixel(this.transform.localPosition.x, this.transform.localPosition.y, playerContext.Team);
-        Debug.Log(obj);
+        // Debug.Log(obj + " desde " + this.transform.localPosition);
 
         if (obj == Vector2.zero)
         {
@@ -50,9 +50,9 @@ public class Caracol : Item
         }
         else
         {
-            // Vector3 ob = new Vector3(obj.x, obj.y, 0);
-            // am.AssignObjetive(transform.localPosition + ob);
-            am.AssignObjetive(obj);
+            Vector3 ob = new Vector3(obj.x, obj.y, 0);
+            am.AssignObjetive(transform.position + ob);
+            // am.AssignObjetive(this.transform.localPosition + Vector3.right * 2);
 
         }
         Map.Draw(this.transform.localPosition, destruction, playerContext.Team, Vector2.right);

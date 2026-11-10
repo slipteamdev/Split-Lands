@@ -51,7 +51,7 @@ public class AnimalMovement : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void AssignObjetive(Vector3 pos)
+    public void AssignObjetive(Vector3 pos) // AQUI MANDALE POSITION, NO LOCALPOSITION, quero llorar
     {
         objetive = pos;
     }
