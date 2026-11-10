@@ -53,8 +53,10 @@ public class Caracol : Item
         }
         else
         {
-            Vector3 ob = new Vector3(obj.x, obj.y, 0);
-            am.AssignObjetive(transform.localPosition + ob);
+            // Vector3 ob = new Vector3(obj.x, obj.y, 0);
+            // am.AssignObjetive(transform.localPosition + ob);
+            am.AssignObjetive(obj);
+
         }
         Map.Draw(this.transform.localPosition, destruction, playerContext.Team, Vector2.right);
 
