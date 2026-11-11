@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 175472464}
   - component: {fileID: 175472463}
   m_Layer: 5
-  m_Name: Image Special
+  m_Name: Icon Special 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 183358067}
   - component: {fileID: 183358066}
   m_Layer: 5
-  m_Name: Image Ult
+  m_Name: Icon Ult 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,6 +787,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   progressSlider: {fileID: 4963742}
   timerText: {fileID: 176678732}
+  iconsPlayer1:
+  - {fileID: 183358066}
+  - {fileID: 2131446497}
+  - {fileID: 208849965}
+  cooldownsPlayer1:
+  - {fileID: 672660601}
+  - {fileID: 1029206485}
+  - {fileID: 1751710983}
+  iconsPlayer2:
+  - {fileID: 1790503492}
+  - {fileID: 175472463}
+  - {fileID: 901797985}
+  cooldownsPlayer2:
+  - {fileID: 2081279412}
+  - {fileID: 389381653}
+  - {fileID: 411519994}
+  backgrounds:
+  - {fileID: 608315706}
+  - {fileID: 403710428}
 --- !u!1 &208849963
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +818,7 @@ GameObject:
   - component: {fileID: 208849966}
   - component: {fileID: 208849965}
   m_Layer: 5
-  m_Name: Image Basic
+  m_Name: Icon Basic 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -964,7 +983,7 @@ GameObject:
   - component: {fileID: 389381652}
   - component: {fileID: 389381653}
   m_Layer: 5
-  m_Name: Cooldown Special
+  m_Name: Cooldown Special 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1205,7 +1224,7 @@ GameObject:
   - component: {fileID: 411519993}
   - component: {fileID: 411519994}
   m_Layer: 5
-  m_Name: Cooldown Basic
+  m_Name: Cooldown Basic 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1754,7 +1773,7 @@ GameObject:
   - component: {fileID: 672660600}
   - component: {fileID: 672660601}
   m_Layer: 5
-  m_Name: Cooldown Ult
+  m_Name: Cooldown Ult 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2011,7 +2030,7 @@ GameObject:
   - component: {fileID: 901797986}
   - component: {fileID: 901797985}
   m_Layer: 5
-  m_Name: Image Basic
+  m_Name: Icon Basic 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2293,7 +2312,7 @@ GameObject:
   - component: {fileID: 1029206484}
   - component: {fileID: 1029206485}
   m_Layer: 5
-  m_Name: Cooldown Special
+  m_Name: Cooldown Special 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2487,14 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04c1d0766716a34a9335120485aa90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStarter
-  cooldownsPlayer1:
-  - {fileID: 1751710983}
-  - {fileID: 1029206485}
-  - {fileID: 672660601}
-  cooldownsPlayer2:
-  - {fileID: 411519994}
-  - {fileID: 389381653}
-  - {fileID: 2081279412}
+  UIManager: {fileID: 188909728}
   spawnPoints:
   - {fileID: 1510270018}
   - {fileID: 1784010789}
@@ -3070,7 +3082,7 @@ GameObject:
   - component: {fileID: 1751710982}
   - component: {fileID: 1751710983}
   m_Layer: 5
-  m_Name: Cooldown Basic
+  m_Name: Cooldown Basic 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3237,7 +3249,7 @@ GameObject:
   - component: {fileID: 1790503493}
   - component: {fileID: 1790503492}
   m_Layer: 5
-  m_Name: Image Ult
+  m_Name: Icon Ult 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3783,6 +3795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   endSceneName: EndScene
+  endGameThreshold: 0.9
 --- !u!4 &2070141380
 Transform:
   m_ObjectHideFlags: 0
@@ -3810,7 +3823,7 @@ GameObject:
   - component: {fileID: 2081279411}
   - component: {fileID: 2081279412}
   m_Layer: 5
-  m_Name: Cooldown Ult
+  m_Name: Cooldown Ult 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3885,7 +3898,7 @@ GameObject:
   - component: {fileID: 2131446498}
   - component: {fileID: 2131446497}
   m_Layer: 5
-  m_Name: Image Special
+  m_Name: Icon Special 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

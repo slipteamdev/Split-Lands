@@ -539,6 +539,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerContext
   team: 0
   orientation: {x: 1, y: 0}
+  background: {fileID: 21300000, guid: f3e24d9f73a2f584f8708d0bdf7e9f42, type: 3}
+  EnemyPlayer: {fileID: 0}
+  speed: 0
 --- !u!114 &5756885203497119731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +586,6 @@ MonoBehaviour:
   basicSkill: {fileID: 8324392057716922342}
   specialSkill: {fileID: 4778663574898220405}
   ultimateSkill: {fileID: 3485531841016437428}
-  icons: []
 --- !u!114 &8324392057716922342
 MonoBehaviour:
   m_ObjectHideFlags: 0
