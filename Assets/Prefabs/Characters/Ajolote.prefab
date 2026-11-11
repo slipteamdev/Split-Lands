@@ -637,6 +637,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerContext
   team: 1
   orientation: {x: 1, y: 0}
+  EnemyPlayer: {fileID: 0}
+  speed: 0
 --- !u!114 &3139603982987572513
 MonoBehaviour:
   m_ObjectHideFlags: 0
