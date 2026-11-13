@@ -30,7 +30,6 @@ public class Timer : MonoBehaviour
             {
                 remainingTime = 0f;
                 running = false;
-                // ACABA PARTIDA
             }
         }
 

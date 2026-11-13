@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameStarter : MonoBehaviour
 {
-    [SerializeField] private Image[] cooldownsPlayer1;
-    [SerializeField] private Image[] cooldownsPlayer2;
+    [SerializeField] private UIManager UIManager;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Canvas canvas;
+
     private List<GameObject> playerList = new List<GameObject>();
 
     void Start()
@@ -44,14 +43,6 @@ public class GameStarter : MonoBehaviour
 
             // Annadimos el gameobject a al lista para los siguientes pasos
             playerList.Add(playerObj);
-
-
-            SkillManager sm = playerList[i].GetComponent<SkillManager>();
-            if (sm != null)
-            {
-                if (i == 0) sm.icons = cooldownsPlayer1;
-                else sm.icons = cooldownsPlayer2;
-            }
         }
 
         for (int i = 0; i < playerList.Count; i++)
@@ -66,6 +57,12 @@ public class GameStarter : MonoBehaviour
 
         // Asignamos input
         PlayerInputManagerInitialicer.Init(playerList[0], playerList[1]);
+
+        // Inicializamos la UI
+        UIManager.Init(playerList[0], playerList[1]);
+
+
+
     }
 
 }

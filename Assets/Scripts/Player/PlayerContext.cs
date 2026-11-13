@@ -11,6 +11,7 @@ public class PlayerContext : MonoBehaviour
     public RectTransform RectTransform { get; private set; }
     public Rigidbody Rb { get; private set; }
 
+    public Sprite background;
     public GameObject EnemyPlayer;
     public float speed;
 

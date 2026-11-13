@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
@@ -17,17 +16,17 @@ public class SkillManager : MonoBehaviour
     // Array con las habilidades, se usa para bucles
     private Skill[] allSlots;
 
-    public Image[] icons;
-
     void Awake()
     {
-        BasicSlot = basicSkill;
-        SpecialSlot = specialSkill;
-        UltimateSlot = ultimateSkill;
-
+        if (allSlots == null)
+        {
+            BasicSlot = basicSkill;
+            SpecialSlot = specialSkill;
+            UltimateSlot = ultimateSkill;
+            allSlots = new Skill[] { BasicSlot, SpecialSlot, UltimateSlot };
+        }
         playerContext = GetComponent<PlayerContext>();
 
-        allSlots = new Skill[] { BasicSlot, SpecialSlot, UltimateSlot };
     }
 
     // Update is called once per frame
@@ -45,10 +44,6 @@ public class SkillManager : MonoBehaviour
             if (allSlots[i] != null)
             {
                 allSlots[i].Tick(dt);
-                if (icons[i] != null)
-                {
-                    icons[i].fillAmount = allSlots[i].currentCooldown / allSlots[i].BaseCooldown;
-                }
             }
         }
     }
@@ -80,7 +75,15 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-
-
-
+    public Skill[] GetSkills()
+    {
+        if (allSlots == null)
+        {
+            BasicSlot = basicSkill;
+            SpecialSlot = specialSkill;
+            UltimateSlot = ultimateSkill;
+            allSlots = new Skill[] { BasicSlot, SpecialSlot, UltimateSlot };
+        }
+        return allSlots;
+    }
 }
