@@ -9,7 +9,6 @@ public class AnimalSpawner : MonoBehaviour
 
     public List<GameObject> animals = new List<GameObject>();
     public List<Transform> puntosSpawn = new List<Transform>();
-    public List<GameObject> objects = new List<GameObject>();
 
     [SerializeField] private GameObject animalsParent;
 
@@ -75,10 +74,8 @@ public class AnimalSpawner : MonoBehaviour
         animal.GetComponent<AnimalMovement>().AssignObjetive(puntosSpawn[numObjetive].position);
         AddAnimal(animal);
 
-        GameObject itemPrefab = objects[Random.Range(0, objects.Count)].gameObject; //elige un objeto aleatorio, luego habra que marcar rarezas entre ellos
         punto = animal.transform.GetChild(0).transform;
-        GameObject obj = Instantiate(itemPrefab, punto.position, punto.rotation, animal.transform); //le meto como hijo pa que se muevan juntos
-        ItemsManager.AddObject(obj);
+        ItemsManager.SpawnRandomItem(punto.position, punto.rotation, animal.transform);
 
         // queda fijar su rumbo y que lleve un objeto aleatorio de la lista
         // y tambien que vaya actualizando la lista de objetos y mierdas de esas

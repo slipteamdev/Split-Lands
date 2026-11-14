@@ -26,7 +26,7 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private Button p2PreviousButton;
     [SerializeField] private Button p2NextButton;
     [SerializeField] private Button p2CharacterButton;
-    
+
     [SerializeField] private Button startMatchButton;
 
     //PJs que está visualizando cada jugador
@@ -232,7 +232,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
     private IEnumerator PlaySelectionAnimation(RectTransform image)
     {
-        Vector3 originalScale = image.localScale;
+        Vector3 originalScale = Vector3.one;
         Vector3 enlargedScale = originalScale * scaleMultiplier;
 
         float elapsed = 0f;

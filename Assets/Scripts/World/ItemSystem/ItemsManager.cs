@@ -4,9 +4,9 @@ using UnityEngine;
 public class ItemsManager : MonoBehaviour
 {
     private static List<GameObject> allItems = new List<GameObject>();
+    private static ItemRandomizer staticRandomizer;
 
-    [SerializeField] private GameObject[] itemPrefabList;
-
+    [SerializeField] private ItemRandomizer itemRandomizer;
     // esto es para probarlo
     [SerializeField] private GameObject[] array;
     public void Start()
@@ -16,6 +16,24 @@ public class ItemsManager : MonoBehaviour
             AddObject(item);
         }
     }
+
+    private void Awake()
+    {
+        allItems.Clear();
+        staticRandomizer = itemRandomizer;
+    }
+
+    public static GameObject SpawnRandomItem(Vector3 position, Quaternion rotation, Transform parent)
+    {
+        GameObject itemPrefab = staticRandomizer.GetRandomItemPrefab();
+        if (itemPrefab == null) return null;
+
+        GameObject obj = Instantiate(itemPrefab, position, rotation, parent);
+        AddObject(obj);
+
+        return obj;
+    }
+
 
     public static void AddObject(GameObject obj)
     {
@@ -96,6 +114,8 @@ public class ItemsManager : MonoBehaviour
 
         return null;
     }
+
+
 }
 
 
