@@ -59,10 +59,10 @@ public class Bomb_a : Item
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("MapEdge") || collision.gameObject.CompareTag("Ray") || collision.gameObject.CompareTag("Player")) //si choca con un mesh colider que deberia ser el rayito
-        {
-            Explode();
-        }
+        //if (collision.gameObject.CompareTag("MapEdge") || collision.gameObject.CompareTag("Ray") || collision.gameObject.CompareTag("Player")) //si choca con un mesh colider que deberia ser el rayito
+        //{
+        Explode();
+        //}
     }
     private void Update()
     {
