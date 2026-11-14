@@ -97,10 +97,8 @@ public class Map : MonoBehaviour
     {
         int width = destruction.texture.width;
         int height = destruction.texture.height;
-        int half_width = width / 2;
-        int half_height = height / 2;
-
-        direction = direction.normalized;
+        float half_width = width * 0.5f;
+        float half_height = height * 0.5f;
 
         float viewport_x = ((float)x / Screen.width) + 0.5f;
         float viewport_y = ((float)y / Screen.height) + 0.5f;
@@ -108,25 +106,40 @@ public class Map : MonoBehaviour
         x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
         y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
 
+        direction = direction.normalized;
+
+        float rotation_half_x = Mathf.Abs(half_width * direction.x) + Mathf.Abs(half_height * direction.y);
+        float rotation_half_y = Mathf.Abs(half_width * direction.y) + Mathf.Abs(half_height * direction.x);
+
+        int rotation_box_min_x = Mathf.FloorToInt(-rotation_half_x);
+        int rotation_box_max_x = Mathf.CeilToInt(rotation_half_x);
+        int rotation_box_min_y = Mathf.FloorToInt(-rotation_half_y);
+        int rotation_box_max_y = Mathf.CeilToInt(rotation_half_y);
+
         Color[] brush_pixels = destruction.texture.GetPixels();
         bool has_updated = false;
+        byte team_index = (byte)(team + 1);
 
-        for (int i = 0; i < width; i++)
+        for (int i = rotation_box_min_x; i <= rotation_box_max_x; i++)
         {
-            for (int j = 0; j < height; j++)
+            int x_pos = x + i;
+            if (x_pos < 0 || x_pos >= Instance.MapWidth) continue;
+
+            for (int j = rotation_box_min_y; j <= rotation_box_max_y; j++)
             {
-                float x_local = i - half_width;
-                float y_local = j - half_height;
+                int y_pos = y + j;
+                if (y_pos < 0 || y_pos >= Instance.MapHeight) continue;
 
-                int x_pos = x + Mathf.FloorToInt(x_local * direction.x - y_local * direction.y);
-                int y_pos = y + Mathf.FloorToInt(x_local * direction.y + y_local * direction.x);
+                float x_local = i * direction.x + j * direction.y;
+                float y_local = -i * direction.y + j * direction.x;
 
-                if (x_pos < 0 || x_pos >= Instance.MapWidth || y_pos < 0 || y_pos >= Instance.MapHeight) continue;
+                int src_x = Mathf.FloorToInt(x_local + half_width);
+                int src_y = Mathf.FloorToInt(y_local + half_height);
 
-                Color color = brush_pixels[i + j * width];
+                if (src_x < 0 || src_x >= width || src_y < 0 || src_y >= height) continue;
+
+                Color color = brush_pixels[src_x + src_y * width];
                 if (color.a < 0.5f) continue;
-
-                byte team_index = (byte)(team + 1);
 
                 if (Instance.terrainData[x_pos, y_pos] != team_index)
                 {
@@ -138,7 +151,6 @@ public class Map : MonoBehaviour
                             pixelCount[Instance.terrainData[x_pos, y_pos] - 1] -= 1;
 
                         Instance.terrainData[x_pos, y_pos] = 0;
-
                         Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, TEAM2_MASK_VALUE));
                     }
                     else
@@ -148,7 +160,6 @@ public class Map : MonoBehaviour
 
                         pixelCount[team_index - 1]++;
                         Instance.terrainData[x_pos, y_pos] = team_index;
-
                         Instance.terrainMask.SetPixel(x_pos, y_pos, new Color(1, 1, 1, team == Team.Team1 ? TEAM1_MASK_VALUE : TEAM2_MASK_VALUE));
                     }
                 }
@@ -157,7 +168,7 @@ public class Map : MonoBehaviour
 
         if (!has_updated) return;
 
-        FixNonsenseEdges(x - half_width, y - half_height, destruction, team);
+        FixNonsenseEdges(x - (width / 2), y - (height / 2), destruction, team);
 
         Instance.terrainMask.Apply();
         Instance.UpdateEdgesMesh();
