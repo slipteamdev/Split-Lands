@@ -5,6 +5,7 @@ public class MainMenuController : MonoBehaviour
 {
     [Header("Escenas")]
     [SerializeField] private string characterSelectScreen;
+    [SerializeField] private string SettingsScene;
 
     public void PlayGame()
     {
@@ -13,8 +14,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenSettings()
     {
-        // Pendiente de implementar
-        Debug.Log("Ajustes próximamente");
+        SceneManager.LoadScene(SettingsScene);
     }
 
     public void ExitGame()
