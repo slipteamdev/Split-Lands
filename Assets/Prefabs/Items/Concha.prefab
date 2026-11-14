@@ -167,11 +167,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Concha
   itemName: Concha
-  icon: {fileID: 0}
-  baseCooldown: 3
+  type: 1
+  tier: 0
   playerContext: {fileID: 0}
   speed: 30
   lifeTime: 10
+  stunTime: 3
 --- !u!135 &4433021301482147955
 SphereCollider:
   m_ObjectHideFlags: 0

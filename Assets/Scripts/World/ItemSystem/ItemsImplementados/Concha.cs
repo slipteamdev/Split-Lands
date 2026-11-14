@@ -4,6 +4,7 @@ public class Concha : Item
 {
     [SerializeField] private float speed = 15f;
     [SerializeField] private float lifeTime = 5f;
+    [SerializeField] private float stunTime = 3f;
 
     private Vector2 direction;
     private Rigidbody rb;
@@ -98,7 +99,7 @@ public class Concha : Item
         if (other.CompareTag("Player"))
         {
             Debug.Log($"Impacto contra: {other.gameObject.name}");
-            // Aplicar efecto al jugador
+            other.GetComponent<PlayerContext>().Stun(stunTime);
             Destroy(gameObject);
         }
     }

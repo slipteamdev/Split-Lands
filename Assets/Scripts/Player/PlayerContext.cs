@@ -104,6 +104,21 @@ public class PlayerContext : MonoBehaviour
         }
     }
 
+    public void Stun(float duration = 0f)
+    {
+        moveBlockCount++;
+        moveInputBlockCount++;
+        itemBlockCount++;
+        skillBlockCount++;
+        if (duration > 0f)
+        {
+            StartCoroutine(ReleaseAfterDelay(duration, AllowMove));
+            StartCoroutine(ReleaseAfterDelay(duration, AllowMoveInput));
+            StartCoroutine(ReleaseAfterDelay(duration, AllowItem));
+            StartCoroutine(ReleaseAfterDelay(duration, AllowSkill));
+        }
+    }
+
     // Recibe un tiempo y un metodo. Cuando haya pasado ese tiempo, activa el metodo
     private IEnumerator ReleaseAfterDelay(float delay, System.Action onComplete)
     {

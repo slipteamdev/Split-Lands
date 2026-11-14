@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ public class ItemsManager : MonoBehaviour
 {
     private static List<GameObject> allItems = new List<GameObject>();
 
+    [SerializeField] private GameObject[] itemPrefabList;
 
     // esto es para probarlo
     [SerializeField] private GameObject[] array;
