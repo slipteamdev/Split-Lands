@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 3485531841016437428}
   m_Layer: 0
   m_Name: Zorro
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicSkill
   skillName: Slash
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 02795119f7c26154691e6d77fca60c16, type: 3}
   baseCooldown: 0.5
   type: 0
   currentCooldown: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashNSplash
   skillName: Dash Attack
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 456b2883327543340b4d0ebed81edcec, type: 3}
   baseCooldown: 8
   type: 1
   currentCooldown: 0
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BerserkSkill
   skillName: Berserk Mode
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c9eb81da4c296b64899a00fdc4a19604, type: 3}
   baseCooldown: 30
   type: 2
   currentCooldown: 0

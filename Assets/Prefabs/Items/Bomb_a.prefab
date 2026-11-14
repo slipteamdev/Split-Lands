@@ -169,7 +169,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   baseCooldown: 3
   playerContext: {fileID: 0}
-  destruction: {fileID: 21300000, guid: a6e337bc824ef5a44925c59781acaf82, type: 3}
+  destruction: {fileID: 21300000, guid: 75653e09829239c42aac099d7412162b, type: 3}
   speed: 10
 --- !u!135 &684130808488897942
 SphereCollider:
