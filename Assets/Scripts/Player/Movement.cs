@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -28,7 +27,7 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!playerContext.MoveInputAllowed) return; // Si no se permite input, acaba el bucle
+
 
         if (!playerContext.MoveAllowed) // Si se prohibe movimiento, velocidad cero y acaba
         {
@@ -37,6 +36,7 @@ public class Movement : MonoBehaviour
             return;
         }
 
+        if (!playerContext.MoveInputAllowed) return; // Si no se permite input, acaba el bucle
 
         if (moveInput.magnitude > 1)
         {

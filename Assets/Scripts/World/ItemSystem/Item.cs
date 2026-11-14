@@ -1,17 +1,32 @@
 using UnityEngine;
 
+public enum ItemType
+{
+    Draw,    // Objetos que se usan principalmente para pintar (bombas)
+    Damage,  // Objetos cuyo objetivo es principalmente aturdir
+    Buff,    // Objetos que mejoran al usuario
+    Debuff,       // Objetos que perjudican al rival
+    Other        // Objetos con efectos variados y mas caoticos
+}
+
+public enum ItemTier
+{
+    Common,
+    Uncommon,
+    Rare
+}
+
 public abstract class Item : MonoBehaviour
 {
 
     [SerializeField] private string itemName;
-    [SerializeField] private Sprite icon; // Icono para UI
-    [SerializeField] private float baseCooldown = 3f; // Tiempo de recarga estándar
+
+    public ItemType type;
+    public ItemTier tier;
 
     private GameObject playerOwner = null;
 
     public string ItemName => itemName;
-    public Sprite Icon => icon;
-    public float BaseCooldown => baseCooldown;
     public GameObject PlayerOwner => playerOwner;
     public PlayerContext playerContext;
 

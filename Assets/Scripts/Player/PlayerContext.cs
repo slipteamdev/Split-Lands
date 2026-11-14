@@ -40,11 +40,16 @@ public class PlayerContext : MonoBehaviour
     private int itemBlockCount = 0;
     private int skillBlockCount = 0;
 
+    private int stunBuffCount = 0;
+
     // Solo se permite la accion si no hay bloqueos (contador en 0)
     public bool MoveAllowed => moveBlockCount <= 0; // Controla si el personaje se queda congelado o no. Si se bloquea, se prohibe todo tipo de movimiento
     public bool MoveInputAllowed => moveInputBlockCount <= 0; // Se diferencia de MoveAllowed en que este solo bloquea el movimiento del input, pero permite que otras causas muevan al personaje (por ejemplo un dash)
     public bool ItemAllowed => itemBlockCount <= 0; // Controla si el jugador tiene permitido coger y usar objetos
     public bool SkillAllowed => skillBlockCount <= 0; // Controla si el jugador tiene permitido usar habilidades
+
+
+    public bool StunBuff => stunBuffCount > 0;
 
     // Los metodos Allow liberan las acciones que hayan sido bloqueadas. Cada llamada reduce en 1 el contador de bloqueos
     public void AllowMove()
@@ -102,6 +107,28 @@ public class PlayerContext : MonoBehaviour
         {
             StartCoroutine(ReleaseAfterDelay(duration, AllowSkill));
         }
+    }
+
+    public void Stun(float duration = 1f)
+    {
+        moveBlockCount++;
+        moveInputBlockCount++;
+        itemBlockCount++;
+        skillBlockCount++;
+        if (StunBuff) duration = duration / 2;
+        if (duration > 0f)
+        {
+            StartCoroutine(ReleaseAfterDelay(duration, AllowMove));
+            StartCoroutine(ReleaseAfterDelay(duration, AllowMoveInput));
+            StartCoroutine(ReleaseAfterDelay(duration, AllowItem));
+            StartCoroutine(ReleaseAfterDelay(duration, AllowSkill));
+        }
+    }
+
+    public void ApplyStunBuff(float duration = 0f)
+    {
+        stunBuffCount++;
+        StartCoroutine(ReleaseAfterDelay(duration, () => stunBuffCount--));
     }
 
     // Recibe un tiempo y un metodo. Cuando haya pasado ese tiempo, activa el metodo

@@ -89,8 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Panal
   itemName: Panal
-  icon: {fileID: 0}
-  baseCooldown: 3
+  type: 3
+  tier: 0
   playerContext: {fileID: 0}
   desvanecimiento: 2
   duracion: 3

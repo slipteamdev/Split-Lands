@@ -8,6 +8,7 @@ public class Bomb_a : Item
     [SerializeField] private Sprite destruction;
     [SerializeField] private float speed;
 
+
     private Rigidbody rb;
     private GameObject area;
     private float showAreaTime = 0.25f;
@@ -58,10 +59,10 @@ public class Bomb_a : Item
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<MeshCollider>() != null) //si choca con un mesh colider que deberia ser el rayito
-        {
-            Explode();
-        }
+        //if (collision.gameObject.CompareTag("MapEdge") || collision.gameObject.CompareTag("Ray") || collision.gameObject.CompareTag("Player")) //si choca con un mesh colider que deberia ser el rayito
+        //{
+        Explode();
+        //}
     }
     private void Update()
     {
