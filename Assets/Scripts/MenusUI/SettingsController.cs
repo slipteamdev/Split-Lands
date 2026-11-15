@@ -26,7 +26,7 @@ public class SettingsController : MonoBehaviour
     public void SetMusicVolume(float sliderValue)
     {
         mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("MusicVol", sliderValue); //???
+        PlayerPrefs.SetFloat("MusicVol", sliderValue); // guarda el valor actual en el dispositivo para recordarlo entre partidas
     }
 
     public void SetSFXVolume(float sliderValue)
