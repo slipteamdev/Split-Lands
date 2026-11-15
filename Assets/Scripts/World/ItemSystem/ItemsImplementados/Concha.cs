@@ -6,8 +6,11 @@ public class Concha : Item
     [SerializeField] private float lifeTime = 5f;
     [SerializeField] private float stunTime = 3f;
 
+    [SerializeField] private float selfRotationSpeed = 720f;         // Velocidad de rotacion del sprite, unicamente visual
+
     private Vector2 direction;
     private Rigidbody rb;
+    private RectTransform rectTransform;
 
     [SerializeField] private Collider solidCollider;
     [SerializeField] private Collider triggerCollider;
@@ -47,6 +50,11 @@ public class Concha : Item
         Destroy(gameObject, lifeTime);
     }
 
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
 
     private void IgnoreSpecificCollisions() // Ignora colisiones con ciertos tipos de objeto para no tocarlos o moverlos
     {
@@ -68,6 +76,14 @@ public class Concha : Item
             {
                 Physics.IgnoreCollision(solidCollider, col, true);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (moving)
+        {
+            rectTransform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
         }
     }
 

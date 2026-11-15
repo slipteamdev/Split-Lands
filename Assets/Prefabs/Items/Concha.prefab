@@ -173,6 +173,7 @@ MonoBehaviour:
   speed: 30
   lifeTime: 10
   stunTime: 3
+  selfRotationSpeed: 180
   solidCollider: {fileID: 4433021301482147955}
   triggerCollider: {fileID: 2926092899081735417}
 --- !u!135 &4433021301482147955
