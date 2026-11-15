@@ -40,7 +40,12 @@ public class PlayerContext : MonoBehaviour
     private int itemBlockCount = 0;
     private int skillBlockCount = 0;
 
+    // Contadores internos de buffos
     private int stunBuffCount = 0;
+
+    // Contadores internos de debuffos
+    private int invertedControlCount = 0;
+
 
     // Solo se permite la accion si no hay bloqueos (contador en 0)
     public bool MoveAllowed => moveBlockCount <= 0; // Controla si el personaje se queda congelado o no. Si se bloquea, se prohibe todo tipo de movimiento
@@ -50,6 +55,9 @@ public class PlayerContext : MonoBehaviour
 
 
     public bool StunBuff => stunBuffCount > 0;
+
+    public bool InvertedControl => invertedControlCount > 0;
+
 
     // Los metodos Allow liberan las acciones que hayan sido bloqueadas. Cada llamada reduce en 1 el contador de bloqueos
     public void AllowMove()
@@ -129,6 +137,12 @@ public class PlayerContext : MonoBehaviour
     {
         stunBuffCount++;
         StartCoroutine(ReleaseAfterDelay(duration, () => stunBuffCount--));
+    }
+
+    public void ApplyInvertedControl(float duration = 0f)
+    {
+        invertedControlCount++;
+        StartCoroutine(ReleaseAfterDelay(duration, () => invertedControlCount--));
     }
 
     // Recibe un tiempo y un metodo. Cuando haya pasado ese tiempo, activa el metodo

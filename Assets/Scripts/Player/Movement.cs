@@ -69,6 +69,12 @@ public class Movement : MonoBehaviour
     public void AssignInput(Vector2 input)
     {
         moveInput = input;
+        if (playerContext.InvertedControl)
+        {
+            moveInput.x = -input.x;
+            moveInput.y = -input.y;
+        }
+
         if (moveInput != Vector2.zero) playerContext.SetOrientation(moveInput.normalized);
 
         UpdateSpritePos();
