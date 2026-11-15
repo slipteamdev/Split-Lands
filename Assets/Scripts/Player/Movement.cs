@@ -5,7 +5,6 @@ public class Movement : MonoBehaviour
     [SerializeField] private float speed = 1.0f;
 
     [SerializeField] private GameObject CharacterSprite;
-    [SerializeField] private Animator animator;
 
     private Vector2 moveInput;
     private Vector3 velocity;
@@ -32,7 +31,6 @@ public class Movement : MonoBehaviour
         if (!playerContext.MoveAllowed) // Si se prohibe movimiento, velocidad cero y acaba
         {
             rb.linearVelocity = Vector3.zero;
-            if (animator != null) animator.SetBool("AndarDerecha", false);
             return;
         }
 
@@ -53,22 +51,17 @@ public class Movement : MonoBehaviour
             //Debug.Log(velocity.sqrMagnitude);
             rb.linearVelocity = velocity;
         }
-        if (animator != null)
-        {
-            if (rb.linearVelocity == Vector3.zero)
-            {
-                if (animator.GetBool("AndarDerecha") == true) animator.SetBool("AndarDerecha", false);
-            }
-            else
-            {
-                if (animator.GetBool("AndarDerecha") == false) animator.SetBool("AndarDerecha", true);
-            }
-        }
     }
 
     public void AssignInput(Vector2 input)
     {
         moveInput = input;
+        if (playerContext.InvertedControl)
+        {
+            moveInput.x = -input.x;
+            moveInput.y = -input.y;
+        }
+
         if (moveInput != Vector2.zero) playerContext.SetOrientation(moveInput.normalized);
 
         UpdateSpritePos();

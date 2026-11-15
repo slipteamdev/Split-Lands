@@ -168,11 +168,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Concha
   itemName: Concha
   type: 1
-  tier: 0
+  tier: 1
   playerContext: {fileID: 0}
   speed: 30
   lifeTime: 10
   stunTime: 3
+  selfRotationSpeed: 180
+  solidCollider: {fileID: 4433021301482147955}
+  triggerCollider: {fileID: 2926092899081735417}
 --- !u!135 &4433021301482147955
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -211,7 +214,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 40
   m_Center: {x: 0, y: 0, z: 0}

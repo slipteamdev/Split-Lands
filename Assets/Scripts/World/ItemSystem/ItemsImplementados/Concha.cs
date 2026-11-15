@@ -6,10 +6,14 @@ public class Concha : Item
     [SerializeField] private float lifeTime = 5f;
     [SerializeField] private float stunTime = 3f;
 
+    [SerializeField] private float selfRotationSpeed = 720f;         // Velocidad de rotacion del sprite, unicamente visual
+
     private Vector2 direction;
     private Rigidbody rb;
+    private RectTransform rectTransform;
 
-    private Collider ownCollider;
+    [SerializeField] private Collider solidCollider;
+    [SerializeField] private Collider triggerCollider;
     private bool moving = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Execute()
@@ -31,8 +35,8 @@ public class Concha : Item
             RigidbodyConstraints.FreezeRotationZ;
         rb.useGravity = false;
 
-        ownCollider = GetComponent<Collider>();
-        ownCollider.enabled = true;
+        solidCollider.enabled = true;
+        triggerCollider.enabled = true;
         IgnoreSpecificCollisions();
 
 
@@ -46,6 +50,11 @@ public class Concha : Item
         Destroy(gameObject, lifeTime);
     }
 
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
 
     private void IgnoreSpecificCollisions() // Ignora colisiones con ciertos tipos de objeto para no tocarlos o moverlos
     {
@@ -55,7 +64,7 @@ public class Concha : Item
             Collider[] playerCols = p.GetComponentsInChildren<Collider>();
             foreach (Collider col in playerCols)
             {
-                Physics.IgnoreCollision(ownCollider, col, true);
+                Physics.IgnoreCollision(solidCollider, col, true);
             }
         }
 
@@ -65,8 +74,16 @@ public class Concha : Item
             Collider[] rayColliders = rayObj.GetComponentsInChildren<Collider>();
             foreach (Collider col in rayColliders)
             {
-                Physics.IgnoreCollision(ownCollider, col, true);
+                Physics.IgnoreCollision(solidCollider, col, true);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (moving)
+        {
+            rectTransform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
         }
     }
 
