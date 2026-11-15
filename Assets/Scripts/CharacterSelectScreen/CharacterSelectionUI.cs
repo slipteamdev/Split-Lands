@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterSelectionUI : MonoBehaviour
 {
-    [SerializeField] private string gameSceneName = "Game";
+    [SerializeField] private string gameSceneName = "VSBeforeGame";
 
     //[SerializeField] private Button[] p1CharacterButtons; // Botones de los jugadores terminados
 
