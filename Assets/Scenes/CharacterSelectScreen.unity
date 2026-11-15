@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de13f8e1de4b12d4fb3e921c62550b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectionUI
-  gameSceneName: Game
+  gameSceneName: VSBeforeGame
   characterSprites:
   - {fileID: 21300000, guid: 97daa22db33bad34ba983e209e1ab101, type: 3}
   - {fileID: 21300000, guid: e384983a83faec049957a724f393a323, type: 3}
