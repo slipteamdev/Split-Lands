@@ -19,8 +19,8 @@ public class SettingsController : MonoBehaviour
         musicSlider.value = savedMusic;
         sfxSlider.value = savedSFX;
 
-        SetMusicVolume(savedMusic);
-        SetSFXVolume(savedSFX);
+        /*SetMusicVolume(savedMusic);
+        SetSFXVolume(savedSFX);*/
     }
 
     public void SetMusicVolume(float sliderValue)
@@ -37,6 +37,7 @@ public class SettingsController : MonoBehaviour
 
     public void BackToMenu()
     {
+        PlayerPrefs.Save();
         SceneManager.LoadScene("StartMenu");
     }
 }
