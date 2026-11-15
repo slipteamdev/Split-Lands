@@ -20,12 +20,14 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private Button p1PreviousButton;
     [SerializeField] private Button p1NextButton;
     [SerializeField] private Button p1CharacterButton;
+    [SerializeField] private Animator p1Animator;
 
     //Jugador2
     [SerializeField] private Image p2CharacterImage;
     [SerializeField] private Button p2PreviousButton;
     [SerializeField] private Button p2NextButton;
     [SerializeField] private Button p2CharacterButton;
+    [SerializeField] private Animator p2Animator;
 
     [SerializeField] private Button startMatchButton;
 
@@ -95,16 +97,32 @@ public class CharacterSelectionUI : MonoBehaviour
     }
 
     //Jugador 1
+    private bool changingP1 = false;
     private void ChangeCharacterP1(int direction)
     {
+        if (changingP1) return;
+
         p1CurrentIndex = (p1CurrentIndex + direction +
                          characterSprites.Length) %
                          characterSprites.Length;
 
         p1SelectedId = -1;
 
-        UpdateCharacterImage(p1CharacterImage, p1CurrentIndex);
+        StartCoroutine(ChangeCharacterP1_EVENT());
         CheckCanStart();
+    }
+    private IEnumerator ChangeCharacterP1_EVENT()
+    {
+        p1Animator.SetTrigger("Switch");
+        changingP1 = true;
+
+        yield return new WaitForSeconds(0.34f);
+
+        UpdateCharacterImage(p1CharacterImage, p1CurrentIndex);
+        
+        yield return new WaitForSeconds(0.69f);
+        
+        changingP1 = false;
     }
 
     private void ConfirmCharacterP1()
@@ -130,16 +148,32 @@ public class CharacterSelectionUI : MonoBehaviour
     }
 
     //Jugador 2
+    private bool changingP2 = false;
     private void ChangeCharacterP2(int direction)
     {
+        if (changingP2) return;
+
         p2CurrentIndex = (p2CurrentIndex + direction +
                          characterSprites.Length) %
                          characterSprites.Length;
 
         p2SelectedId = -1;
 
-        UpdateCharacterImage(p2CharacterImage, p2CurrentIndex);
+        StartCoroutine(ChangeCharacterP2_EVENT());
         CheckCanStart();
+    }
+    private IEnumerator ChangeCharacterP2_EVENT()
+    {
+        p2Animator.SetTrigger("Switch");
+        changingP2 = true;
+
+        yield return new WaitForSeconds(0.34f);
+
+        UpdateCharacterImage(p2CharacterImage, p2CurrentIndex);
+
+        yield return new WaitForSeconds(0.69f);
+
+        changingP2 = false;
     }
 
     private void ConfirmCharacterP2()
