@@ -9,6 +9,7 @@ public class Monkey : MonoBehaviour
 
     private GameObject objetivo = null;
     private AnimalMovement am;
+    public TotemMono totem;
 
     void Start()
     {
@@ -17,85 +18,87 @@ public class Monkey : MonoBehaviour
 
     void Update()
     {
-        if (objetivo == null) // si no tiene objetivo
+        //Debug.Log(transform.childCount);
+        if (transform.childCount <= 1) // si no tiene objeto
         {
-            am.AssignObjetive(this.transform.position);
-        }
-        else
-        {
-            if (Vector2.Distance(objetivo.transform.localPosition, this.transform.localPosition) < 1.25f) // si ha llegado al objetivo
+            if (objetivo == null || objetivo.IsDestroying()) // si no tiene objetivo o si el objetivo se esta muriendo
             {
-                if (transform.childCount > 1) // si no tiene objeto, lo roba
+                FindObjetive();
+            }
+            else
+            {
+                if (Vector2.Distance(objetivo.transform.position, this.transform.position) < 1.5f) // si ha llegado al objetivo
                 {
-                    // robar
-                    if (objetivo.GetComponent<Item>()  != null) //si el objeto esta solito
-                    {
-                        objetivo.transform.SetParent(this.gameObject.transform.GetChild(0).transform);
-                        objetivo.transform.localPosition = Vector3.zero;
-                        this.transform.localRotation = Quaternion.identity;
-                        objetivo.transform.rotation = Quaternion.identity;
-
-                        objetivo.GetComponent<Item>().SetOwner(null);
-                        ItemsManager.RemoveObject(objetivo);
-                    }
-                    else // si tiene papa
-                    {
-                        PlayerItemsManager p = objetivo.GetComponent<PlayerItemsManager>();
-                        if (p != null) // es jugador
+                        // robar
+                        if (objetivo.GetComponent<Item>() != null) //si el objeto esta solito
                         {
-                            p.MeRoban(this.gameObject);
+                            objetivo.transform.SetParent(this.gameObject.transform);
+                            objetivo.transform.localPosition = this.gameObject.transform.GetChild(0).transform.localPosition;
+                            this.transform.localRotation = Quaternion.identity;
+                            objetivo.transform.rotation = Quaternion.identity;
+
+                            objetivo.GetComponent<Item>().SetOwner(null);
+                            ItemsManager.RemoveObject(objetivo);
                         }
-                        else // es cangrejo
+                        else // si tiene papa
                         {
-                            Item[] g = objetivo.GetComponentsInChildren<Item>(); // mira, no estoy pa pensar, asi se va con un array mu guarro pero me la pela
-                            foreach (Item item in g)
+                            PlayerItemsManager p = objetivo.GetComponent<PlayerItemsManager>();
+                            if (p != null) // es jugador
                             {
-                                if (item != null)
-                                {
-                                    item.gameObject.transform.SetParent(this.gameObject.transform.GetChild(0).transform);
-                                    item.gameObject.transform.localPosition = Vector3.zero;
-                                    this.transform.localRotation = Quaternion.identity;
-                                    item.gameObject.transform.rotation = Quaternion.identity;
+                                p.MeRoban(this.gameObject);
+                            }
+                            else // es cangrejo
+                            {
+                                GameObject g = objetivo.transform.GetChild(1).gameObject;
 
-                                    item.gameObject.GetComponent<Item>().SetOwner(null);
-                                    ItemsManager.RemoveObject(item.gameObject);
+                                if (g != null)
+                                {
+                                    g.transform.SetParent(this.gameObject.transform);
+                                    g.transform.localPosition = this.gameObject.transform.GetChild(0).transform.localPosition;
+                                    this.transform.localRotation = Quaternion.identity;
+                                    g.transform.rotation = Quaternion.identity;
+
+                                    g.GetComponent<Item>().SetOwner(null);
+                                    ItemsManager.RemoveObject(g);
                                 }
 
                             }
                         }
-                    }
 
-
-                        objetivo = playerContext.gameObject;
+                    totem.FindNewObjetive(this.gameObject);
+                    objetivo = playerContext.gameObject;
                 }
-                else // si tiene objeto, lo suelta
+                else // si no ha llegado
                 {
-                    // soltar
-                    Soltar();
-
-                    FindObjetive();
+                    am.AssignObjetive(objetivo.transform.position);
                 }
+            }
+        }
+        else // si si tiene objeto
+        {
+            if (Vector2.Distance(objetivo.transform.position, this.transform.position) < 1.25f) // si tiene objeto, lo suelta
+            {
+                // soltar
+                Soltar();
+
+                FindObjetive();
             }
             else // si no ha llegado
             {
                 am.AssignObjetive(objetivo.transform.position);
             }
         }
+
     }
 
     public void Soltar()
     {
-        GameObject obj = null;
-        Item[] g = objetivo.GetComponentsInChildren<Item>(); // mira, no estoy pa pensar, asi se va con un array mu guarro pero me la pela
-        foreach (Item item in g)
+        if (transform.childCount <= 1) // si no tiene objeto
         {
-            if (item != null)
-            {
-                obj = item.gameObject;
-            }
+            return;
         }
+        GameObject obj = this.gameObject.transform.GetChild(1).gameObject;
 
-        if (obj == null) return;
 
         obj.transform.SetParent(playerContext.canvas.gameObject.transform);
         this.transform.localRotation = Quaternion.identity;
@@ -107,12 +110,16 @@ public class Monkey : MonoBehaviour
 
     public void FindObjetive()
     {
+        if (transform.childCount > 1) // si tiene objeto
+        {
+            return;
+        }
         List<GameObject> enemyItems = new List<GameObject>();
         foreach (GameObject item in ItemsManager.allItems)
         {
             Map.Team current_pixel_team;
 
-            if (item.transform.parent.gameObject.GetComponent<AnimalMovement>() == null && item.transform.parent.gameObject.GetComponent<PlayerItemsManager>() == null)
+            if (!item.transform.parent.gameObject.TryGetComponent<AnimalMovement>(out AnimalMovement a) && !item.transform.parent.gameObject.TryGetComponent<PlayerItemsManager>(out PlayerItemsManager m))
             {
                 current_pixel_team = Map.ReadPixelAt(item.transform.localPosition.x, item.transform.localPosition.y);
             }
@@ -159,6 +166,11 @@ public class Monkey : MonoBehaviour
         if (nearest != null)
         {
             objetivo = nearest;
+        }
+        else
+        {
+            am.AssignObjetive(this.transform.position);
+            objetivo = null;
         }
 
     }

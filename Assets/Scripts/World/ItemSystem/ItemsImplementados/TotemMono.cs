@@ -54,12 +54,24 @@ public class TotemMono : Item
             {
                 monkey.playerContext = playerContext;
                 monkey.FindObjetive();
+                monkey.totem = this;
             }
         }
         StartCoroutine(Desvanecimiento());
 
         StartCoroutine(MonkeysDying());
 
+    }
+
+    public void FindNewObjetive(GameObject monkey)
+    {
+        foreach (GameObject m in monkeyList)
+        {
+            if (m != monkey)
+            {
+                m.GetComponent<Monkey>().FindObjetive();
+            }
+        }
     }
 
     IEnumerator MonkeysDying()
@@ -72,6 +84,7 @@ public class TotemMono : Item
 
             Destroy(monkey);
         }
+        Destroy(this.gameObject);
     }
 
     IEnumerator Desvanecimiento()
@@ -97,10 +110,6 @@ public class TotemMono : Item
         im.color = colorFinal;
         im.transform.localScale = escalaFinal;
 
-
-
-
-        Destroy(this.gameObject);
     }
 
 
