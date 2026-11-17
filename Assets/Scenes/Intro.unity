@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 28011031}
   - component: {fileID: 28011033}
   - component: {fileID: 28011032}
+  - component: {fileID: 28011034}
   m_Layer: 5
   m_Name: EspiralesP4
   m_TagString: Untagged
@@ -194,6 +195,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28011030}
   m_CullTransparentMesh: 1
+--- !u!114 &28011034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28011030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 80
 --- !u!1 &222495489
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +387,7 @@ GameObject:
   - component: {fileID: 451885324}
   - component: {fileID: 451885326}
   - component: {fileID: 451885325}
+  - component: {fileID: 451885327}
   m_Layer: 5
   m_Name: EspiralesP1
   m_TagString: Untagged
@@ -437,6 +452,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451885323}
   m_CullTransparentMesh: 1
+--- !u!114 &451885327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451885323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 70
 --- !u!1 &505478978
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +701,7 @@ GameObject:
   - component: {fileID: 581007042}
   - component: {fileID: 581007044}
   - component: {fileID: 581007043}
+  - component: {fileID: 581007045}
   m_Layer: 5
   m_Name: EspiralesG1.2
   m_TagString: Untagged
@@ -737,6 +766,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581007041}
   m_CullTransparentMesh: 1
+--- !u!114 &581007045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581007041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 50
 --- !u!1 &924229427
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +865,7 @@ GameObject:
   - component: {fileID: 928849785}
   - component: {fileID: 928849787}
   - component: {fileID: 928849786}
+  - component: {fileID: 928849788}
   m_Layer: 5
   m_Name: EspiralesG1.4
   m_TagString: Untagged
@@ -887,6 +930,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928849784}
   m_CullTransparentMesh: 1
+--- !u!114 &928849788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928849784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -55
 --- !u!1 &968429312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1339,7 @@ GameObject:
   - component: {fileID: 1105702156}
   - component: {fileID: 1105702158}
   - component: {fileID: 1105702157}
+  - component: {fileID: 1105702159}
   m_Layer: 5
   m_Name: EpiralesG2
   m_TagString: Untagged
@@ -1347,6 +1404,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105702155}
   m_CullTransparentMesh: 1
+--- !u!114 &1105702159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105702155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 45
 --- !u!1 &1412494006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1428,7 @@ GameObject:
   - component: {fileID: 1412494007}
   - component: {fileID: 1412494009}
   - component: {fileID: 1412494008}
+  - component: {fileID: 1412494010}
   m_Layer: 5
   m_Name: EspiralesP2
   m_TagString: Untagged
@@ -1422,6 +1493,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412494006}
   m_CullTransparentMesh: 1
+--- !u!114 &1412494010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412494006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -60
 --- !u!1 &1487180722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,6 +1517,7 @@ GameObject:
   - component: {fileID: 1487180723}
   - component: {fileID: 1487180725}
   - component: {fileID: 1487180724}
+  - component: {fileID: 1487180726}
   m_Layer: 5
   m_Name: EspiralesG2.1
   m_TagString: Untagged
@@ -1449,7 +1534,7 @@ RectTransform:
   m_GameObject: {fileID: 1487180722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1078860699}
@@ -1497,6 +1582,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487180722}
   m_CullTransparentMesh: 1
+--- !u!114 &1487180726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487180722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 60
 --- !u!1 &1532246751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +1941,7 @@ GameObject:
   - component: {fileID: 1590823020}
   - component: {fileID: 1590823022}
   - component: {fileID: 1590823021}
+  - component: {fileID: 1590823023}
   m_Layer: 5
   m_Name: EspiralesG1
   m_TagString: Untagged
@@ -1907,6 +2006,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590823019}
   m_CullTransparentMesh: 1
+--- !u!114 &1590823023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590823019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -50
 --- !u!1 &1592018860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +2030,7 @@ GameObject:
   - component: {fileID: 1592018861}
   - component: {fileID: 1592018863}
   - component: {fileID: 1592018862}
+  - component: {fileID: 1592018864}
   m_Layer: 5
   m_Name: EspiralesG1.3
   m_TagString: Untagged
@@ -1982,6 +2095,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592018860}
   m_CullTransparentMesh: 1
+--- !u!114 &1592018864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592018860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -30
 --- !u!1 &1822010168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2246,7 @@ GameObject:
   - component: {fileID: 2098107561}
   - component: {fileID: 2098107563}
   - component: {fileID: 2098107562}
+  - component: {fileID: 2098107564}
   m_Layer: 5
   m_Name: EspiralesP3
   m_TagString: Untagged
@@ -2184,6 +2311,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098107560}
   m_CullTransparentMesh: 1
+--- !u!114 &2098107564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098107560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -70
 --- !u!1 &2114930309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,6 +2335,7 @@ GameObject:
   - component: {fileID: 2114930310}
   - component: {fileID: 2114930312}
   - component: {fileID: 2114930311}
+  - component: {fileID: 2114930313}
   m_Layer: 5
   m_Name: text (1)
   m_TagString: Untagged
@@ -2321,6 +2462,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114930309}
   m_CullTransparentMesh: 1
+--- !u!114 &2114930313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114930309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c2b9ad2472b74479f6755621fa98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Parpadeo
+  desvanecimiento: 1
+  MenuScene: StartMenu
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

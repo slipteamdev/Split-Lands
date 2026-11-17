@@ -1,0 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
+
+public class Ratonera : Item
+{
+    [SerializeField] private float cooldown;
+    [SerializeField] private GameObject[] usos;
+    private int cargas;
+
+    private bool colocada = false;
+    private void Start()
+    {
+        cargas = usos.Length;
+    }
+
+    public override void Execute()
+    {
+        playerContext = this.PlayerOwner.GetComponent<PlayerContext>(); // Nota de Lucas: Esta asignacion intentaria mirar si se puede hacer en el script base, para no tener que ponerla en todos los objetos
+
+        GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra
+
+        this.transform.SetParent(canva.transform);
+
+        Vector2 direction = playerContext.Orientation;
+        transform.position = playerContext.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);
+
+        this.transform.GetChild(0).gameObject.SetActive(true);
+        colocada = true;
+
+    }
+
+    private void Update()
+    {
+        if (colocada)
+        {
+            // detectar victimas y atraparlas
+
+            foreach (GameObject animal in AnimalSpawner.allAnimals)
+            {
+                if (Vector2.Distance(animal.transform.position, this.transform.position) < 1f) // si pasa la victima
+                {
+                    Monkey m = animal.GetComponent<Monkey>();
+                    if (m != null) // si es mono
+                    {
+                        m.Soltar();
+                        Destroy(animal);
+
+                    }
+                    else // si es cangrejo
+                    {
+                        AnimalMovement am = animal.GetComponent<AnimalMovement>();
+                        am.Soltar();
+                        Destroy(animal);
+                    }
+                    cargas--;
+
+                    for (int i = 0; i < usos.Length; i++)
+                    {
+                        usos[i].SetActive(i < cargas);
+                    }
+                    // animacion de cerrarse
+
+                    StartCoroutine(Espera());
+                    colocada = false;
+                    return;
+                }
+
+
+            }
+
+
+        }
+    }
+
+
+    IEnumerator Espera()
+    {
+        yield return new WaitForSeconds(cooldown);
+
+        colocada = true;
+        if (cargas <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+}

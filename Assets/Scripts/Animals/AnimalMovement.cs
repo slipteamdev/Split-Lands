@@ -58,6 +58,18 @@ public class AnimalMovement : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void Soltar()
+    {
+        if (transform.childCount <= 1) // si no tiene objeto
+        {
+            return;
+        }
+
+        GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra
+        this.transform.GetChild(1).transform.SetParent(canva.transform);
+
+    }
+
     public void AssignObjetive(Vector3 pos) // AQUI MANDALE POSITION, NO LOCALPOSITION, quero llorar
     {
         objetive = pos;

@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class AnimalSpawner : MonoBehaviour
 {
-    private static List<GameObject> allAnimals = new List<GameObject>();
+    public static List<GameObject> allAnimals = new List<GameObject>();
 
     public List<GameObject> animals = new List<GameObject>();
     public List<Transform> puntosSpawn = new List<Transform>();
 
-    [SerializeField] private static GameObject animalsParent;
+    private static GameObject animalsParent;
 
     public float tiempoEntreSpawns = 3f;
 
@@ -26,6 +26,7 @@ public class AnimalSpawner : MonoBehaviour
     }
     private void Start()
     {
+        animalsParent = this.gameObject;
         StartCoroutine(SpawnLoop());
     }
 
@@ -71,7 +72,7 @@ public class AnimalSpawner : MonoBehaviour
         else direccion = Vector2.left;
 
 
-        GameObject animal = SpawnSingleAnimal(animalPrefab, punto, animalsParent);
+        GameObject animal = SpawnSingleAnimal(animalPrefab, punto);
         animal.GetComponent<AnimalMovement>().AssignObjetive(puntosSpawn[numObjetive].position);
 
         punto = animal.transform.GetChild(0).transform;
