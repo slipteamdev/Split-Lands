@@ -11,19 +11,26 @@ public class AnimalMovement : MonoBehaviour
     private Vector2 moveInput;
 
     public bool moving = true;
+    public bool dieWhenObjetive = true;
     void FixedUpdate()
     {
         if (!moving) return;
+        if (objetive == null) return;
 
-        if (Vector3.Distance(this.transform.position, objetive) < 1.0f)
-        {
-            //matar al bicho
-            Die();
-            return;
-        }
         moveInput = objetive - transform.position;
         moveInput = moveInput.normalized;
         velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * speed;
+
+        if (Vector3.Distance(this.transform.position, objetive) < 1.0f)
+        {
+            velocity = Vector3.zero;
+            if (dieWhenObjetive) // por si quiero que se muera al llegar al objetivo
+            {
+                //matar al bicho
+                Die();
+                return;
+            }
+        }
 
         if (rb == null) //por si no tiene rigidbody que se mueva con el transform, ESTO IGUAL DA PROBLEMAS PERO DE MOMENTO LO DEJO
         {

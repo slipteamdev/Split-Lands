@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class AnimalSpawner : MonoBehaviour
@@ -10,7 +11,7 @@ public class AnimalSpawner : MonoBehaviour
     public List<GameObject> animals = new List<GameObject>();
     public List<Transform> puntosSpawn = new List<Transform>();
 
-    [SerializeField] private GameObject animalsParent;
+    [SerializeField] private static GameObject animalsParent;
 
     public float tiempoEntreSpawns = 3f;
 
@@ -70,9 +71,8 @@ public class AnimalSpawner : MonoBehaviour
         else direccion = Vector2.left;
 
 
-        GameObject animal = Instantiate(animalPrefab, punto.position, punto.rotation, animalsParent.transform);
+        GameObject animal = SpawnSingleAnimal(animalPrefab, punto, animalsParent);
         animal.GetComponent<AnimalMovement>().AssignObjetive(puntosSpawn[numObjetive].position);
-        AddAnimal(animal);
 
         punto = animal.transform.GetChild(0).transform;
         ItemsManager.SpawnRandomItem(punto.position, punto.rotation, animal.transform);
@@ -81,5 +81,14 @@ public class AnimalSpawner : MonoBehaviour
         // y tambien que vaya actualizando la lista de objetos y mierdas de esas
 
     }
+
+
+    public static GameObject SpawnSingleAnimal(GameObject animalPrefab, Transform punto)
+    {
+        GameObject animal = Instantiate(animalPrefab, punto.position, punto.rotation, animalsParent.transform);
+        AddAnimal(animal);
+        return animal;
+    }
+
 
 }
