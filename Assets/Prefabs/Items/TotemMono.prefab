@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TotemMono
   itemName: 
   type: 4
-  tier: 1
+  tier: 2
   playerContext: {fileID: 0}
   desvanecimiento: 2.5
   duracion: 30

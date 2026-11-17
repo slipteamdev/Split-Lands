@@ -8,6 +8,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Ratonera : Item
 {
     [SerializeField] private float cooldown;
+    [SerializeField] private float distancia;
     [SerializeField] private GameObject[] usos;
     private int cargas;
 
@@ -41,21 +42,22 @@ public class Ratonera : Item
 
             foreach (GameObject animal in AnimalSpawner.allAnimals)
             {
-                if (Vector2.Distance(animal.transform.position, this.transform.position) < 1f) // si pasa la victima
+                if (Vector2.Distance(animal.transform.position, this.transform.position) < distancia) // si pasa la victima
                 {
                     Monkey m = animal.GetComponent<Monkey>();
                     if (m != null) // si es mono
                     {
                         m.Soltar();
-                        Destroy(animal);
-
                     }
                     else // si es cangrejo
                     {
                         AnimalMovement am = animal.GetComponent<AnimalMovement>();
                         am.Soltar();
-                        Destroy(animal);
                     }
+
+                    AnimalSpawner.RemoveAnimal(animal);
+                    Destroy(animal);
+
                     cargas--;
 
                     for (int i = 0; i < usos.Length; i++)
@@ -68,10 +70,38 @@ public class Ratonera : Item
                     colocada = false;
                     return;
                 }
+            }
+            if (Vector2.Distance(playerContext.EnemyPlayer.transform.position, this.transform.position) < distancia)
+            {
+                playerContext.EnemyPlayer.gameObject.GetComponent<PlayerContext>().Stun(cooldown * 0.5f); // por ejemplo
 
+                cargas--;
+                for (int i = 0; i < usos.Length; i++)
+                {
+                    usos[i].SetActive(i < cargas);
+                }
+                // animacion de cerrarse
 
+                StartCoroutine(Espera());
+                colocada = false;
+                return;
             }
 
+            if (Vector2.Distance(playerContext.gameObject.transform.position, this.transform.position) < distancia)
+            {
+                playerContext.Stun(cooldown * 0.5f); // por ejemplo
+
+                cargas--;
+                for (int i = 0; i < usos.Length; i++)
+                {
+                    usos[i].SetActive(i < cargas);
+                }
+                // animacion de cerrarse
+
+                StartCoroutine(Espera());
+                colocada = false;
+                return;
+            }
 
         }
     }
