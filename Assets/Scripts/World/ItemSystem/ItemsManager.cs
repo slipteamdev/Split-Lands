@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ItemsManager : MonoBehaviour
 {
-    private static List<GameObject> allItems = new List<GameObject>();
+    public static List<GameObject> allItems = new List<GameObject>();
     private static ItemRandomizer staticRandomizer;
 
     [SerializeField] private ItemRandomizer itemRandomizer;

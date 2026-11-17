@@ -70,7 +70,7 @@ public class PlayerItemsManager : MonoBehaviour
         // ESTA MIERDA HAY QUE PONERLA XQ POR ALGUNA RAZON SE EMPIEZAN A GIRAR SOLAS LAS COSAS AL JUGAR CON LOS PADRES
         this.gameObject.GetComponent<Movement>().UpdateSpritePos();
         this.transform.localRotation = Quaternion.identity;
-        playerItem.transform.localRotation = Quaternion.identity;
+        playerItem.transform.rotation = Quaternion.identity;
 
         this.gameObject.GetComponent<Movement>().UpdateSpritePos();
 
@@ -82,4 +82,22 @@ public class PlayerItemsManager : MonoBehaviour
         playerItem = null;
         item.Use();
     }
+
+    public void MeRoban(GameObject ladron)
+    {
+        if (playerItem != null) return;
+
+        playerItem.transform.SetParent(ladron.transform.GetChild(0).transform);
+        playerItem.transform.localPosition = Vector3.zero;
+        this.transform.localRotation = Quaternion.identity;
+        this.gameObject.GetComponent<Movement>().UpdateSpritePos();
+        playerItem.transform.rotation = Quaternion.identity;
+
+        playerItem.GetComponent<Item>().SetOwner(null);
+
+        // ItemsManager.AddObject(playerItem);
+
+        playerItem = null;
+    }
+
 }
