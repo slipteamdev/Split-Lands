@@ -31,7 +31,7 @@ public class Bomb_a : Item
 
 
         Vector2 direction = playerContext.Orientation;
-        transform.position = playerContext.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);
+        transform.position = playerContext.transform.position + new Vector3(direction.x, direction.y, 0);
 
         // LE VAMOS A CREAR ELL PUTO RIGIDBODY CUANDO YA NO TIENE DE PADRE AL JUGADOR XQ SINO PETA, ASI QUE AQUI LE PONGO TOS LOS VALORES DE MIERDA PARA QUE NO EXPLOTE
         rb = this.gameObject.AddComponent<Rigidbody>();
