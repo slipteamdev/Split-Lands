@@ -299,13 +299,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mierdecillas_9
+      name: estrellas_1
       rect:
         serializedVersion: 2
-        x: 229
-        y: 373
-        width: 606
-        height: 459
+        x: 1820
+        y: 931
+        width: 395
+        height: 195
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,6 +324,28 @@ TextureImporter:
       name: mierdecillas_10
       rect:
         serializedVersion: 2
+        x: 229
+        y: 373
+        width: 606
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1f0bbba37507ab48b1b9ccf4df06c00
+      internalID: -1300063578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mierdecillas_11
+      rect:
+        serializedVersion: 2
         x: 876
         y: 374
         width: 599
@@ -336,8 +358,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1f0bbba37507ab48b1b9ccf4df06c00
-      internalID: -1300063578
+      spriteID: b4a818fb09e4e504493f02d8eb6335f0
+      internalID: -1667662171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: estrellas_2
+      rect:
+        serializedVersion: 2
+        x: 1827
+        y: 717
+        width: 405
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab76b5df98081d9479f8c85bc3fc8c9d
+      internalID: -637305676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: estrellas_3
+      rect:
+        serializedVersion: 2
+        x: 1832
+        y: 506
+        width: 380
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56dd4a6c213275459ef63d893d4fc37
+      internalID: 1580589224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: estrellas_4
+      rect:
+        serializedVersion: 2
+        x: 1833
+        y: 265
+        width: 384
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd590b1bf5aede9488e52fa295408fb0
+      internalID: 1946940855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: estrellas_5
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 61
+        width: 459
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39766b5a1c1a90147848962f559205cd
+      internalID: -1269966032
       vertices: []
       indices: 
       edges: []
@@ -358,9 +468,15 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      estrellas_1: -704602953
+      estrellas_2: -637305676
+      estrellas_3: 1580589224
+      estrellas_4: 1946940855
+      estrellas_5: -1269966032
       mierdecillas_0: 322800723
       mierdecillas_1: -1720049744
       mierdecillas_10: -1300063578
+      mierdecillas_11: -1667662171
       mierdecillas_2: 1000682503
       mierdecillas_3: 460930101
       mierdecillas_4: -1718513951
@@ -368,7 +484,6 @@ TextureImporter:
       mierdecillas_6: 1743587193
       mierdecillas_7: 211500623
       mierdecillas_8: -986200500
-      mierdecillas_9: -704602953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

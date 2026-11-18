@@ -5,6 +5,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private float speed = 1.0f;
 
     [SerializeField] private GameObject CharacterSprite;
+    [SerializeField] private GameObject invertedConfusion;
+    [SerializeField] private GameObject stunConfusion;
 
     private Vector2 moveInput;
     private Vector3 velocity;
@@ -26,6 +28,14 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (stunConfusion != null) // para que se vea el objeto de la confusion
+        {
+            stunConfusion.SetActive(!playerContext.MoveInputAllowed);
+        }
+        if (invertedConfusion != null) // para que se vea el objeto de la confusion
+        {
+            invertedConfusion.SetActive(playerContext.InvertedControl);
+        }
 
 
         if (!playerContext.MoveAllowed) // Si se prohibe movimiento, velocidad cero y acaba
@@ -33,6 +43,7 @@ public class Movement : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             return;
         }
+
 
         if (!playerContext.MoveInputAllowed) return; // Si no se permite input, acaba el bucle
 
@@ -56,6 +67,7 @@ public class Movement : MonoBehaviour
     public void AssignInput(Vector2 input)
     {
         moveInput = input;
+
         if (playerContext.InvertedControl)
         {
             moveInput.x = -input.x;
