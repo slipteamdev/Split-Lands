@@ -6,6 +6,7 @@ public class MainMenuController : MonoBehaviour
     [Header("Escenas")]
     [SerializeField] private string characterSelectScreen;
     [SerializeField] private string SettingsScene;
+    [SerializeField] private string ShopScene;
 
     public void PlayGame()
     {
@@ -26,6 +27,11 @@ public class MainMenuController : MonoBehaviour
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+
+    public void OpenShop()
+    {
+        SceneManager.LoadScene(ShopScene);
     }
 
 }
