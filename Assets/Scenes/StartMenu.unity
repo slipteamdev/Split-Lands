@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 51215474}
   - component: {fileID: 51215476}
   - component: {fileID: 51215475}
+  - component: {fileID: 51215477}
   m_Layer: 5
   m_Name: Espiral3
   m_TagString: Untagged
@@ -194,6 +195,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51215473}
   m_CullTransparentMesh: 1
+--- !u!114 &51215477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51215473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -15
 --- !u!1 &85140666
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +219,7 @@ GameObject:
   - component: {fileID: 85140667}
   - component: {fileID: 85140669}
   - component: {fileID: 85140668}
+  - component: {fileID: 85140670}
   m_Layer: 5
   m_Name: Espiral1
   m_TagString: Untagged
@@ -269,6 +284,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85140666}
   m_CullTransparentMesh: 1
+--- !u!114 &85140670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85140666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 15
 --- !u!1 &85675837
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
   characterSelectScreen: CharacterSelectScreen
   SettingsScene: Ajustes
+  ShopScene: Tienda
 --- !u!4 &398409914
 Transform:
   m_ObjectHideFlags: 0
@@ -881,6 +910,7 @@ GameObject:
   - component: {fileID: 634581409}
   - component: {fileID: 634581411}
   - component: {fileID: 634581410}
+  - component: {fileID: 634581412}
   m_Layer: 5
   m_Name: Espiral2
   m_TagString: Untagged
@@ -945,6 +975,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634581408}
   m_CullTransparentMesh: 1
+--- !u!114 &634581412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634581408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 15
 --- !u!1 &828428865
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +999,7 @@ GameObject:
   - component: {fileID: 828428866}
   - component: {fileID: 828428868}
   - component: {fileID: 828428867}
+  - component: {fileID: 828428869}
   m_Layer: 5
   m_Name: Espiral2
   m_TagString: Untagged
@@ -1020,6 +1064,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828428865}
   m_CullTransparentMesh: 1
+--- !u!114 &828428869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828428865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 15
 --- !u!1 &924229427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,6 +1349,7 @@ GameObject:
   - component: {fileID: 1092947381}
   - component: {fileID: 1092947383}
   - component: {fileID: 1092947382}
+  - component: {fileID: 1092947384}
   m_Layer: 5
   m_Name: EspiralG2
   m_TagString: Untagged
@@ -1356,6 +1414,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092947380}
   m_CullTransparentMesh: 1
+--- !u!114 &1092947384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092947380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -10
 --- !u!1 &1332309308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1571,7 @@ GameObject:
   - component: {fileID: 1375516513}
   - component: {fileID: 1375516515}
   - component: {fileID: 1375516514}
+  - component: {fileID: 1375516516}
   m_Layer: 5
   m_Name: Espiral1
   m_TagString: Untagged
@@ -1564,6 +1636,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375516512}
   m_CullTransparentMesh: 1
+--- !u!114 &1375516516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375516512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 15
 --- !u!1 &1433490585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,6 +2314,7 @@ GameObject:
   - component: {fileID: 1569707999}
   - component: {fileID: 1569708001}
   - component: {fileID: 1569708000}
+  - component: {fileID: 1569708002}
   m_Layer: 5
   m_Name: EspiralG1
   m_TagString: Untagged
@@ -2293,6 +2379,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569707998}
   m_CullTransparentMesh: 1
+--- !u!114 &1569708002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569707998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 10
 --- !u!1 &1571042913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,6 +2495,7 @@ GameObject:
   - component: {fileID: 1652783982}
   - component: {fileID: 1652783984}
   - component: {fileID: 1652783983}
+  - component: {fileID: 1652783985}
   m_Layer: 5
   m_Name: Espiral3
   m_TagString: Untagged
@@ -2460,6 +2560,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652783981}
   m_CullTransparentMesh: 1
+--- !u!114 &1652783985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652783981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: -15
 --- !u!1 &1822010168
 GameObject:
   m_ObjectHideFlags: 0
