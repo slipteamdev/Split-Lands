@@ -4,6 +4,7 @@ using UnityEngine;
 public class WaterGun : Skill
 {
     [SerializeField] private Sprite destruction;
+    [SerializeField] private Animator animator;
 
     private GameObject area;
     private float showAreaTime = 0.25f;
@@ -22,6 +23,7 @@ public class WaterGun : Skill
         this.GetComponent<Movement>().UpdateSpritePos(); //pa que no se vuelva loco
 
         Draw(destruction, playerContext.Orientation);
+        if (animator != null) animator.SetTrigger("BasicSkill");
 
         StartCoroutine(hideArea());
 

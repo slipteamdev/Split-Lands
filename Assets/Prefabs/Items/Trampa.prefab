@@ -391,7 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ratonera
   itemName: 
   type: 4
-  tier: 1
+  tier: 0
   playerContext: {fileID: 0}
   cooldown: 1
   distancia: 1.5
