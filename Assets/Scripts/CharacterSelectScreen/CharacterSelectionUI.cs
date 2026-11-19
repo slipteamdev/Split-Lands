@@ -121,7 +121,10 @@ public class CharacterSelectionUI : MonoBehaviour
     //Jugador 1
     public void ChangeCharacterP1(InputAction.CallbackContext context)
     {
-        ChangeCharacterP1(context.action.ReadValue<Vector2>().x < 0f ? -1 : 1);
+        if (context.action.ReadValue<Vector2>().x > 0.5 || context.action.ReadValue<Vector2>().x < -0.5)
+        {
+            ChangeCharacterP1(context.action.ReadValue<Vector2>().x < 0f ? -1 : 1);
+        }
     }
     private bool changingP1 = false;
     private void ChangeCharacterP1(int direction)
@@ -136,7 +139,7 @@ public class CharacterSelectionUI : MonoBehaviour
         p1ReadyText.SetText("Preparandose...");
         startingMatch = false;
 
-        if (direction == -1) p1PreviousButton.SetTrigger("Pressed"); else  p1NextButton.SetTrigger("Pressed");
+        if (direction == -1) p1PreviousButton.SetTrigger("Pressed"); else p1NextButton.SetTrigger("Pressed");
 
         StartCoroutine(ChangeCharacterP1_EVENT());
         CheckCanStart();
@@ -149,9 +152,9 @@ public class CharacterSelectionUI : MonoBehaviour
         yield return new WaitForSeconds(0.34f);
 
         UpdateCharacterImage(p1CharacterImage, p1CurrentIndex);
-        
+
         yield return new WaitForSeconds(0.69f);
-        
+
         changingP1 = false;
     }
 
@@ -182,7 +185,10 @@ public class CharacterSelectionUI : MonoBehaviour
     //Jugador 2
     public void ChangeCharacterP2(InputAction.CallbackContext context)
     {
-        ChangeCharacterP2(context.action.ReadValue<Vector2>().x < 0f ? -1 : 1);
+        if (context.action.ReadValue<Vector2>().x > 0.5 || context.action.ReadValue<Vector2>().x < -0.5)
+        {
+            ChangeCharacterP2(context.action.ReadValue<Vector2>().x < 0f ? -1 : 1);
+        }
     }
     private bool changingP2 = false;
     private void ChangeCharacterP2(int direction)
