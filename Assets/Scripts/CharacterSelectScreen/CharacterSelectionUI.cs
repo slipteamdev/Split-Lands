@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,27 +19,34 @@ public class CharacterSelectionUI : MonoBehaviour
 
     //Jugador1
     [SerializeField] private Image p1CharacterImage;
-    [SerializeField] private Button p1PreviousButton;
-    [SerializeField] private Button p1NextButton;
-    [SerializeField] private Button p1CharacterButton;
+    [SerializeField] private Animator p1PreviousButton;
+    [SerializeField] private Animator p1NextButton;
     [SerializeField] private Animator p1Animator;
+    [SerializeField] private TMP_Text p1ReadyText;
+    [SerializeField] private InputActionReference p1Move;
+    [SerializeField] private InputActionReference p1Ready;
 
     //Jugador2
     [SerializeField] private Image p2CharacterImage;
-    [SerializeField] private Button p2PreviousButton;
-    [SerializeField] private Button p2NextButton;
-    [SerializeField] private Button p2CharacterButton;
+    [SerializeField] private Animator p2PreviousButton;
+    [SerializeField] private Animator p2NextButton;
     [SerializeField] private Animator p2Animator;
+    [SerializeField] private TMP_Text p2ReadyText;
+    [SerializeField] private InputActionReference p2Move;
+    [SerializeField] private InputActionReference p2Move2;
+    [SerializeField] private InputActionReference p2Ready;
+    [SerializeField] private InputActionReference p2Ready2;
 
-    [SerializeField] private Button startMatchButton;
+    [SerializeField] private GameObject countdown;
+    [SerializeField] private TMP_Text countdownText;
 
     //PJs que está visualizando cada jugador
     private int p1CurrentIndex = 0;
     private int p2CurrentIndex = 0;
 
     // -1 indica que el jugador aun no ha elegido
-    private int p1SelectedId = -1;
-    private int p2SelectedId = -1;
+    private int p1PressedId = -1;
+    private int p2PressedId = -1;
 
     //Animación Selección
     [SerializeField] private float scaleMultiplier = 1.15f;
@@ -76,27 +85,44 @@ public class CharacterSelectionUI : MonoBehaviour
         //}
 
         // Flechas jugador 1
-        p1PreviousButton.onClick.AddListener(() => ChangeCharacterP1(-1));
-        p1NextButton.onClick.AddListener(() => ChangeCharacterP1(1));
-
-        // Flechas jugador 2
-        p2PreviousButton.onClick.AddListener(() => ChangeCharacterP2(-1));
-        p2NextButton.onClick.AddListener(() => ChangeCharacterP2(1));
-
-        // Confirmar pulsando sobre el personaje
-        p1CharacterButton.onClick.AddListener(ConfirmCharacterP1);
-        p2CharacterButton.onClick.AddListener(ConfirmCharacterP2);
-
-        // Botón de jugar
-        startMatchButton.interactable = false;
-        startMatchButton.onClick.AddListener(OnStartMatchClicked);
+        //      p1PreviousButton.onClick.AddListener(() => ChangeCharacterP1(-1));
+        //      p1NextButton.onClick.AddListener(() => ChangeCharacterP1(1));
+        //      
+        //      // Flechas jugador 2
+        //      p2PreviousButton.onClick.AddListener(() => ChangeCharacterP2(-1));
+        //      p2NextButton.onClick.AddListener(() => ChangeCharacterP2(1));
+        //      
+        //      // Confirmar pulsando sobre el personaje
+        //      p1CharacterButton.onClick.AddListener(ConfirmCharacterP1);
+        //      p2CharacterButton.onClick.AddListener(ConfirmCharacterP2);
 
         // Mostrar personajes iniciales
         UpdateCharacterImage(p1CharacterImage, p1CurrentIndex);
         UpdateCharacterImage(p2CharacterImage, p2CurrentIndex);
     }
 
+    private float matchCountdown;
+    private void Update()
+    {
+        countdown.SetActive(startingMatch);
+
+        if (startingMatch)
+        {
+            if (p1PressedId == -1 || p2PressedId == -1) startingMatch = false;
+
+            matchCountdown -= Time.deltaTime;
+            countdownText.SetText(Mathf.CeilToInt(matchCountdown).ToString());
+
+            if (matchCountdown <= 0.1f) OnStartMatchClicked();
+        }
+        else matchCountdown = 5f;
+    }
+
     //Jugador 1
+    public void ChangeCharacterP1(InputAction.CallbackContext context)
+    {
+        ChangeCharacterP1(context.action.ReadValue<Vector2>().x < 0f ? -1 : 1);
+    }
     private bool changingP1 = false;
     private void ChangeCharacterP1(int direction)
     {
@@ -106,7 +132,11 @@ public class CharacterSelectionUI : MonoBehaviour
                          characterSprites.Length) %
                          characterSprites.Length;
 
-        p1SelectedId = -1;
+        p1PressedId = -1;
+        p1ReadyText.SetText("Preparandose...");
+        startingMatch = false;
+
+        if (direction == -1) p1PreviousButton.SetTrigger("Pressed"); else  p1NextButton.SetTrigger("Pressed");
 
         StartCoroutine(ChangeCharacterP1_EVENT());
         CheckCanStart();
@@ -125,15 +155,16 @@ public class CharacterSelectionUI : MonoBehaviour
         changingP1 = false;
     }
 
-    private void ConfirmCharacterP1()
+    public void ConfirmCharacterP1()
     {
         if (!IsCharacterAvailable(p1CurrentIndex, 1))
         {
+            p1ReadyText.SetText("Preparandose...");
             Debug.Log("Ese personaje ya ha sido elegido por el jugador 2.");
             return;
         }
 
-        p1SelectedId = p1CurrentIndex;
+        p1PressedId = p1CurrentIndex;
 
         if (p1SelectionAnimation != null)
             StopCoroutine(p1SelectionAnimation);
@@ -144,10 +175,15 @@ public class CharacterSelectionUI : MonoBehaviour
 
         CheckCanStart();
 
-        Debug.Log("Jugador 1 ha elegido: " + p1SelectedId);
+        p1ReadyText.SetText("LISTO");
+        Debug.Log("Jugador 1 ha elegido: " + p1PressedId);
     }
 
     //Jugador 2
+    public void ChangeCharacterP2(InputAction.CallbackContext context)
+    {
+        ChangeCharacterP2(context.action.ReadValue<Vector2>().x < 0f ? -1 : 1);
+    }
     private bool changingP2 = false;
     private void ChangeCharacterP2(int direction)
     {
@@ -157,7 +193,11 @@ public class CharacterSelectionUI : MonoBehaviour
                          characterSprites.Length) %
                          characterSprites.Length;
 
-        p2SelectedId = -1;
+        p2PressedId = -1;
+        p2ReadyText.SetText("Preparandose...");
+        startingMatch = false;
+
+        if (direction == -1) p2PreviousButton.SetTrigger("Pressed"); else p2NextButton.SetTrigger("Pressed");
 
         StartCoroutine(ChangeCharacterP2_EVENT());
         CheckCanStart();
@@ -176,15 +216,16 @@ public class CharacterSelectionUI : MonoBehaviour
         changingP2 = false;
     }
 
-    private void ConfirmCharacterP2()
+    public void ConfirmCharacterP2()
     {
         if (!IsCharacterAvailable(p2CurrentIndex, 2))
         {
+            p2ReadyText.SetText("Preparandose...");
             Debug.Log("Ese personaje ya ha sido elegido por el jugador 1.");
             return;
         }
 
-        p2SelectedId = p2CurrentIndex;
+        p2PressedId = p2CurrentIndex;
 
         if (p2SelectionAnimation != null)
             StopCoroutine(p2SelectionAnimation);
@@ -195,7 +236,8 @@ public class CharacterSelectionUI : MonoBehaviour
 
         CheckCanStart();
 
-        Debug.Log("Jugador 2 ha elegido: " + p2SelectedId);
+        p2ReadyText.SetText("LISTO");
+        Debug.Log("Jugador 2 ha elegido: " + p2PressedId);
     }
 
     //Actualizar imágenes PJ
@@ -208,28 +250,29 @@ public class CharacterSelectionUI : MonoBehaviour
     //Comprobar Slección
     private bool IsCharacterAvailable(int characterIndex, int player)
     {
-        if (player == 1 && characterIndex == p2SelectedId)
+        if (player == 1 && characterIndex == p2PressedId)
             return false;
 
-        if (player == 2 && characterIndex == p1SelectedId)
+        if (player == 2 && characterIndex == p1PressedId)
             return false;
 
         return true;
     }
 
+    private bool startingMatch;
     private void CheckCanStart()
     {
-        bool ready = p1SelectedId != -1 &&
-                     p2SelectedId != -1 &&
-                     p1SelectedId != p2SelectedId;
+        bool ready = p1PressedId != -1 &&
+                     p2PressedId != -1 &&
+                     p1PressedId != p2PressedId;
 
-        startMatchButton.interactable = ready;
+        startingMatch = ready;
     }
 
     //Comenzar partida
     private void OnStartMatchClicked()
     {
-        if (p1SelectedId == -1 || p2SelectedId == -1)
+        if (p1PressedId == -1 || p2PressedId == -1)
             return;
 
         List<PlayerSelectionData> matchSelections =
@@ -238,14 +281,14 @@ public class CharacterSelectionUI : MonoBehaviour
             new PlayerSelectionData
             {
                 playerIndex = 0,
-                characterId = p1SelectedId,
+                characterId = p1PressedId,
                 team = Map.Team.Team1
             },
 
             new PlayerSelectionData
             {
                 playerIndex = 1,
-                characterId = p2SelectedId,
+                characterId = p2PressedId,
                 team = Map.Team.Team2
             }
             };
@@ -314,22 +357,22 @@ public class CharacterSelectionUI : MonoBehaviour
 
     //public void SelectCharacterP1(int characterId)
     //{
-    //    p1SelectedId = characterId;
-    //    UpdateButtonVisuals(p1CharacterButtons, p1SelectedId);
+    //    p1PressedId = characterId;
+    //    UpdateButtonVisuals(p1CharacterButtons, p1PressedId);
     //    CheckCanStart();
     //}
 
     //public void SelectCharacterP2(int characterId)
     //{
-    //    p2SelectedId = characterId;
-    //    UpdateButtonVisuals(p2CharacterButtons, p2SelectedId);
+    //    p2PressedId = characterId;
+    //    UpdateButtonVisuals(p2CharacterButtons, p2PressedId);
     //    CheckCanStart();
     //}
 
     //private void CheckCanStart()
     //{
     //    // Ambos jugadores deben haber seleccionado 
-    //    bool ready = (p1SelectedId != -1) && (p2SelectedId != -1);
+    //    bool ready = (p1PressedId != -1) && (p2PressedId != -1);
 
     //    if (startMatchButton != null)
     //    {
@@ -338,17 +381,17 @@ public class CharacterSelectionUI : MonoBehaviour
     //}
 
 
-    //private void UpdateButtonVisuals(Button[] buttons, int selectedIndex)
+    //private void UpdateButtonVisuals(Button[] buttons, int PressedIndex)
     //{
     //    for (int i = 0; i < buttons.Length; i++)
     //    {
-    //        buttons[i].interactable = (i != selectedIndex);
+    //        buttons[i].interactable = (i != PressedIndex);
     //    }
     //}
 
     //private void OnStartMatchClicked()
     //{
-    //    if (p1SelectedId == -1 || p2SelectedId == -1) return;
+    //    if (p1PressedId == -1 || p2PressedId == -1) return;
 
     //    // Construimos la lista de datos para pasar al gestor persistente
     //    List<PlayerSelectionData> matchSelections = new List<PlayerSelectionData>
@@ -356,13 +399,13 @@ public class CharacterSelectionUI : MonoBehaviour
     //        new PlayerSelectionData
     //        {
     //            playerIndex = 0,
-    //            characterId = p1SelectedId,
+    //            characterId = p1PressedId,
     //            team = Map.Team.Team1
     //        },
     //        new PlayerSelectionData
     //        {
     //            playerIndex = 1,
-    //            characterId = p2SelectedId,
+    //            characterId = p2PressedId,
     //            team = Map.Team.Team2
     //        }
     //    };
