@@ -90,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZumoPinna
   itemName: Zumo Pinna
   type: 2
-  tier: 0
+  tier: 1
   playerContext: {fileID: 0}
   duration: 15
+  multiplier: 0.5

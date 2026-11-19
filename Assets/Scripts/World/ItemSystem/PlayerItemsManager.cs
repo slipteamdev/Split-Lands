@@ -10,6 +10,7 @@ public class PlayerItemsManager : MonoBehaviour
 
     private GameObject playerItem = null;
 
+
     public void Start()
     {
         playerContext = GetComponent<PlayerContext>();
@@ -78,8 +79,7 @@ public class PlayerItemsManager : MonoBehaviour
     public void UseItem()
     {
         Item item = playerItem.GetComponent<Item>();
-
-        playerItem = null;
+        if (item.CanDestroy()) playerItem = null;
         item.Use();
     }
 

@@ -34,9 +34,10 @@ public class BerserkSkill : Skill
     }
     private IEnumerator BerserkRoutine()
     {
-        // 1. Activar modo Berserk
+        // Activar modo Berserk
         if (dash != null) dash.BerserkMode();
         if (slash != null) slash.BerserkMode();
+        playerContext.ApplyVisualCooldownSpeedModifier(1, duration);
 
         fuego.enabled = true;
 
