@@ -169,7 +169,11 @@ public class Monkey : MonoBehaviour
         }
         else
         {
-            am.AssignObjetive(this.transform.position);
+            am = this.gameObject.GetComponent<AnimalMovement>();
+            if (am != null)
+            {
+                am.AssignObjetive(this.transform.position);
+            }
             objetivo = null;
         }
 

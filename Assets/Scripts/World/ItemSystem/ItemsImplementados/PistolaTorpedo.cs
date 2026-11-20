@@ -16,6 +16,7 @@ public class PistolaTorpedo : Item
     }
     public override void Execute()
     {
+        if (PlayerOwner == null) return;
         if (usos + 1 >= BalasMaximas) destructionAllowed = true;
         playerContext = PlayerOwner.GetComponent<PlayerContext>();
         GameObject torpedoInit = Instantiate(torpedo, transform.position, Quaternion.identity, playerContext.canvas.transform);

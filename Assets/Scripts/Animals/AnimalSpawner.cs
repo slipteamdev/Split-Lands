@@ -29,6 +29,7 @@ public class AnimalSpawner : MonoBehaviour
     private void Start()
     {
         animalsParent = this.gameObject;
+        allAnimals = new List<GameObject>();
         StartCoroutine(SpawnLoop());
     }
 
