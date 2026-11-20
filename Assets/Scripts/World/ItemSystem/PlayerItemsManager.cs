@@ -1,5 +1,6 @@
 using UnityEngine;
 using static ItemsManager;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class PlayerItemsManager : MonoBehaviour
 {
@@ -87,15 +88,21 @@ public class PlayerItemsManager : MonoBehaviour
     {
         if (playerItem != null) return;
 
-        playerItem.transform.SetParent(ladron.transform.GetChild(0).transform);
-        playerItem.transform.localPosition = Vector3.zero;
+        if (ladron == null) return;
+        playerItem.transform.SetParent(ladron.transform);
+        playerItem.transform.localPosition = ladron.transform.GetChild(0).transform.localPosition;
         this.transform.localRotation = Quaternion.identity;
         this.gameObject.GetComponent<Movement>().UpdateSpritePos();
         playerItem.transform.rotation = Quaternion.identity;
 
         playerItem.GetComponent<Item>().SetOwner(null);
-
         // ItemsManager.AddObject(playerItem);
+
+
+
+
+
+
 
         playerItem = null;
     }

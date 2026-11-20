@@ -11,6 +11,7 @@ public class ItemsManager : MonoBehaviour
     [SerializeField] private GameObject[] array;
     public void Start()
     {
+        allItems = new List<GameObject>();
         foreach (GameObject item in array)
         {
             AddObject(item);

@@ -73,11 +73,14 @@ public class TotemMono : Item
 
     public void FindNewObjetive(GameObject monkey)
     {
-        foreach (GameObject m in monkeyList)
+        foreach (GameObject m in AnimalSpawner.allAnimals)
         {
-            if (!m.gameObject.IsDestroying() && m != monkey)
+            if (m.GetComponent<Monkey>() != null)
             {
-                m.GetComponent<Monkey>().FindObjetive();
+                if (!m.gameObject.IsDestroying() && m != monkey)
+                {
+                    m.GetComponent<Monkey>().FindObjetive();
+                }
             }
         }
     }
@@ -89,7 +92,7 @@ public class TotemMono : Item
         foreach (GameObject monkey in monkeyList)
         {
             monkey.GetComponent<Monkey>().Soltar();
-
+            AnimalSpawner.RemoveAnimal(monkey);
             Destroy(monkey);
         }
         Destroy(this.gameObject);
