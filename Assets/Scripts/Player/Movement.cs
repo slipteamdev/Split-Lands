@@ -14,13 +14,12 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
 
     Vector3 desfase;
-
+    private void Awake()
+    {
+        playerContext = GetComponent<PlayerContext>();
+    }
     private void Start()
     {
-        Screen.fullScreen = true;
-
-        playerContext = GetComponent<PlayerContext>();
-
         rb = playerContext.Rb;
         desfase = CharacterSprite.transform.position - CharacterSprite.transform.parent.position;
     }
