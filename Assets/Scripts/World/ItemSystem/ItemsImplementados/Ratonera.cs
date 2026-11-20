@@ -42,12 +42,13 @@ public class Ratonera : Item
 
             foreach (GameObject animal in AnimalSpawner.allAnimals)
             {
-                if (Vector2.Distance(animal.transform.position, this.transform.position) < distancia) // si pasa la victima
+                if (!animal.IsDestroying() && Vector2.Distance(animal.transform.position, this.transform.position) < distancia) // si pasa la victima
                 {
                     Monkey m = animal.GetComponent<Monkey>();
                     if (m != null) // si es mono
                     {
                         m.Soltar();
+                        m.totem.RemoveMonkey(animal);
                     }
                     else // si es cangrejo
                     {
