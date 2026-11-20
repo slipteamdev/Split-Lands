@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private string SettingsScene;
     [SerializeField] private string ShopScene;
     [Space]
-    [SerializeField] private Button[] buttons;
+    [SerializeField] private Selectable[] buttons;
 
     public void PlayGame()
     {
