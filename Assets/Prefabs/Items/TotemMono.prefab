@@ -93,7 +93,7 @@ MonoBehaviour:
   tier: 2
   playerContext: {fileID: 0}
   desvanecimiento: 2.5
-  duracion: 30
+  duracion: 18
   radio: 200
-  numMonkeys: 5
+  numMonkeys: 3
   macacoPrefab: {fileID: 5476520442941883729, guid: bd2a62c096c78434f8f3cb2d7a93a0df, type: 3}
