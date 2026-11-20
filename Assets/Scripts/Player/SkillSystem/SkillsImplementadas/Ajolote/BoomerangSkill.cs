@@ -44,6 +44,8 @@ public class BoomerangSkill : Skill
     {
         if (boomerangPrefab == null || parentCanvas == null) return;
 
+        this.GetComponent<AnimationManager>().SetTrigger("Special"); // pa la animacion
+
         Vector2 shootDirection = playerContext.Orientation;
 
         // Instanciamos el boomerang como hijo del Canvas
