@@ -374,9 +374,11 @@ public class Map : MonoBehaviour
 
     public static Vector2 FindNearestEnemyPixel(float x_local, float y_local, Team team)
     {
-        int x = 0;
-        int y = 0;
-        transform_position(ref x, ref y);
+        float viewport_x = (x_local / Screen.width) + 0.5f;
+        float viewport_y = (y_local / Screen.height) + 0.5f;
+
+        int x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
+        int y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
 
         int equipo = team == Team.Team1 ? 1 : 2;
 
@@ -406,6 +408,7 @@ public class Map : MonoBehaviour
 
                     if (Instance.terrainData[nx, ny] != equipo)
                     {
+                        return new Vector2(i, j);
                         float distancia = i * i + j * j;
 
                         if (distancia < distanciaMinima)
