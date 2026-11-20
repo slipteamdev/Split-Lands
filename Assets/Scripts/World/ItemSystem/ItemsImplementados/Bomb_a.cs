@@ -7,6 +7,7 @@ public class Bomb_a : Item
 {
     [SerializeField] private Sprite destruction;
     [SerializeField] private float speed;
+    [SerializeField] private Collider collider;
 
 
     private Rigidbody rb;
@@ -28,7 +29,7 @@ public class Bomb_a : Item
 
         this.transform.SetParent(canva.transform);
 
-
+        IgnoreSpecificCollisions();
 
         Vector2 direction = playerContext.Orientation;
         transform.position = playerContext.transform.position + new Vector3(direction.x, direction.y, 0);
@@ -82,7 +83,7 @@ public class Bomb_a : Item
     {
         moving = false;
         rb.linearVelocity = Vector2.zero;
-        this.GetComponent<Collider>().enabled = false;
+        collider.enabled = false;
         this.gameObject.GetComponent<Image>().enabled = false;
 
         StartCoroutine(ShowArea());
@@ -102,5 +103,22 @@ public class Bomb_a : Item
         area.SetActive(false);
 
         Destroy(this.gameObject);
+    }
+
+    private void IgnoreSpecificCollisions() // Ignora colisiones con ciertos tipos de objeto para no tocarlos o moverlos
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            if (p == PlayerOwner)
+            {
+                Collider[] playerCols = p.GetComponentsInChildren<Collider>();
+                foreach (Collider col in playerCols)
+                {
+                    Physics.IgnoreCollision(collider, col, true);
+                }
+                break;
+            }
+        }
     }
 }
