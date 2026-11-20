@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +6,6 @@ public class Map : MonoBehaviour
 {
     public enum Team { Team1, Team2, None }
     
-
     private static Map Instance;
 
     [SerializeField] private Image mask;
@@ -16,6 +14,10 @@ public class Map : MonoBehaviour
     [Space]
     [SerializeField] private MeshFilter edgesMeshFilter;
     [SerializeField] private MeshCollider edgesMeshCollider;
+    [Space]
+    
+    private Transform player1;
+    private Transform player2;
 
     private Texture2D terrainMask;
     private byte[,] terrainData;
@@ -29,6 +31,10 @@ public class Map : MonoBehaviour
     private const float TEAM1_MASK_VALUE = 0f;
     private const float TEAM2_MASK_VALUE = 1f;
 
+    public void SetPlayer(Transform transform, int playerIndex)
+    {
+        if (playerIndex == 0) player1 = transform; else player2 = transform;
+    }
 
     private List<Vector3> edgesVertices = new List<Vector3>(32000);
     private List<int> edgesTriangles = new List<int>(32000);
@@ -93,6 +99,16 @@ public class Map : MonoBehaviour
     public static void Draw(Vector2 position, Sprite destruction, Team team, Vector2 direction) => Draw(((int)position.x), ((int)position.y), destruction, team, direction);
     public static void Draw(int x, int y, Sprite destruction, Team team) => Draw(x, y, destruction, team, Vector2.right);
 
+    private static void transform_position(ref int x, ref int y)
+    {
+        float viewport_x = ((float)x / Screen.width) + 0.5f;
+        float viewport_y = ((float)y / Screen.height) + 0.5f;
+
+        x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
+        y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+    }
+
+    private const int ENEMY_UNDRAWABLE_DISTANCE = 24;
     public static void Draw(int x, int y, Sprite destruction, Team team, Vector2 direction)
     {
         int width = destruction.texture.width;
@@ -100,11 +116,21 @@ public class Map : MonoBehaviour
         float half_width = width * 0.5f;
         float half_height = height * 0.5f;
 
-        float viewport_x = ((float)x / Screen.width) + 0.5f;
-        float viewport_y = ((float)y / Screen.height) + 0.5f;
+        int enemyX = 0;
+        int enemyY = 0;
+        if(team == Team.Team1)
+        {
+            enemyX = ((int)Instance.player2.transform.localPosition.x);
+            enemyY = ((int)Instance.player2.transform.localPosition.y);
+        }
+        else
+        {
+            enemyX = ((int)Instance.player1.transform.localPosition.x);
+            enemyY = ((int)Instance.player1.transform.localPosition.y);
+        }
 
-        x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
-        y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+        transform_position(ref x, ref y);
+        transform_position(ref enemyX, ref enemyY);
 
         direction = direction.normalized;
 
@@ -137,6 +163,9 @@ public class Map : MonoBehaviour
                 int src_y = Mathf.FloorToInt(y_local + half_height);
 
                 if (src_x < 0 || src_x >= width || src_y < 0 || src_y >= height) continue;
+
+                float dist = Vector2.Distance(new Vector2(x_pos, y_pos), new Vector2(enemyX, enemyY));
+                if (dist < ENEMY_UNDRAWABLE_DISTANCE) continue;
 
                 Color color = brush_pixels[src_x + src_y * width];
                 if (color.a < 0.5f) continue;
@@ -345,11 +374,9 @@ public class Map : MonoBehaviour
 
     public static Vector2 FindNearestEnemyPixel(float x_local, float y_local, Team team)
     {
-        float viewport_x = (x_local / Screen.width) + 0.5f;
-        float viewport_y = (y_local / Screen.height) + 0.5f;
-
-        int x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
-        int y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+        int x = 0;
+        int y = 0;
+        transform_position(ref x, ref y);
 
         int equipo = team == Team.Team1 ? 1 : 2;
 

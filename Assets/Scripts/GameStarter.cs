@@ -6,6 +6,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private UIManager UIManager;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private Map map;
 
     private List<GameObject> playerList = new List<GameObject>();
 
@@ -43,6 +44,9 @@ public class GameStarter : MonoBehaviour
 
             // Annadimos el gameobject a al lista para los siguientes pasos
             playerList.Add(playerObj);
+
+            //  Añadimos referencia al map
+            map.SetPlayer(playerObj.transform, i);
         }
 
         for (int i = 0; i < playerList.Count; i++)
