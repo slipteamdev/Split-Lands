@@ -8,6 +8,11 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance; 
     public AudioMixer mixer;
 
+    [Header("Musica de Fondo")]
+    public AudioSource musicSource; 
+    public AudioClip menuMusic;     // Pista 1: Para menus (StartMenu, Ajustes...)
+    public AudioClip gameplayMusic; // Pista 2: Para la escena de gameplay
+
     // El SFX de los botones se pondrá globalmente desde este script para no tener que ir uno por uno
     [Header("SFX de Botones")]
     public AudioSource sfxSource; // El AudioSource que está dentro del propio AudioManager
@@ -36,6 +41,9 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat("SFXVol", Mathf.Log10(savedSFX) * 20);
 
         AssignSoundToAllButtons();  // Init en primera escena
+
+        // Arranca con la musica de menus
+        UpdateMusicForScene(SceneManager.GetActiveScene().name);
     }
 
     /// Para aplicar sonido a todos los botones, el AudioManager se subscribirá 
@@ -55,10 +63,10 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // Asigna el sonido a todos los botones al cargar la nueva escena
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        AssignSoundToAllButtons();
+        AssignSoundToAllButtons();          // Asigna el sonido a todos los botones al cargar la nueva escena
+        UpdateMusicForScene(scene.name);    // Actualiza la musica de fondo segun la escena   
     }
 
     // Busca todos los botones de la escena actual y les añade el sonido al hacer click
@@ -78,6 +86,30 @@ public class AudioManager : MonoBehaviour
         if (sfxSource != null && buttonClickClip != null)
         {
             sfxSource.PlayOneShot(buttonClickClip);
+        }
+    }
+
+    void UpdateMusicForScene(string sceneName)
+    {
+        if (musicSource == null) return;
+
+        AudioClip targetClip = null;
+
+        // Cambia la musica cuando se entra a la escena de gameplay
+        if (sceneName == "Game")
+        {
+            targetClip = gameplayMusic;
+        }
+        else
+        {
+            targetClip = menuMusic;
+        }
+
+        // Solo se cambia si es distinta a la que ya esta puesta
+        if (targetClip != null && musicSource.clip != targetClip)
+        {
+            musicSource.clip = targetClip;
+            musicSource.Play();
         }
     }
 

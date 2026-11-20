@@ -2357,6 +2357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   mixer: {fileID: 24100000, guid: e8e06e62cdd887d44b2aa29077e82f32, type: 2}
+  musicSource: {fileID: 1532246753}
+  menuMusic: {fileID: 8300000, guid: 02d8204756decec44a251e08bc178e13, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 1d370956403899441bddde9bc70cab42, type: 3}
   sfxSource: {fileID: 1532246755}
   buttonClickClip: {fileID: 8300000, guid: 134f49b6463bfbe4da3f23ce8ff394e0, type: 3}
 --- !u!82 &1532246755
