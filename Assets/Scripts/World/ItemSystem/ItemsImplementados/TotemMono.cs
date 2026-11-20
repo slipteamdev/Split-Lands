@@ -24,6 +24,14 @@ public class TotemMono : Item
         im = GetComponent<Image>();
     }
 
+    public void AddMonkey(GameObject obj)
+    {
+        monkeyList.Add(obj);
+    }
+    public void RemoveMonkey(GameObject obj)
+    {
+        monkeyList.Remove(obj);
+    }
     public override void Execute()
     {
         playerContext = this.PlayerOwner.GetComponent<PlayerContext>(); // Nota de Lucas: Esta asignacion intentaria mirar si se puede hacer en el script base, para no tener que ponerla en todos los objetos
@@ -67,7 +75,7 @@ public class TotemMono : Item
     {
         foreach (GameObject m in monkeyList)
         {
-            if (m != monkey)
+            if (!m.gameObject.IsDestroying() && m != monkey)
             {
                 m.GetComponent<Monkey>().FindObjetive();
             }
