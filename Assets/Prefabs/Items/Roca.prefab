@@ -138,6 +138,6 @@ MonoBehaviour:
   playerContext: {fileID: 0}
   speed: 20
   stunTime: 4.5
-  destruction: {fileID: 21300000, guid: 377f80b40f65305419aa75e95dcc5933, type: 3}
+  destruction: {fileID: 21300000, guid: 3a0739bf37a49de408ae439a0f52382d, type: 3}
   solidCollider: {fileID: 1330787065763175089}
   triggerCollider: {fileID: 8724129373347001971}
