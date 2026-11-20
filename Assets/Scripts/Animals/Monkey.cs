@@ -172,6 +172,7 @@ public class Monkey : MonoBehaviour
             am = this.gameObject.GetComponent<AnimalMovement>();
             if (am != null)
             {
+
                 am.AssignObjetive(this.transform.position);
             }
             objetivo = null;
