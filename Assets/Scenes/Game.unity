@@ -2901,7 +2901,8 @@ MonoBehaviour:
   - {fileID: 1740022656}
   - {fileID: 944930356}
   - {fileID: 1052037777}
-  tiempoEntreSpawns: 3
+  tiempoEntreSpawns: 4
+  margenDeDesviacion: 0.75
 --- !u!1 &1192930996
 GameObject:
   m_ObjectHideFlags: 0
