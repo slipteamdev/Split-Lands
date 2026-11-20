@@ -1,7 +1,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class AnimalSpawner : MonoBehaviour
@@ -13,7 +12,10 @@ public class AnimalSpawner : MonoBehaviour
 
     private static GameObject animalsParent;
 
-    public float tiempoEntreSpawns = 3f;
+    public float tiempoEntreSpawns = 4f;
+    public float margenDeDesviacion = 0.75f;
+
+    private float tiempoReal;
 
 
     public static void AddAnimal(GameObject obj)
@@ -35,7 +37,8 @@ public class AnimalSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(tiempoEntreSpawns);
+            tiempoReal = tiempoEntreSpawns + Random.Range(-margenDeDesviacion, margenDeDesviacion);
+            yield return new WaitForSeconds(tiempoReal);
 
             SpawnAnimal();
         }
@@ -51,20 +54,16 @@ public class AnimalSpawner : MonoBehaviour
 
         int numPunto;
         int numObjetive;
-        if (Map.normalicedProgress < 0.45) //le dice donde aparece en funcion de quien vaya ganagdo
-        {
-            numPunto = Random.Range(0, 4);
-            numObjetive = Random.Range(4, 8);
-        }
-        else if (Map.normalicedProgress > 0.55)
+
+        if (Random.value < Map.normalicedProgress) // Probabilidad en funcion del resultado de la partida
         {
             numPunto = Random.Range(4, 8);
             numObjetive = Random.Range(0, 4);
         }
         else
         {
-            numPunto = Random.Range(0, puntosSpawn.Count);
-            numObjetive = numPunto < 4 ? Random.Range(4, 8) : Random.Range(0, 4);
+            numPunto = Random.Range(0, 4);
+            numObjetive = Random.Range(4, 8);
         }
         Transform punto = puntosSpawn[numPunto];
 
