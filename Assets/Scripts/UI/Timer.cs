@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
         }
         Instance = this;
         remainingTime = baseTime;
+        running = true;
     }
     // Update is called once per frame
     void Update()
