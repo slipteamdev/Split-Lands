@@ -400,15 +400,11 @@ public class Map : MonoBehaviour
                     int nx = x + i;
                     int ny = y + j;
 
-                    if (nx < 0 ||
-                        ny < 0 ||
-                        nx >= Instance.MapWidth ||
-                        ny >= Instance.MapHeight)
-                        continue;
+                    if (nx < 0 || ny < 0 || nx >= Instance.MapWidth || ny >= Instance.MapHeight) continue;
 
                     if (Instance.terrainData[nx, ny] != equipo)
                     {
-                        return new Vector2(i, j);
+                        //return new Vector2(i, j);
                         float distancia = i * i + j * j;
 
                         if (distancia < distanciaMinima)
