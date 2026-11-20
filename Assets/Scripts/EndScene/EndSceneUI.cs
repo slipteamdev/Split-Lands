@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndSceneUI : MonoBehaviour
 {
@@ -60,6 +61,11 @@ public class EndSceneUI : MonoBehaviour
         UpdateCharacterImage(loserImage, loserData.characterId);
     }
 
+    public void ChangeScene(string sceneName)
+    {
+
+        SceneManager.LoadScene(sceneName);
+    }
     private void UpdateCharacterImage(Image image, int characterId)
     {
         if (image == null) return;
