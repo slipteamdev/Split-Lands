@@ -59,14 +59,14 @@ public class GameStarter : MonoBehaviour
 
         }
 
+        playerList[0].GetComponent<PlayerContext>().SetOrientation(new Vector2(1, 0));
+        playerList[1].GetComponent<PlayerContext>().SetOrientation(new Vector2(-1, 0));
+
         // Asignamos input
         PlayerInputManagerInitialicer.Init(playerList[0], playerList[1]);
 
         // Inicializamos la UI
         UIManager.Init(playerList[0], playerList[1]);
 
-
-
     }
-
 }
