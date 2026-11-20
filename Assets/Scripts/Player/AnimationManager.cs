@@ -26,6 +26,11 @@ public class AnimationManager : MonoBehaviour
         animator.SetBool("AndarDerecha", currentSpeed > 0.001f);
     }
 
+    public void SetTrigger(string name)
+    {
+        animator.SetTrigger(name);
+    }
+
     private void UpdateVisualDirection()
     {
         if (playerContext.MoveInputAllowed)

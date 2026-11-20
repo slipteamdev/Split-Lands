@@ -55,6 +55,9 @@ public class DashNSplashSkill : Skill
         playerContext.BlockMoveInput();
         playerContext.BlockItem();
         playerContext.BlockSkill();
+
+        this.GetComponent<AnimationManager>().SetTrigger("Dash"); // pa la animacion
+
         float dashDuration = dashDistance / dashSpeed;
         float tiempo = 0f;
 

@@ -15,6 +15,8 @@ public class WaterGun : Skill
     }
     public override void Execute()
     {
+        this.GetComponent<AnimationManager>().SetTrigger("Basico"); // pa la animacion
+
         float angle = Mathf.Atan2(playerContext.Orientation.y, playerContext.Orientation.x) * Mathf.Rad2Deg;
         area.SetActive(true);
         this.transform.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -27,7 +29,7 @@ public class WaterGun : Skill
 
 
         // Mensaje identificador
-        Debug.Log($"{gameObject.name} ha usado la habilidad " +
+        Debug.Log($"{gameObject.name} ha usado la habilidad " + 
                   $"{SkillName} (Tipo: {Type}).");
     }
 

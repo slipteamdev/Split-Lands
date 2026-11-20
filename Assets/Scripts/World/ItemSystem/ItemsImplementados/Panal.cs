@@ -41,9 +41,9 @@ public class Panal : Item
             this.transform.localPosition += mov;
         }
         this.transform.SetParent(playerContext.EnemyPlayer.transform.transform);
-        
-        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed *= multiplicador; // le aplica la ralentizacion
-        
+
+        playerContext.EnemyPlayer.GetComponent<PlayerContext>().ApplyMovementSpeedModifier(multiplicador, duracion); // le aplica la ralentizacion
+
         Color colorInicial = im.color;
         Color colorFinal = colorInicial;
         colorFinal.a = 0f;
@@ -66,8 +66,6 @@ public class Panal : Item
         im.transform.localScale = escalaFinal;
 
         yield return new WaitForSeconds(duracion - tiempo);
-
-        playerContext.EnemyPlayer.GetComponent<PlayerContext>().speed /= multiplicador; // le quita la ralentizacion
 
 
         Destroy(this.gameObject);

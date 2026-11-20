@@ -18,6 +18,12 @@ public enum ItemTier
 
 public abstract class Item : MonoBehaviour
 {
+    protected bool destructionAllowed = true;
+
+    public bool CanDestroy()
+    {
+        return destructionAllowed;
+    }
 
     [SerializeField] private string itemName;
 
