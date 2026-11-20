@@ -167,6 +167,14 @@ public class CharacterSelectionUI : MonoBehaviour
             return;
         }
 
+        if(p1PressedId != -1)
+        {
+            p1PressedId = -1;
+            p1ReadyText.SetText("Preparandose...");
+            Debug.Log("Preparandose de nuevo.");
+            return;
+        }
+
         p1PressedId = p1CurrentIndex;
 
         if (p1SelectionAnimation != null)
@@ -228,6 +236,14 @@ public class CharacterSelectionUI : MonoBehaviour
         {
             p2ReadyText.SetText("Preparandose...");
             Debug.Log("Ese personaje ya ha sido elegido por el jugador 1.");
+            return;
+        }
+
+        if (p2PressedId != -1)
+        {
+            p2PressedId = -1;
+            p2ReadyText.SetText("Preparandose...");
+            Debug.Log("Preparandose de nuevo.");
             return;
         }
 

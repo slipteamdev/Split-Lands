@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private string characterSelectScreen;
     [SerializeField] private string SettingsScene;
     [SerializeField] private string ShopScene;
+    [Space]
+    [SerializeField] private Selectable[] buttons;
 
     public void PlayGame()
     {
@@ -34,4 +38,8 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(ShopScene);
     }
 
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject == null) buttons[0].Select();
+    }
 }

@@ -16,8 +16,8 @@ public class SettingsController : MonoBehaviour
         float savedMusic = PlayerPrefs.GetFloat("MusicVol", 0.75f);
         float savedSFX = PlayerPrefs.GetFloat("SFXVol", 0.75f);
 
-        musicSlider.value = savedMusic;
-        sfxSlider.value = savedSFX;
+        if (musicSlider != null) musicSlider.value = savedMusic;
+        if (sfxSlider != null) sfxSlider.value = savedSFX;
 
         /*SetMusicVolume(savedMusic);
         SetSFXVolume(savedSFX);*/
