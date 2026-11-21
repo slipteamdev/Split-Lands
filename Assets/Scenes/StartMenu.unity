@@ -2362,6 +2362,7 @@ MonoBehaviour:
   gameplayMusic: {fileID: 8300000, guid: 1d370956403899441bddde9bc70cab42, type: 3}
   sfxSource: {fileID: 1532246755}
   buttonClickClip: {fileID: 8300000, guid: 134f49b6463bfbe4da3f23ce8ff394e0, type: 3}
+  bombClip: {fileID: 8300000, guid: 91796fbf2f6c42d47a5953c0a52252e6, type: 3}
 --- !u!82 &1532246755
 AudioSource:
   m_ObjectHideFlags: 0

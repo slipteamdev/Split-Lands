@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource; // El AudioSource que está dentro del propio AudioManager
     public AudioClip buttonClickClip; // El sonido de click de los botones
 
+    [Header("SFX de Partida")]
+    public AudioClip bombClip;
+
     // Se creará una instancia del AudioManager al principio y no se destruirá entre escenas (Singleton)
     void Awake()
     {
@@ -112,5 +115,17 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
     }
+
+    // Metodo generico para reproducir cualquier clip pasando la referencia
+    public void PlaySFX(AudioClip clip)
+    {
+        if (sfxSource != null && clip != null)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+    }
+
+    // Metodos publicos para reproducirlo en la escena de Gamepay
+    public void PlayBombSFX() => PlaySFX(bombClip);
 
 }
