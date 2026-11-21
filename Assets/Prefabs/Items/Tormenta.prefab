@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3366425252596373961}
   - component: {fileID: 7106256945888951674}
   - component: {fileID: 4572651013446004968}
+  - component: {fileID: 6549934525305754776}
   m_Layer: 0
   m_Name: Tormenta
   m_TagString: Untagged
@@ -95,3 +96,16 @@ MonoBehaviour:
   duration: 17
   movementSpeedMultiplier: 0.6
   cooldownSpeedMultiplier: 0.75
+--- !u!114 &6549934525305754776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8415346908150106851}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fc86a4cf17de438dada5a709f7cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GiraGira
+  speed: 80

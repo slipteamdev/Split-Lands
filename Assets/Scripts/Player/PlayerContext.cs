@@ -14,6 +14,8 @@ public class PlayerContext : MonoBehaviour
     public Sprite background;
     public GameObject EnemyPlayer;
 
+    public GameObject[] UIEfects;
+    public GameObject[] tormenta = new GameObject[2];
 
 
 
@@ -92,6 +94,20 @@ public class PlayerContext : MonoBehaviour
     public void AllowSkill()
     {
         skillBlockCount = Mathf.Max(0, skillBlockCount - 1);
+    }
+
+    public void Update()
+    {
+        if (UIEfects != null) // ESTO ESTARIA GUAY NO PONERLO EN EL UPDATE, PERO DE MOMENTO VA
+        {
+            UIEfects[0].SetActive(StunBuff);
+            UIEfects[1].SetActive(MovementSpeedBuff);
+            UIEfects[2].SetActive(MovementSpeedDebuff);
+            UIEfects[3].SetActive(CooldownSpeedBuff);
+            UIEfects[4].SetActive(CooldownSpeedDebuff);
+            UIEfects[5].SetActive(!MoveInputAllowed);
+            UIEfects[6].SetActive(InvertedControl);
+        }
     }
 
     // Los metodos block detienen la accion que controlan. Se pueden llamar sin parametros, con lo cual el bloqueo dura hasta que se quite manualmente,

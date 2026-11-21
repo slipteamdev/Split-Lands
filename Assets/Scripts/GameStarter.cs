@@ -7,6 +7,9 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Canvas canvas;
     [SerializeField] private Map map;
+    [SerializeField] private GameObject[] player1EfectsIcons;
+    [SerializeField] private GameObject[] player2EfectsIcons;
+    [SerializeField] private GameObject[] tormentas;
 
     private List<GameObject> playerList = new List<GameObject>();
 
@@ -62,6 +65,13 @@ public class GameStarter : MonoBehaviour
         playerList[0].GetComponent<PlayerContext>().SetOrientation(new Vector2(1, 0));
         playerList[1].GetComponent<PlayerContext>().SetOrientation(new Vector2(-1, 0));
 
+        playerList[0].GetComponent<PlayerContext>().UIEfects = player1EfectsIcons;
+        playerList[1].GetComponent<PlayerContext>().UIEfects = player2EfectsIcons;
+
+        playerList[0].GetComponent<PlayerContext>().tormenta[0] = tormentas[0];
+        playerList[0].GetComponent<PlayerContext>().tormenta[1] = tormentas[1];
+        playerList[1].GetComponent<PlayerContext>().tormenta[0] = tormentas[2];
+        playerList[1].GetComponent<PlayerContext>().tormenta[1] = tormentas[3];
         // Asignamos input
         PlayerInputManagerInitialicer.Init(playerList[0], playerList[1]);
 

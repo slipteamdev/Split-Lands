@@ -94,3 +94,4 @@ MonoBehaviour:
   playerContext: {fileID: 0}
   duration: 12
   multiplier: 3
+  desvanecimiento: 2

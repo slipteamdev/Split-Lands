@@ -58,6 +58,7 @@ public class Timer : MonoBehaviour
     public void ChangeScene(string sceneName)
     {
         Time.timeScale = 1f;
+        running = true;
         SceneManager.LoadScene(sceneName);
     }
 
