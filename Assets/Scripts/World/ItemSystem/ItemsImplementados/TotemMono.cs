@@ -34,6 +34,7 @@ public class TotemMono : Item
     }
     public override void Execute()
     {
+        if (PlayerOwner == null) return;
         playerContext = this.PlayerOwner.GetComponent<PlayerContext>(); // Nota de Lucas: Esta asignacion intentaria mirar si se puede hacer en el script base, para no tener que ponerla en todos los objetos
 
         GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra

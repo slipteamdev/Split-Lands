@@ -452,6 +452,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: mierdecillas2_15
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 68
+        width: 64
+        height: 490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fe69bd61f087b946b56e2b30400b32d
+      internalID: -1394331087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mierdecillas2_16
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 68
+        width: 64
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59890f55a191288499e892d8c6d550a3
+      internalID: 1330632946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mierdecillas2_17
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 68
+        width: 64
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4bba68dc7fda44dbf25af9618e14e8
+      internalID: -1109531558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -475,6 +541,9 @@ TextureImporter:
       mierdecillas2_12: -724232110
       mierdecillas2_13: 60638042
       mierdecillas2_14: -660136706
+      mierdecillas2_15: -1394331087
+      mierdecillas2_16: 1330632946
+      mierdecillas2_17: -1109531558
       mierdecillas2_2: 1021981177
       mierdecillas2_3: 337533729
       mierdecillas2_4: 590342858
