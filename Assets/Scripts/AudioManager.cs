@@ -20,6 +20,11 @@ public class AudioManager : MonoBehaviour
 
     [Header("SFX de Partida")]
     public AudioClip bombClip;
+    public AudioClip foxUltiClip;
+    public AudioClip axolotlUltiClip;
+    public AudioClip pickItemClip;
+    public AudioClip eventClip;
+    public AudioClip countdownClip;
 
     // Se creará una instancia del AudioManager al principio y no se destruirá entre escenas (Singleton)
     void Awake()
@@ -127,5 +132,10 @@ public class AudioManager : MonoBehaviour
 
     // Metodos publicos para reproducirlo en la escena de Gamepay
     public void PlayBombSFX() => PlaySFX(bombClip);
+    public void PlayFoxUltiSFX() => PlaySFX(foxUltiClip);
+    public void PlayAxolotlUltiSFX() => PlaySFX(axolotlUltiClip);
+    public void PlayPickItemSFX() => PlaySFX(pickItemClip);
+    public void PlayEventSFX() => PlaySFX(eventClip);
+    public void PlayCountdownSFX() => PlaySFX(countdownClip);
 
 }
