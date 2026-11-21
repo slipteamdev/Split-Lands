@@ -36,6 +36,11 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private InputActionReference p2Move2;
     [SerializeField] private InputActionReference p2Ready;
     [SerializeField] private InputActionReference p2Ready2;
+    [Space]
+    [SerializeField] private PlayerInput p2Input;
+    [SerializeField] private TMP_Text p2LeftButtonText;
+    [SerializeField] private TMP_Text p2RightButtonText;
+    [SerializeField] private TMP_Text p2ReadyButtonText;
 
     [SerializeField] private GameObject countdown;
     [SerializeField] private TMP_Text countdownText;
@@ -104,6 +109,19 @@ public class CharacterSelectionUI : MonoBehaviour
     private float matchCountdown;
     private void Update()
     {
+        if (p2Input.defaultControlScheme == "Arrows")
+        {
+            p2LeftButtonText.SetText("Flecha\nIzq.");
+            p2RightButtonText.SetText("Flecha\nDer.");
+            p2ReadyButtonText.SetText("(Ñ)");
+        }
+        else
+        {
+            p2LeftButtonText.SetText("Izq.\n[Joystick]");
+            p2RightButtonText.SetText("Der.\n[Joystick]");
+            p2ReadyButtonText.SetText("(A [Mando])");
+        }
+
         countdown.SetActive(startingMatch);
 
         if (startingMatch)
