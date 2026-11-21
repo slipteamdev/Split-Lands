@@ -1908,7 +1908,7 @@ GameObject:
   - component: {fileID: 1532246753}
   - component: {fileID: 1532246755}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: AudioManager borrador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2039,8 +2039,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   mixer: {fileID: 24100000, guid: e8e06e62cdd887d44b2aa29077e82f32, type: 2}
+  musicSource: {fileID: 0}
+  menuMusic: {fileID: 0}
+  gameplayMusic: {fileID: 0}
   sfxSource: {fileID: 1532246755}
   buttonClickClip: {fileID: 8300000, guid: 134f49b6463bfbe4da3f23ce8ff394e0, type: 3}
+  bombClip: {fileID: 0}
 --- !u!82 &1532246755
 AudioSource:
   m_ObjectHideFlags: 0
