@@ -7,6 +7,7 @@ public class ZumoFresa : Item
     public override void Execute()
     {
         PlayerOwner.GetComponent<PlayerContext>().ApplyMovementSpeedModifier(multiplier, duration);
+        ItemsManager.RemoveObject(this.gameObject);
         Destroy(gameObject);
     }
 }

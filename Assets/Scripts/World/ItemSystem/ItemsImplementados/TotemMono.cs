@@ -39,6 +39,7 @@ public class TotemMono : Item
         GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra
 
         this.transform.SetParent(canva.transform);
+        ItemsManager.RemoveObject(this.gameObject);
 
         transform.position = playerContext.transform.position + new Vector3(0, 2, 0);
 
