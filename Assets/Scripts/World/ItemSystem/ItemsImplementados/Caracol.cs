@@ -17,6 +17,8 @@ public class Caracol : Item
 
         this.transform.SetParent(canva.transform);
 
+        ItemsManager.RemoveObject(this.gameObject);
+
         Vector2 direction = playerContext.Orientation;
         transform.position = playerContext.transform.position + new Vector3(direction.x, direction.y, 0);
 

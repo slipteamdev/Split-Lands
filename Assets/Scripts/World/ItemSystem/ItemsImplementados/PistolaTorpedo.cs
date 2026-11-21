@@ -24,6 +24,8 @@ public class PistolaTorpedo : Item
         usos++;
         if (usos >= BalasMaximas)
         {
+
+            ItemsManager.RemoveObject(this.gameObject);
             Destroy(gameObject);
         }
 

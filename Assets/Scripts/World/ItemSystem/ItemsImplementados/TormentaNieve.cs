@@ -10,6 +10,8 @@ public class TormentaNieve : Item
         PlayerContext other = PlayerOwner.GetComponent<PlayerContext>().EnemyPlayer.GetComponent<PlayerContext>();
         other.ApplyMovementSpeedModifier(movementSpeedMultiplier, duration);
         other.ApplyCooldownSpeedModifier(cooldownSpeedMultiplier, duration);
+
+        ItemsManager.RemoveObject(this.gameObject);
         Destroy(gameObject);
     }
 }
