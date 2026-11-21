@@ -954,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fb53ca88ddeab488557f13e98c1cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerItemsManager
-  minDistance: 50
+  minDistance: 130
   topOfMyHead: {fileID: 2326245281419276018}
 --- !u!114 &7388368802295917194
 MonoBehaviour:
