@@ -29,6 +29,8 @@ public class Bomb_a : Item
 
         this.transform.SetParent(canva.transform);
 
+        ItemsManager.RemoveObject(this.gameObject);
+
         IgnoreSpecificCollisions();
 
         Vector2 direction = playerContext.Orientation;

@@ -25,6 +25,7 @@ public class Ratonera : Item
         GameObject canva = GetComponentInParent<Canvas>().gameObject; //busca en el padre y en los padres del padre y asi hasta que lo encuentra
 
         this.transform.SetParent(canva.transform);
+        ItemsManager.RemoveObject(this.gameObject);
 
         Vector2 direction = playerContext.Orientation;
         transform.position = playerContext.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);

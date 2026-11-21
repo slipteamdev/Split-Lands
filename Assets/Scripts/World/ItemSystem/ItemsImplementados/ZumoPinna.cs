@@ -7,6 +7,7 @@ public class ZumoPinna : Item
     public override void Execute()
     {
         PlayerOwner.GetComponent<PlayerContext>().ApplyStunDurationModifier(multiplier, duration);
+        ItemsManager.RemoveObject(this.gameObject);
         Destroy(gameObject);
     }
 }

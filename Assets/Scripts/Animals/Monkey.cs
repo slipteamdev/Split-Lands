@@ -119,7 +119,7 @@ public class Monkey : MonoBehaviour
         {
             Map.Team current_pixel_team;
 
-            if (!item.transform.parent.gameObject.TryGetComponent<AnimalMovement>(out AnimalMovement a) && !item.transform.parent.gameObject.TryGetComponent<PlayerItemsManager>(out PlayerItemsManager m))
+            if (!item.transform.parent.gameObject.TryGetComponent<AnimalMovement>(out AnimalMovement a) && !item.transform.parent.gameObject.TryGetComponent<PlayerItemsManager>(out PlayerItemsManager m)) // esta linea peta
             {
                 current_pixel_team = Map.ReadPixelAt(item.transform.localPosition.x, item.transform.localPosition.y);
             }
