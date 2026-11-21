@@ -35,6 +35,11 @@ public class Movement : MonoBehaviour
             invertedConfusion.SetActive(playerContext.InvertedControl);
         }
 
+        if (!Timer.running) // Si esta en pausa, velocidad cero y acaba
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
 
         if (!playerContext.MoveAllowed) // Si se prohibe movimiento, velocidad cero y acaba
         {
@@ -64,6 +69,11 @@ public class Movement : MonoBehaviour
 
     public void AssignInput(Vector2 input)
     {
+        if (!Timer.running) // Si esta en pausa, no hace nada
+        {
+            return;
+        }
+
         moveInput = input;
 
         if (playerContext.InvertedControl)

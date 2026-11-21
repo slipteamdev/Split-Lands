@@ -23,6 +23,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnBasicButton(InputAction.CallbackContext context)
     {
+        if (!Timer.running) // Si esta en pausa, no hace nada
+        {
+            return;
+        }
         if (context.performed && context.ReadValueAsButton())
         {
             if (itemsManager.ItemInReach() || itemsManager.hasItem())
@@ -44,6 +48,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnSpecialButton(InputAction.CallbackContext context)
     {
+        if (!Timer.running) // Si esta en pausa, no hace nada
+        {
+            return;
+        }
         if (context.performed && context.ReadValueAsButton())
         {
             skillManager.SpecialPressed();
@@ -53,6 +61,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnUltimateButton(InputAction.CallbackContext context)
     {
+        if (!Timer.running) // Si esta en pausa, no hace nada
+        {
+            return;
+        }
         if (context.performed && context.ReadValueAsButton())
         {
             skillManager.UltimatePressed();

@@ -910,7 +910,6 @@ MonoBehaviour:
   orientation: {x: 1, y: 0}
   background: {fileID: 21300000, guid: f3e24d9f73a2f584f8708d0bdf7e9f42, type: 3}
   EnemyPlayer: {fileID: 0}
-  speed: 0
 --- !u!114 &6158205245730392224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fb53ca88ddeab488557f13e98c1cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerItemsManager
-  minDistance: 100
+  minDistance: 130
   topOfMyHead: {fileID: 6665901948308267474}
 --- !u!114 &4848785550664035625
 MonoBehaviour:

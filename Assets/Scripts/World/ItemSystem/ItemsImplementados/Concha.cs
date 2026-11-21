@@ -37,6 +37,9 @@ public class Concha : Item
             RigidbodyConstraints.FreezeRotationZ;
         rb.useGravity = false;
 
+        // CREO QUE ESTO IGUAL ARREGLA LO DE QUE SE SALGA LA CONCHASUMADRE
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
         solidCollider.enabled = true;
         triggerCollider.enabled = true;
         IgnoreSpecificCollisions();

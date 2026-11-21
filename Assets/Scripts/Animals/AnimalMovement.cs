@@ -10,8 +10,15 @@ public class AnimalMovement : MonoBehaviour
 
     private Vector2 moveInput;
 
+    private Animator animator;
+
     public bool moving = true;
     public bool dieWhenObjetive = true;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void FixedUpdate()
     {
         if (!moving) return;
@@ -20,6 +27,11 @@ public class AnimalMovement : MonoBehaviour
         moveInput = objetive - transform.position;
         moveInput = moveInput.normalized;
         velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * speed;
+
+        if (animator != null)
+        {
+            animator.SetBool("derecha", moveInput.x >= 0);
+        }
 
         if (Vector3.Distance(this.transform.position, objetive) < 1.0f)
         {
