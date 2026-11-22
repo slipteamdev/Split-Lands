@@ -30,7 +30,7 @@ public class Torpedo : MonoBehaviour
         area.SetActive(false);
 
         moving = true;
-        if (Map.ReadPixelAt(transform.position.x, transform.position.y) != team)
+        if (Map.ReadPixelAt(transform.localPosition.x, transform.localPosition.y) != team)
         {
             Explode();
         }

@@ -56,7 +56,7 @@ public class Bomb_a : Item
         Debug.Log($" ha usado el objeto " + $"{ItemName} .");
 
         moving = true;
-        if (Map.ReadPixelAt(transform.position.x, transform.position.y) != playerContext.Team)
+        if (Map.ReadPixelAt(transform.localPosition.x, transform.localPosition.y) != playerContext.Team)
         {
             Explode();
         }
