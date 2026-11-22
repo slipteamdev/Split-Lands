@@ -101,8 +101,8 @@ public class Map : MonoBehaviour
 
     private static void transform_position(ref int x, ref int y)
     {
-        float viewport_x = ((float)x / Screen.width) + 0.5f;
-        float viewport_y = ((float)y / Screen.height) + 0.5f;
+        float viewport_x = ((float)x / 1920) + 0.5f;
+        float viewport_y = ((float)y / 1080) + 0.5f;
 
         x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
         y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
@@ -359,26 +359,20 @@ public class Map : MonoBehaviour
         edgesMeshCollider.sharedMesh = edgesMesh;
     }
 
-    public static Team ReadPixelAt(float x, float y)
+    public static Team ReadPixelAt(float x, float y) => ReadPixelAt(((int)x), ((int)y));
+    public static Team ReadPixelAt(int x, int y)
     {
-        float viewport_x = (x / Screen.width) + 0.5f;
-        float viewport_y = (y / Screen.height) + 0.5f;
-
-        x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
-        y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+        transform_position(ref x, ref y);
 
         if (x < 0 || y < 0 || x >= Instance.MapWidth || y >= Instance.MapHeight) return Team.None;
 
-        return Instance.terrainData[(int)x, (int)y] == 1 ? Team.Team1 : Instance.terrainData[(int)x, (int)y] == 2 ? Team.Team2 : Team.None;
+        return Instance.terrainData[x, y] == 1 ? Team.Team1 : Instance.terrainData[x, y] == 2 ? Team.Team2 : Team.None;
     }
 
-    public static Vector2 FindNearestEnemyPixel(float x_local, float y_local, Team team)
+    public static Vector2 FindNearestEnemyPixel(float x_local, float y_local, Team team) => FindNearestEnemyPixel(((int)x_local), ((int)y_local), team);
+    public static Vector2 FindNearestEnemyPixel(int x_local, int y_local, Team team)
     {
-        float viewport_x = (x_local / Screen.width) + 0.5f;
-        float viewport_y = (y_local / Screen.height) + 0.5f;
-
-        int x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
-        int y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+        transform_position(ref x_local, ref y_local);
 
         int equipo = team == Team.Team1 ? 1 : 2;
 
@@ -389,7 +383,6 @@ public class Map : MonoBehaviour
 
         for (int radio = 1; radio <= radioMaximo; radio++)
         {
-
             for (int i = radio; i >= -radio; i--)
             {
                 for (int j = -radio; j <= radio; j++)
@@ -397,8 +390,8 @@ public class Map : MonoBehaviour
                     if (Mathf.Abs(i) != radio && Mathf.Abs(j) != radio)
                         continue;
 
-                    int nx = x + i;
-                    int ny = y + j;
+                    int nx = x_local + i;
+                    int ny = x_local + j;
 
                     if (nx < 0 || ny < 0 || nx >= Instance.MapWidth || ny >= Instance.MapHeight) continue;
 
@@ -415,13 +408,13 @@ public class Map : MonoBehaviour
                     }
                 }
             }
+
             if (radioMaximo == 480 && mejorCasilla != Vector2.zero)
             {
                 radioMaximo = radio + 2;
             }
-
-
         }
+
         if (mejorCasilla != Vector2.zero)
         {
             return mejorCasilla;
@@ -429,7 +422,4 @@ public class Map : MonoBehaviour
 
         return Vector2.zero; // no me deja devolver null, puta mierda
     }
-
-
 }
-
