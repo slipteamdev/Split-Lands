@@ -26,7 +26,7 @@ public class Caracol : Item
         if (am != null)
         {
             am.enabled = true;
-            am.AssignObjetive(playerContext.EnemyPlayer.transform.localPosition);
+            am.AssignObjetive(playerContext.EnemyPlayer.transform.position);
         }
 
         Map.Draw(this.transform.localPosition, destruction, playerContext.Team, Vector2.right);
@@ -52,15 +52,17 @@ public class Caracol : Item
         }
 
         obj = Map.FindNearestEnemyPixel(this.transform.localPosition.x, this.transform.localPosition.y, playerContext.Team);
-
         if (obj == Vector2.zero)
         {
-            am.AssignObjetive(playerContext.EnemyPlayer.transform.localPosition);
+            am.AssignObjetive(playerContext.EnemyPlayer.transform.position);
+            //Debug.Log("Enemy: "+ playerContext.EnemyPlayer.transform.position + " Caracol: " + this.transform.position);
         }
         else
         {
-            Vector3 ob = new Vector3(obj.x, obj.y, 0);
+            Vector3 ob = new Vector3(obj.x, obj.y, 0) * 2;
+            //Debug.Log("obj: " + obj);
             am.AssignObjetive(transform.position + ob);
+            //Debug.Log("PixelDir: " + (transform.position + ob) + " Caracol: " + this.transform.position);
         }
         Map.Draw(this.transform.localPosition, destruction, playerContext.Team, Vector2.right);
 
