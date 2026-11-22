@@ -40,6 +40,10 @@ public class ItemsManager : MonoBehaviour
     {
         allItems.Add(obj);
     }
+    public static bool Contains(GameObject obj)
+    {
+        return allItems.Contains(obj);
+    }
     public static void RemoveObject(GameObject obj)
     {
         allItems.Remove(obj);

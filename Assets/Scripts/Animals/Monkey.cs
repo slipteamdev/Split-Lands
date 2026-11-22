@@ -19,7 +19,7 @@ public class Monkey : MonoBehaviour
         //Debug.Log(transform.childCount);
         if (transform.childCount <= 1) // si no tiene objeto
         {
-            if (objetivo == null || objetivo.IsDestroying()) // si no tiene objetivo o si el objetivo se esta muriendo
+            if (objetivo == null || objetivo.IsDestroying() || !ItemsManager.Contains(objetivo)) // si no tiene objetivo o si el objetivo se esta muriendo
             {
                 FindObjetive();
             }
