@@ -28,7 +28,7 @@ public class AnimalSpawner : MonoBehaviour
     }
     public void IncreaseSpawnSpeed(float t)
     {
-        tiempoEntreSpawns = Mathf.Max(0.01f, tiempoEntreSpawns - t);
+        tiempoEntreSpawns = Mathf.Max(0.01f, (tiempoEntreSpawns - t));
     }
     private void Start()
     {

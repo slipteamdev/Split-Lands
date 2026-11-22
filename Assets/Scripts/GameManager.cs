@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         {
             EndGameWithWinner();
         }
-        if (Timer.remainingTime <= increasedSpawnSpeedThreshold)
+        if (Timer.remainingTime <= increasedSpawnSpeedThreshold && speedIncreased == false)
         {
             IncreaseSpawnSpeed();
         }
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         if (animalSpawner != null)
         {
             animalSpawner.IncreaseSpawnSpeed(spawnSpeedBonus);
+            speedIncreased = true;
         }
     }
 
