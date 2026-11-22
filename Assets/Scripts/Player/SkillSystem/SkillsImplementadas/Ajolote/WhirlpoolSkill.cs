@@ -22,6 +22,12 @@ public class WhirlpoolSkill : Skill
 
     public override void Execute()
     {
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayAxolotlUltiSFX();
+        }
+
         if (projectilePrefab == null || parentCanvas == null) return;
 
         float angleStep = 360f / Mathf.Max(1, projectileCount);

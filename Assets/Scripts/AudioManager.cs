@@ -42,8 +42,8 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         // Aplica el volumen guardado nada más abrir el juego
-        float savedMusic = PlayerPrefs.GetFloat("MusicVol", 0.75f);
-        float savedSFX = PlayerPrefs.GetFloat("SFXVol", 0.75f);
+        float savedMusic = PlayerPrefs.GetFloat("MusicVol", 0.50f);
+        float savedSFX = PlayerPrefs.GetFloat("SFXVol", 0.50f);
 
         mixer.SetFloat("MusicVol", Mathf.Log10(savedMusic) * 20);
         mixer.SetFloat("SFXVol", Mathf.Log10(savedSFX) * 20);

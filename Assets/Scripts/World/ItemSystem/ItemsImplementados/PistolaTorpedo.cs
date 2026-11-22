@@ -29,5 +29,10 @@ public class PistolaTorpedo : Item
             Destroy(gameObject);
         }
 
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayBombSFX();
+        }
     }
 }

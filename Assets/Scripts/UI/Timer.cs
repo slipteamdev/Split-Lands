@@ -13,6 +13,9 @@ public class Timer : MonoBehaviour
 
     public static bool running = true;
 
+    // Sonido de warning cuando faltan 10 segundos
+    private bool warningCountdown = false;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,6 +26,7 @@ public class Timer : MonoBehaviour
         Instance = this;
         remainingTime = baseTime;
         running = true;
+        warningCountdown = false;
     }
     // Update is called once per frame
     void Update()
@@ -30,6 +34,17 @@ public class Timer : MonoBehaviour
         if (running)
         {
             remainingTime -= Time.deltaTime;
+
+            // Cuando quedan 10 segundos o menos suena el warning
+            if (remainingTime <= 10f && !warningCountdown)
+            {
+                warningCountdown = true;
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlayCountdownSFX();
+                }
+            }
+
             if (remainingTime <= 0f)
             {
                 remainingTime = 0f;

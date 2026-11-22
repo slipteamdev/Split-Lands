@@ -21,6 +21,12 @@ public class BerserkSkill : Skill
     // Update is called once per frame
     public override void Execute()
     {
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayFoxUltiSFX();
+        }
+
         StartCoroutine(BerserkRoutine());
     }
 

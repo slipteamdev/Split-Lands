@@ -71,6 +71,11 @@ public class TotemMono : Item
 
         StartCoroutine(MonkeysDying());
 
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayEventSFX();
+        }
     }
 
     public void FindNewObjetive(GameObject monkey)

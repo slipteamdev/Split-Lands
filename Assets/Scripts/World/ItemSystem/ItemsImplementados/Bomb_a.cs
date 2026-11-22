@@ -90,6 +90,12 @@ public class Bomb_a : Item
         collider.enabled = false;
         this.gameObject.GetComponent<Image>().enabled = false;
 
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayBombSFX();
+        }
+
         StartCoroutine(ShowArea());
     }
 

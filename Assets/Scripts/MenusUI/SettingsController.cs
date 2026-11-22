@@ -13,8 +13,8 @@ public class SettingsController : MonoBehaviour
     void Start()
     {
         // Cargar los valores guardados al entrar en ajustes
-        float savedMusic = PlayerPrefs.GetFloat("MusicVol", 0.75f);
-        float savedSFX = PlayerPrefs.GetFloat("SFXVol", 0.75f);
+        float savedMusic = PlayerPrefs.GetFloat("MusicVol", 0.50f);
+        float savedSFX = PlayerPrefs.GetFloat("SFXVol", 0.50f);
 
         if (musicSlider != null) musicSlider.value = savedMusic;
         if (sfxSlider != null) sfxSlider.value = savedSFX;
