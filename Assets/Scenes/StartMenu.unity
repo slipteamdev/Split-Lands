@@ -2258,7 +2258,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4104482864320980087, guid: e8e06e62cdd887d44b2aa29077e82f32, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2182b7fc3e5f2894e8a7df8dc8000a0f, type: 3}
+  m_Resource: {fileID: 8300000, guid: 76f1dc0e270c0ea45bf3e92eaf7af738, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
@@ -2358,8 +2358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   mixer: {fileID: 24100000, guid: e8e06e62cdd887d44b2aa29077e82f32, type: 2}
   musicSource: {fileID: 1532246753}
-  menuMusic: {fileID: 8300000, guid: 2182b7fc3e5f2894e8a7df8dc8000a0f, type: 3}
-  gameplayMusic: {fileID: 8300000, guid: 1d370956403899441bddde9bc70cab42, type: 3}
+  menuMusic: {fileID: 8300000, guid: 76f1dc0e270c0ea45bf3e92eaf7af738, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 40872d655a7cfb44c9e36dade187e6e4, type: 3}
   sfxSource: {fileID: 1532246755}
   buttonClickClip: {fileID: 8300000, guid: 134f49b6463bfbe4da3f23ce8ff394e0, type: 3}
   bombClip: {fileID: 8300000, guid: 91796fbf2f6c42d47a5953c0a52252e6, type: 3}
