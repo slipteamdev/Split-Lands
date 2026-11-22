@@ -60,6 +60,11 @@ public class CharacterSelectionUI : MonoBehaviour
     private Coroutine p1SelectionAnimation;
     private Coroutine p2SelectionAnimation;
 
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     private void Start()
     {
         if (characterSprites == null || characterSprites.Length == 0)
