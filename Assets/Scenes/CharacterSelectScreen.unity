@@ -396,7 +396,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -81}
-  m_SizeDelta: {x: 310.6, y: 56.1}
+  m_SizeDelta: {x: 390.2, y: 56.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &104562761
 MonoBehaviour:
@@ -1975,22 +1975,20 @@ MonoBehaviour:
   p1PreviousButton: {fileID: 1265093064}
   p1NextButton: {fileID: 1881359051}
   p1Animator: {fileID: 162924668}
-  p1ReadyText: {fileID: 2122265222}
-  p1Move: {fileID: -6360045407324653063, guid: 515966ae17cd5734a818f9ade2377369, type: 3}
-  p1Ready: {fileID: -7017792616164638578, guid: 515966ae17cd5734a818f9ade2377369, type: 3}
+  p1ReadyText: {fileID: 104562761}
   p2CharacterImage: {fileID: 332002369}
   p2PreviousButton: {fileID: 1900848641}
   p2NextButton: {fileID: 1610134442}
   p2Animator: {fileID: 332002371}
-  p2ReadyText: {fileID: 257089804}
-  p2Move: {fileID: -6360045407324653063, guid: 515966ae17cd5734a818f9ade2377369, type: 3}
-  p2Move2: {fileID: -7017792616164638578, guid: 515966ae17cd5734a818f9ade2377369, type: 3}
-  p2Ready: {fileID: -6360045407324653063, guid: 515966ae17cd5734a818f9ade2377369, type: 3}
-  p2Ready2: {fileID: -7017792616164638578, guid: 515966ae17cd5734a818f9ade2377369, type: 3}
+  p2ReadyText: {fileID: 1096601906}
+  p1Input: {fileID: 458502612}
+  p1LeftButtonText: {fileID: 1814127071}
+  p1RightButtonText: {fileID: 1588289206}
+  p1ReadyButtonText: {fileID: 104562761}
   p2Input: {fileID: 996670091}
   p2LeftButtonText: {fileID: 832819237}
   p2RightButtonText: {fileID: 1506909957}
-  p2ReadyButtonText: {fileID: 1096601906}
+  p2ReadyButtonText: {fileID: 257089804}
   countdown: {fileID: 1352665947}
   countdownText: {fileID: 2034681123}
   scaleMultiplier: 1.15
@@ -3366,7 +3364,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -81}
-  m_SizeDelta: {x: 310.6, y: 56.1}
+  m_SizeDelta: {x: 390.2, y: 56.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096601906
 MonoBehaviour:
@@ -5420,7 +5418,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5855,7 +5853,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

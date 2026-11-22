@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameStarter : MonoBehaviour
 {
     [SerializeField] private UIManager UIManager;
+    [SerializeField] private PauseManager pauseManager;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Canvas canvas;
     [SerializeField] private Map map;
@@ -74,6 +75,9 @@ public class GameStarter : MonoBehaviour
         playerList[1].GetComponent<PlayerContext>().tormenta[1] = tormentas[3];
         // Asignamos input
         PlayerInputManagerInitialicer.Init(playerList[0], playerList[1]);
+
+        // Referencia para la pausa
+        pauseManager.init(playerList[0], playerList[1]);
 
         // Inicializamos la UI
         UIManager.Init(playerList[0], playerList[1]);
