@@ -23,8 +23,7 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private Animator p1NextButton;
     [SerializeField] private Animator p1Animator;
     [SerializeField] private TMP_Text p1ReadyText;
-    [SerializeField] private InputActionReference p1Move;
-    [SerializeField] private InputActionReference p1Ready;
+
 
     //Jugador2
     [SerializeField] private Image p2CharacterImage;
@@ -32,11 +31,13 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private Animator p2NextButton;
     [SerializeField] private Animator p2Animator;
     [SerializeField] private TMP_Text p2ReadyText;
-    [SerializeField] private InputActionReference p2Move;
-    [SerializeField] private InputActionReference p2Move2;
-    [SerializeField] private InputActionReference p2Ready;
-    [SerializeField] private InputActionReference p2Ready2;
+
     [Space]
+    [SerializeField] private PlayerInput p1Input;
+    [SerializeField] private TMP_Text p1LeftButtonText;
+    [SerializeField] private TMP_Text p1RightButtonText;
+    [SerializeField] private TMP_Text p1ReadyButtonText;
+
     [SerializeField] private PlayerInput p2Input;
     [SerializeField] private TMP_Text p2LeftButtonText;
     [SerializeField] private TMP_Text p2RightButtonText;
@@ -50,8 +51,8 @@ public class CharacterSelectionUI : MonoBehaviour
     private int p2CurrentIndex = 0;
 
     // -1 indica que el jugador aun no ha elegido
-    private int p1PressedId = -1;
-    private int p2PressedId = -1;
+    public int p1PressedId = -1;
+    public int p2PressedId = -1;
 
     //Animación Selección
     [SerializeField] private float scaleMultiplier = 1.15f;
@@ -73,59 +74,20 @@ public class CharacterSelectionUI : MonoBehaviour
             return;
         }
 
-        //// El boton de jugar arranca desactivado
-        //if (startMatchButton != null)
-        //{
-        //    startMatchButton.interactable = false;
-        //    startMatchButton.onClick.AddListener(OnStartMatchClicked);
-        //}
 
-        //// Suscribir eventos a los botones del Jugador 1
-        //for (int i = 0; i < p1CharacterButtons.Length; i++)
-        //{
-        //    int characterIndex = i; // Copia local para evitar problemas con closures en delegates
-        //    p1CharacterButtons[i].onClick.AddListener(() => SelectCharacterP1(characterIndex));
-        //}
-
-        //// Suscribir eventos a los botones del Jugador 2
-        //for (int i = 0; i < p2CharacterButtons.Length; i++)
-        //{
-        //    int characterIndex = i;
-        //    p2CharacterButtons[i].onClick.AddListener(() => SelectCharacterP2(characterIndex));
-        //}
-
-        // Flechas jugador 1
-        //      p1PreviousButton.onClick.AddListener(() => ChangeCharacterP1(-1));
-        //      p1NextButton.onClick.AddListener(() => ChangeCharacterP1(1));
-        //      
-        //      // Flechas jugador 2
-        //      p2PreviousButton.onClick.AddListener(() => ChangeCharacterP2(-1));
-        //      p2NextButton.onClick.AddListener(() => ChangeCharacterP2(1));
-        //      
-        //      // Confirmar pulsando sobre el personaje
-        //      p1CharacterButton.onClick.AddListener(ConfirmCharacterP1);
-        //      p2CharacterButton.onClick.AddListener(ConfirmCharacterP2);
 
         // Mostrar personajes iniciales
         UpdateCharacterImage(p1CharacterImage, p1CurrentIndex);
         UpdateCharacterImage(p2CharacterImage, p2CurrentIndex);
+
+        SetInputText(p1Input, p1LeftButtonText, p1RightButtonText, p1ReadyText);
+        SetInputText(p2Input, p2LeftButtonText, p2RightButtonText, p2ReadyText);
     }
 
     private float matchCountdown;
     private void Update()
     {
-        if (p2Input.defaultControlScheme == "Arrows")
-        {
-            p2LeftButtonText.SetText("Flecha\nIzq.");
-            p2RightButtonText.SetText("Flecha\nDer.");
-            p2ReadyButtonText.SetText("(Ñ)");
-        }
-        else
-        {
-            p2LeftButtonText.SetText("Izq.\n[Joystick]");
-            p2RightButtonText.SetText("Der.\n[Joystick]");
-            p2ReadyButtonText.SetText("(A [Mando])");
-        }
+
 
         countdown.SetActive(startingMatch);
 
@@ -139,6 +101,40 @@ public class CharacterSelectionUI : MonoBehaviour
             if (matchCountdown <= 0.1f) OnStartMatchClicked();
         }
         else matchCountdown = 5f;
+    }
+
+    private void SetInputText(PlayerInput input, TMP_Text leftButton, TMP_Text rightButton, TMP_Text confirmButton)
+    {
+        if (input.currentControlScheme == "WASD")
+        {
+            leftButton.SetText("(A)");
+            rightButton.SetText("(D)");
+            confirmButton.SetText("(F)");
+
+            leftButton.fontSize = 51;
+            rightButton.fontSize = 51;
+            confirmButton.fontSize = 51;
+        }
+        else if (input.currentControlScheme == "Arrows")
+        {
+            leftButton.SetText("Flecha\nIzq.");
+            rightButton.SetText("Flecha\nDer.");
+            confirmButton.SetText("(Ñ)");
+
+            leftButton.fontSize = 26.4f;
+            rightButton.fontSize = 26.4f;
+            confirmButton.fontSize = 51;
+        }
+        else if (input.currentControlScheme == "GamePad")
+        {
+            leftButton.SetText("Izq.\n[Joystick]");
+            rightButton.SetText("Der.\n[Joystick]");
+            confirmButton.SetText("(Botón izquierdo [Mando])");
+
+            leftButton.fontSize = 26.4f;
+            rightButton.fontSize = 26.4f;
+            confirmButton.fontSize = 26.4f;
+        }
     }
 
     //Jugador 1
@@ -159,7 +155,7 @@ public class CharacterSelectionUI : MonoBehaviour
                          characterSprites.Length;
 
         p1PressedId = -1;
-        p1ReadyText.SetText("Preparandose...");
+        p1ReadyButtonText.SetText("Preparandose...");
         startingMatch = false;
 
         if (direction == -1) p1PreviousButton.SetTrigger("Pressed"); else p1NextButton.SetTrigger("Pressed");
@@ -185,15 +181,15 @@ public class CharacterSelectionUI : MonoBehaviour
     {
         if (!IsCharacterAvailable(p1CurrentIndex, 1))
         {
-            p1ReadyText.SetText("Preparandose...");
+            p1ReadyButtonText.SetText("Preparandose...");
             Debug.Log("Ese personaje ya ha sido elegido por el jugador 2.");
             return;
         }
 
-        if(p1PressedId != -1)
+        if (p1PressedId != -1)
         {
             p1PressedId = -1;
-            p1ReadyText.SetText("Preparandose...");
+            p1ReadyButtonText.SetText("Preparandose...");
             Debug.Log("Preparandose de nuevo.");
             return;
         }
@@ -209,7 +205,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
         CheckCanStart();
 
-        p1ReadyText.SetText("LISTO");
+        p1ReadyButtonText.SetText("LISTO");
         Debug.Log("Jugador 1 ha elegido: " + p1PressedId);
     }
 
@@ -231,7 +227,7 @@ public class CharacterSelectionUI : MonoBehaviour
                          characterSprites.Length;
 
         p2PressedId = -1;
-        p2ReadyText.SetText("Preparandose...");
+        p2ReadyButtonText.SetText("Preparandose...");
         startingMatch = false;
 
         if (direction == -1) p2PreviousButton.SetTrigger("Pressed"); else p2NextButton.SetTrigger("Pressed");
@@ -257,7 +253,7 @@ public class CharacterSelectionUI : MonoBehaviour
     {
         if (!IsCharacterAvailable(p2CurrentIndex, 2))
         {
-            p2ReadyText.SetText("Preparandose...");
+            p2ReadyButtonText.SetText("Preparandose...");
             Debug.Log("Ese personaje ya ha sido elegido por el jugador 1.");
             return;
         }
@@ -265,7 +261,7 @@ public class CharacterSelectionUI : MonoBehaviour
         if (p2PressedId != -1)
         {
             p2PressedId = -1;
-            p2ReadyText.SetText("Preparandose...");
+            p2ReadyButtonText.SetText("Preparandose...");
             Debug.Log("Preparandose de nuevo.");
             return;
         }
@@ -281,7 +277,7 @@ public class CharacterSelectionUI : MonoBehaviour
 
         CheckCanStart();
 
-        p2ReadyText.SetText("LISTO");
+        p2ReadyButtonText.SetText("LISTO");
         Debug.Log("Jugador 2 ha elegido: " + p2PressedId);
     }
 
@@ -400,72 +396,5 @@ public class CharacterSelectionUI : MonoBehaviour
 
 
 
-    //public void SelectCharacterP1(int characterId)
-    //{
-    //    p1PressedId = characterId;
-    //    UpdateButtonVisuals(p1CharacterButtons, p1PressedId);
-    //    CheckCanStart();
-    //}
 
-    //public void SelectCharacterP2(int characterId)
-    //{
-    //    p2PressedId = characterId;
-    //    UpdateButtonVisuals(p2CharacterButtons, p2PressedId);
-    //    CheckCanStart();
-    //}
-
-    //private void CheckCanStart()
-    //{
-    //    // Ambos jugadores deben haber seleccionado 
-    //    bool ready = (p1PressedId != -1) && (p2PressedId != -1);
-
-    //    if (startMatchButton != null)
-    //    {
-    //        startMatchButton.interactable = ready;
-    //    }
-    //}
-
-
-    //private void UpdateButtonVisuals(Button[] buttons, int PressedIndex)
-    //{
-    //    for (int i = 0; i < buttons.Length; i++)
-    //    {
-    //        buttons[i].interactable = (i != PressedIndex);
-    //    }
-    //}
-
-    //private void OnStartMatchClicked()
-    //{
-    //    if (p1PressedId == -1 || p2PressedId == -1) return;
-
-    //    // Construimos la lista de datos para pasar al gestor persistente
-    //    List<PlayerSelectionData> matchSelections = new List<PlayerSelectionData>
-    //    {
-    //        new PlayerSelectionData
-    //        {
-    //            playerIndex = 0,
-    //            characterId = p1PressedId,
-    //            team = Map.Team.Team1
-    //        },
-    //        new PlayerSelectionData
-    //        {
-    //            playerIndex = 1,
-    //            characterId = p2PressedId,
-    //            team = Map.Team.Team2
-    //        }
-    //    };
-
-    //    if (GameData.Instance != null)
-    //    {
-    //        // Guardamos la lista
-    //        GameData.Instance.SetPlayersData(matchSelections);
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("[CharacterSelectionUI] CharacterSelectionData no encontrado en la escena");
-    //    }
-
-    //    // Cargar escena de partida
-    //    SceneManager.LoadScene(gameSceneName);
-    //}
 }
