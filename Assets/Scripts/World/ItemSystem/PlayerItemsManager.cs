@@ -76,6 +76,11 @@ public class PlayerItemsManager : MonoBehaviour
 
         this.gameObject.GetComponent<Movement>().UpdateSpritePos();
 
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayPickItemSFX();
+        }
     }
     public void UseItem()
     {

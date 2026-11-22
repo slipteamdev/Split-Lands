@@ -38,6 +38,12 @@ public class TormentaNieve : Item
 
         gira.enabled = true;
         StartCoroutine(GoToEnemy());
+
+        // SFX
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayEventSFX();
+        }
     }
 
 
