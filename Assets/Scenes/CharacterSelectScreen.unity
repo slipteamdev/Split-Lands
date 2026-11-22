@@ -1984,13 +1984,15 @@ MonoBehaviour:
   p1Input: {fileID: 458502612}
   p1LeftButtonText: {fileID: 1814127071}
   p1RightButtonText: {fileID: 1588289206}
-  p1ReadyButtonText: {fileID: 104562761}
+  p1ReadyButtonText: {fileID: 2122265222}
   p2Input: {fileID: 996670091}
   p2LeftButtonText: {fileID: 832819237}
   p2RightButtonText: {fileID: 1506909957}
   p2ReadyButtonText: {fileID: 257089804}
   countdown: {fileID: 1352665947}
   countdownText: {fileID: 2034681123}
+  p1PressedId: -1
+  p2PressedId: -1
   scaleMultiplier: 1.15
   animationDuration: 0.15
 --- !u!4 &519096594

@@ -5110,22 +5110,22 @@ MonoBehaviour:
   - {fileID: 7746478453934550715, guid: 04c7dce142240da4390093269a976a50, type: 3}
   typeProbabilities:
   - type: 0
-    weight: 35
-  - type: 1
     weight: 30
+  - type: 1
+    weight: 28
   - type: 2
     weight: 20
   - type: 3
-    weight: 15
+    weight: 17
   - type: 4
-    weight: 10
+    weight: 15
   tierProbabilities:
   - tier: 0
-    weight: 60
+    weight: 50
   - tier: 1
-    weight: 30
+    weight: 35
   - tier: 2
-    weight: 10
+    weight: 15
 --- !u!1 &1457477589
 GameObject:
   m_ObjectHideFlags: 0

@@ -911,6 +911,10 @@ MonoBehaviour:
   orientation: {x: 1, y: 0}
   background: {fileID: 21300000, guid: d349993c29605de4da561a684b9a9039, type: 3}
   EnemyPlayer: {fileID: 0}
+  UIEfects: []
+  tormenta:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &7384125042165118610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,7 +1007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoomerangSkill
   skillName: Boomerang
   icon: {fileID: 21300000, guid: 4252900f330b7d342a0da1d58a2d3d2d, type: 3}
-  baseCooldown: 9
+  baseCooldown: 7.5
   type: 1
   currentCooldown: 0
   boomerangPrefab: {fileID: 6156364861308150156, guid: 798ebad5e48fb3942b293399c5fe39c6, type: 3}
@@ -1045,7 +1049,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  returnTime: 3
+  returnTime: 2.5
   returnSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -1101,4 +1105,4 @@ MonoBehaviour:
   projectileCount: 4
   orbitRadius: 90
   orbitSpeed: 520
-  duration: 2
+  duration: 1.75
