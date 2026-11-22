@@ -7545,6 +7545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   endSceneName: EndScene
   endGameThreshold: 0.9
+  animalSpawner: {fileID: 1174899952}
+  increasedSpawnSpeedThreshold: 60
+  spawnSpeedBonus: 1
 --- !u!4 &2070141380
 Transform:
   m_ObjectHideFlags: 0
