@@ -1384,11 +1384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2045,6 +2045,11 @@ MonoBehaviour:
   sfxSource: {fileID: 1532246755}
   buttonClickClip: {fileID: 8300000, guid: 134f49b6463bfbe4da3f23ce8ff394e0, type: 3}
   bombClip: {fileID: 0}
+  foxUltiClip: {fileID: 0}
+  axolotlUltiClip: {fileID: 0}
+  pickItemClip: {fileID: 0}
+  eventClip: {fileID: 0}
+  countdownClip: {fileID: 0}
 --- !u!82 &1532246755
 AudioSource:
   m_ObjectHideFlags: 0
