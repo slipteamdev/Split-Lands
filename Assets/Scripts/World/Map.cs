@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour
@@ -101,8 +102,14 @@ public class Map : MonoBehaviour
 
     private static void transform_position(ref int x, ref int y)
     {
+        /*
+        float viewport_x = ((float)x / Screen.width) + 0.5f;
+        float viewport_y = ((float)y / Screen.height) + 0.5f;
+        */
+        /**/
         float viewport_x = ((float)x / 1920) + 0.5f;
         float viewport_y = ((float)y / 1080) + 0.5f;
+        
 
         x = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
         y = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
@@ -373,10 +380,17 @@ public class Map : MonoBehaviour
     public static Vector2 FindNearestEnemyPixel(int x_local, int y_local, Team team)
     {
         transform_position(ref x_local, ref y_local);
+        /*
+        float viewport_x = ((float)x_local / Screen.width) + 0.5f;
+        float viewport_y = ((float)y_local / Screen.height) + 0.5f;
+
+        x_local = Mathf.FloorToInt(viewport_x * Instance.MapWidth);
+        y_local = Mathf.FloorToInt(viewport_y * Instance.MapHeight);
+        */
 
         int equipo = team == Team.Team1 ? 1 : 2;
 
-        int radioMaximo = 480;
+        int radioMaximo = 540;
 
         Vector2 mejorCasilla = Vector2.zero;
         float distanciaMinima = float.MaxValue;
@@ -390,10 +404,11 @@ public class Map : MonoBehaviour
                     if (Mathf.Abs(i) != radio && Mathf.Abs(j) != radio)
                         continue;
 
+                    // ESTO DE VEZ EN CUANDO ME LO CAMBIA GITHUB, ECHADLE UN OJO PA QUE ESTE BIEN
                     int nx = x_local + i;
-                    int ny = x_local + j;
+                    int ny = y_local + j;
 
-                    if (nx < 0 || ny < 0 || nx >= Instance.MapWidth || ny >= Instance.MapHeight) continue;
+                    if (nx < 0 || ny < 0 || nx >= (Instance.MapWidth) || ny >= (Instance.MapHeight)) continue;
 
                     if (Instance.terrainData[nx, ny] != equipo)
                     {
@@ -409,7 +424,7 @@ public class Map : MonoBehaviour
                 }
             }
 
-            if (radioMaximo == 480 && mejorCasilla != Vector2.zero)
+            if (radioMaximo == 540 && mejorCasilla != Vector2.zero)
             {
                 radioMaximo = radio + 2;
             }
