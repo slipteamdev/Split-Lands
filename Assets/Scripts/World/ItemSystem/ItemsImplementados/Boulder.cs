@@ -25,7 +25,7 @@ public class Boulder : Item
         ItemsManager.RemoveObject(this.gameObject);
 
         direction = playerContext.Orientation;
-        transform.position = playerContext.transform.position + new Vector3(direction.x * 2, direction.y * 2, 0);
+        transform.position = playerContext.transform.position + new Vector3(direction.x * 1.5f, direction.y * 1.5f, 0);
 
         rb = this.gameObject.AddComponent<Rigidbody>();
         rb.constraints =
