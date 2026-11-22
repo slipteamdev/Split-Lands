@@ -5,8 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.MaterialProperty;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Parpadeo : MonoBehaviour
 {

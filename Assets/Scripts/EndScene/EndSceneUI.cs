@@ -63,7 +63,6 @@ public class EndSceneUI : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-
         SceneManager.LoadScene(sceneName);
     }
     private void UpdateCharacterImage(Image image, int characterId)
