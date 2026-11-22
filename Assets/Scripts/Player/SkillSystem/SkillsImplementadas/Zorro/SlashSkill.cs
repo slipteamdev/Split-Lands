@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlashSkill : Skill
 {
@@ -48,12 +49,16 @@ public class SlashSkill : Skill
     {
         destruction = BaseDestruction;
         SelfCooldownMultiplier = 1f;
+        area.GetComponent<Image>().sprite = BaseDestruction;
+        area.transform.localScale = Vector3.one * 2.5f;
     }
 
     public void BerserkMode()
     {
         destruction = BerserkDestruction;
         SelfCooldownMultiplier = BerserkCooldownSpeedMultiplier;
+        area.GetComponent<Image>().sprite = BerserkDestruction;
+        area.transform.localScale = Vector3.one * 5f;
     }
 }
 

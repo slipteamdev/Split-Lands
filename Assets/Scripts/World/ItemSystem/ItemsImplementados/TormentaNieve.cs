@@ -50,9 +50,9 @@ public class TormentaNieve : Item
     IEnumerator GoToEnemy()
     {
         Vector3 desfase = new Vector3(0, 40, 0); // posicion ligeramente sobre la cabeza
-        for (int i = 120; i > 0; i--) // 120 por ejemplo
+        for (int i = 45; i > 0; i--) // 45 por ejemplo
         {
-            yield return null;
+            yield return new WaitForFixedUpdate();
             Vector3 mov = (playerContext.EnemyPlayer.transform.localPosition + desfase - this.transform.localPosition) / i;
             this.transform.localPosition += mov;
         }

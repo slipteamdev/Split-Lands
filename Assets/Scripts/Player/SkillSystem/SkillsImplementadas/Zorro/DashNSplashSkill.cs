@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DashNSplashSkill : Skill
 {
@@ -102,6 +103,8 @@ public class DashNSplashSkill : Skill
         dashSpeed = BaseDashSpeed;
         endLag = BaseEndLag;
         SelfCooldownMultiplier = 1f;
+        area.GetComponent<Image>().sprite = destructionSplash;
+        area.transform.localScale = Vector3.one * 2.5f;
     }
 
     public void BerserkMode()
@@ -112,6 +115,8 @@ public class DashNSplashSkill : Skill
         dashSpeed = BerserkDashSpeed;
         endLag = BerserkEndLag;
         SelfCooldownMultiplier = BerserkCooldownSpeedMultiplier;
+        area.GetComponent<Image>().sprite = BerserkDestructionSplash;
+        area.transform.localScale = Vector3.one * 5f;
     }
 
 
