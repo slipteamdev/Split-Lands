@@ -94,5 +94,5 @@ MonoBehaviour:
   playerContext: {fileID: 0}
   BalasMaximas: 5
   torpedo: {fileID: 5521369030811421767, guid: 31d14414d99201c499f45e67d89cf3a9, type: 3}
-  speed: 15
-  destruction: {fileID: 21300000, guid: c76fe3d3fce88594f9993d9c5e9d2c76, type: 3}
+  speed: 25
+  destruction: {fileID: 21300000, guid: 75653e09829239c42aac099d7412162b, type: 3}

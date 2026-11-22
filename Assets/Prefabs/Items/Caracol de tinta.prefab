@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Caracol
   itemName: Caracol
   type: 4
-  tier: 1
+  tier: 0
   playerContext: {fileID: 0}
   destruction: {fileID: 21300000, guid: 0929496ece493c148902dbadc5a2701b, type: 3}
 --- !u!114 &4628599493221826297
@@ -106,6 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf40eadfc40f4b40af25ada22ad780d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalMovement
-  speed: 1
+  speed: 1.5
   moving: 1
   dieWhenObjetive: 1

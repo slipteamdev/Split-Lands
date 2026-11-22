@@ -51,8 +51,8 @@ public class CharacterSelectionUI : MonoBehaviour
     private int p2CurrentIndex = 0;
 
     // -1 indica que el jugador aun no ha elegido
-    public int p1PressedId = -1;
-    public int p2PressedId = -1;
+    private int p1PressedId = -1;
+    private int p2PressedId = -1;
 
     //Animación Selección
     [SerializeField] private float scaleMultiplier = 1.15f;

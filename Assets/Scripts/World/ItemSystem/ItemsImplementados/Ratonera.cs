@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Ratonera : Item
 {
     [SerializeField] private float cooldown;
+    [SerializeField] private float stunTime;
     [SerializeField] private float distancia;
     [SerializeField] private GameObject[] usos;
     private int cargas;
@@ -76,7 +73,7 @@ public class Ratonera : Item
             }
             if (Vector2.Distance(playerContext.EnemyPlayer.transform.position, this.transform.position) < distancia)
             {
-                playerContext.EnemyPlayer.gameObject.GetComponent<PlayerContext>().Stun(cooldown * 0.5f); // por ejemplo
+                playerContext.EnemyPlayer.gameObject.GetComponent<PlayerContext>().Stun(stunTime); // por ejemplo
 
                 cargas--;
                 for (int i = 0; i < usos.Length; i++)
@@ -92,7 +89,7 @@ public class Ratonera : Item
 
             if (Vector2.Distance(playerContext.gameObject.transform.position, this.transform.position) < distancia)
             {
-                playerContext.Stun(cooldown * 0.5f); // por ejemplo
+                playerContext.Stun(stunTime); // por ejemplo
 
                 cargas--;
                 for (int i = 0; i < usos.Length; i++)
