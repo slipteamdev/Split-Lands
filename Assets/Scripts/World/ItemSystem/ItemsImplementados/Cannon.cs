@@ -17,7 +17,7 @@ public class Cannon : Item
     }
     public override void Execute()
     {
-
+        if (PlayerOwner == null) return;
         playerContext = this.PlayerOwner.GetComponent<PlayerContext>(); // Nota de Lucas: Esta asignacion intentaria mirar si se puede hacer en el script base, para no tener que ponerla en todos los objetos
         direction = playerContext.orientation;
         Map.Draw(this.PlayerOwner.transform.localPosition, destruction, playerContext.Team, direction);
