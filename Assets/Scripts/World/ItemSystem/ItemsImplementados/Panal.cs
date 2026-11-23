@@ -42,7 +42,7 @@ public class Panal : Item
             Vector3 mov = (playerContext.EnemyPlayer.transform.localPosition + desfase - this.transform.localPosition) / i;
             this.transform.localPosition += mov;
         }
-        this.transform.SetParent(playerContext.EnemyPlayer.transform.transform);
+        this.transform.SetParent(playerContext.EnemyPlayer.transform.GetChild(1).transform);
 
         playerContext.EnemyPlayer.GetComponent<PlayerContext>().ApplyMovementSpeedModifier(multiplicador, duracion); // le aplica la ralentizacion
 
