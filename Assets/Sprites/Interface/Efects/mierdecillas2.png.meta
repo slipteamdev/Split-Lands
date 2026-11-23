@@ -483,7 +483,7 @@ TextureImporter:
         width: 64
         height: 490
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -505,7 +505,7 @@ TextureImporter:
         width: 64
         height: 490
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -514,6 +514,28 @@ TextureImporter:
       bones: []
       spriteID: 8e4bba68dc7fda44dbf25af9618e14e8
       internalID: -1109531558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mierdecillas2_18
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 53
+        width: 684
+        height: 783
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 852d208f639df6d4ca38516881001c14
+      internalID: -104030326
       vertices: []
       indices: 
       edges: []
@@ -544,6 +566,7 @@ TextureImporter:
       mierdecillas2_15: -1394331087
       mierdecillas2_16: 1330632946
       mierdecillas2_17: -1109531558
+      mierdecillas2_18: -104030326
       mierdecillas2_2: 1021981177
       mierdecillas2_3: 337533729
       mierdecillas2_4: 590342858
