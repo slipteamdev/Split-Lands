@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 60ee6c07c8514704297e8bb12163ac2f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -88,7 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b302cd9f4ff5f9499c5b2e3c9a0a750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZumoFresa
-  itemName: 
+  itemName: ZumoFresa
+  itemImage: {fileID: 3334955738064672558}
   type: 2
   tier: 0
   playerContext: {fileID: 0}

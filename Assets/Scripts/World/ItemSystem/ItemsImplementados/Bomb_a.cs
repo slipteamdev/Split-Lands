@@ -16,8 +16,11 @@ public class Bomb_a : Item
 
     private bool moving = false;
 
-    private void Start()
+
+    public override void Start()
     {
+        base.Start();
+
         area = this.gameObject.transform.GetChild(0).gameObject;
         area.SetActive(false);
     }

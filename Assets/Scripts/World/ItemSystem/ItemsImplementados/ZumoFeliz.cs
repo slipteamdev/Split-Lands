@@ -12,7 +12,12 @@ public class ZumoFeliz : Item
     [SerializeField] private Collider triggerCollider;
 
     private bool moving = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public override void Start()
+    {
+        base.Start();
+    }
+
     public override void Execute()
     {
         if (PlayerOwner == null) return;

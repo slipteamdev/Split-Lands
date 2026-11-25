@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 762d1458d2aa00d4daa11dd8d6e4c080, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -389,7 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7a92f1707758747a76662af98804e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ratonera
-  itemName: 
+  itemName: Trampa
+  itemImage: {fileID: 4380078494803346073}
   type: 4
   tier: 1
   playerContext: {fileID: 0}

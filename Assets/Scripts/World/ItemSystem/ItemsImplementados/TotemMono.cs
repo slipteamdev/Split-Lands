@@ -19,8 +19,11 @@ public class TotemMono : Item
     private List<GameObject> monkeyList = new List<GameObject>();
 
     private Image im;
-    private void Start()
+
+    public override void Start()
     {
+        base.Start();
+
         im = GetComponent<Image>();
     }
 

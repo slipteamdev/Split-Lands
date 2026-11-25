@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ItemType
 {
@@ -26,6 +27,7 @@ public abstract class Item : MonoBehaviour
     }
 
     [SerializeField] private string itemName;
+    public Image itemImage;
 
     public ItemType type;
     public ItemTier tier;
@@ -36,6 +38,33 @@ public abstract class Item : MonoBehaviour
     public GameObject PlayerOwner => playerOwner;
     public PlayerContext playerContext;
 
+    public virtual void Start()
+    {
+        //itemImage = this.gameObject.GetComponent<Image>();
+    }
+
+    public void ShowGlow()
+    {
+        //if (itemImage == null) return;
+        switch (tier)
+        {
+            case ItemTier.Common:
+                itemImage.material = ItemsManager.itemGlows[0];
+                break;
+            case ItemTier.Uncommon:
+                itemImage.material = ItemsManager.itemGlows[1];
+                break;
+            case ItemTier.Rare:
+                itemImage.material = ItemsManager.itemGlows[2];
+                break;
+        }
+    }
+    public void HideGlow()
+    {
+        if (itemImage == null) return;
+
+        itemImage.material = null;
+    }
 
     public void Use()
     {

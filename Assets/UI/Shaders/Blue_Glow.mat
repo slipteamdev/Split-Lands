@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_CenterGlow
+  m_Name: Blue_Glow
   m_Shader: {fileID: 4800000, guid: 3620d661180df624883f78d5a07b4fc3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -117,7 +117,7 @@ Material:
     - _GlowInnerRadius: 0.292
     - _GlowIntensity: 1.36
     - _GlowOuterRadius: 2
-    - _GlowSize: 250
+    - _GlowSize: 102
     - _GlowSoftness: 1.58
     - _Metallic: 0
     - _OcclusionStrength: 1

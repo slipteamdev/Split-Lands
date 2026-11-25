@@ -65,6 +65,8 @@ public class PlayerItemsManager : MonoBehaviour
 
         playerItem.GetComponent<Item>().SetOwner(this.gameObject); //le dice "soy tu dueño 
 
+        playerItem.GetComponent<Item>().HideGlow(); // le quita el glow
+
         // colocar como hijo del jugador para que se muevan juntos
         playerItem.transform.SetParent(topOfMyHead.transform);
         playerItem.transform.localPosition = Vector3.zero;

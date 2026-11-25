@@ -14,6 +14,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) // Si esta en pausa, no hace nada
+        {
+            return;
+        }
         moveInput = context.ReadValue<Vector2>();
         if (moveInput.sqrMagnitude <= 0.01) { moveInput = Vector2.zero; } // Si el movimiento de joystick es muy bajo, ignorarlo (ayuda con el drifting)
         movement.AssignInput(moveInput);
@@ -23,7 +27,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnBasicButton(InputAction.CallbackContext context)
     {
-        if (!Timer.running) // Si esta en pausa, no hace nada
+        if (Time.timeScale == 0) // Si esta en pausa, no hace nada
         {
             return;
         }
@@ -48,7 +52,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnSpecialButton(InputAction.CallbackContext context)
     {
-        if (!Timer.running) // Si esta en pausa, no hace nada
+        if (Time.timeScale == 0) // Si esta en pausa, no hace nada
         {
             return;
         }
@@ -61,7 +65,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnUltimateButton(InputAction.CallbackContext context)
     {
-        if (!Timer.running) // Si esta en pausa, no hace nada
+        if (Time.timeScale == 0) // Si esta en pausa, no hace nada
         {
             return;
         }

@@ -7,6 +7,10 @@ public class Caracol : Item
     private bool moving = false;
     private AnimalMovement am;
 
+    public override void Start()
+    {
+        base.Start();
+    }
 
     public override void Execute()
     {

@@ -8,9 +8,12 @@ public class Cannon : Item
     private GameObject area;
     private float showAreaTime = 0.25f;
     private Vector2 direction;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+
+
+    public override void Start()
     {
+        base.Start();
+
         area = this.gameObject.transform.GetChild(0).gameObject;
         area.SetActive(false);
 

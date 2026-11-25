@@ -11,8 +11,11 @@ public class ZumoPinna : Item
     [SerializeField] private float desvanecimiento = 2f;
     private Image im;
 
-    private void Start()
+
+    public override void Start()
     {
+        base.Start();
+
         im = GetComponent<Image>();
     }
 

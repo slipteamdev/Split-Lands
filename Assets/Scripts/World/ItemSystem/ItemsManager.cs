@@ -6,7 +6,12 @@ public class ItemsManager : MonoBehaviour
     public static List<GameObject> allItems = new List<GameObject>();
     private static ItemRandomizer staticRandomizer;
 
+    public static Material[] itemGlows;
+    [SerializeField] private Material[] materials; // me cago en la putaaa
+
     [SerializeField] private ItemRandomizer itemRandomizer;
+    
+
     // esto es para probarlo
     [SerializeField] private GameObject[] array;
     public void Start()
@@ -20,6 +25,11 @@ public class ItemsManager : MonoBehaviour
 
     private void Awake()
     {
+        itemGlows = new Material[3];
+        for (int i = 0; i < 3; i++)
+        {
+            itemGlows[i] = materials[i];
+        }
         allItems.Clear();
         staticRandomizer = itemRandomizer;
     }
@@ -39,6 +49,11 @@ public class ItemsManager : MonoBehaviour
     public static void AddObject(GameObject obj)
     {
         allItems.Add(obj);
+        Item item = obj.GetComponent<Item>();
+        if (item != null)
+        {
+            item.ShowGlow();
+        }
     }
     public static bool Contains(GameObject obj)
     {
@@ -47,6 +62,11 @@ public class ItemsManager : MonoBehaviour
     public static void RemoveObject(GameObject obj)
     {
         allItems.Remove(obj);
+        Item item = obj.GetComponent<Item>();
+        if (item != null)
+        {
+            item.HideGlow();
+        }
     }
 
     public static bool ItemNear(Vector2 pos, float minDistance)

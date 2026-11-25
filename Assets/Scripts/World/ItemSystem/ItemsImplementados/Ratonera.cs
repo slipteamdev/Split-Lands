@@ -10,8 +10,11 @@ public class Ratonera : Item
     private int cargas;
 
     private bool colocada = false;
-    private void Start()
+
+    public override void Start()
     {
+        base.Start();
+
         cargas = usos.Length;
     }
 

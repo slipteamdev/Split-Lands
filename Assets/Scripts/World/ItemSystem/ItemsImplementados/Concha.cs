@@ -15,7 +15,16 @@ public class Concha : Item
     [SerializeField] private Collider solidCollider;
     [SerializeField] private Collider triggerCollider;
     private bool moving = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    public override void Start()
+    {
+        base.Start();
+    }
     public override void Execute()
     {
         if (PlayerOwner == null) return;
@@ -54,11 +63,6 @@ public class Concha : Item
 
         // El objeto desaparece automaticamente despues de un tiempo
         Destroy(gameObject, lifeTime);
-    }
-
-    private void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
     }
 
 

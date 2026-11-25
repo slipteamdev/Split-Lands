@@ -11,8 +11,12 @@ public class Panal : Item
     [SerializeField] private float multiplicador; // cuanta ralentizacion aplica
 
     private Image im;
-    private void Start()
+
+
+    public override void Start()
     {
+        base.Start();
+
         im = GetComponent<Image>();
     }
 
