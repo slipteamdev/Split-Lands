@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimalMovement : MonoBehaviour
@@ -11,6 +12,7 @@ public class AnimalMovement : MonoBehaviour
     private Vector2 moveInput;
 
     private Animator animator;
+    private List<GameObject> liras = new List<GameObject>(); //aqui cosas
 
     public bool moving = true;
     public bool dieWhenObjetive = true;
@@ -26,6 +28,9 @@ public class AnimalMovement : MonoBehaviour
 
         moveInput = objetive - transform.position;
         moveInput = moveInput.normalized;
+
+
+
         velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * speed;
 
         if (animator != null)
@@ -83,6 +88,10 @@ public class AnimalMovement : MonoBehaviour
     }
 
     public void AssignObjetive(Vector3 pos) // AQUI MANDALE POSITION, NO LOCALPOSITION, quero llorar
+    {
+        objetive = pos;
+    }
+    public void DarInercia(Vector3 dir)
     {
         objetive = pos;
     }
