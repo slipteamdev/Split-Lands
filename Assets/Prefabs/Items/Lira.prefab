@@ -90,8 +90,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lira
   itemName: Lira
   itemImage: {fileID: 52753436255241842}
-  type: 0
-  tier: 0
+  type: 4
+  tier: 1
   playerContext: {fileID: 0}
   desvanecimiento: 2
   duracion: 10
