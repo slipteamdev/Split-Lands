@@ -1970,9 +1970,13 @@ MonoBehaviour:
   characterSprites:
   - {fileID: 21300000, guid: 97daa22db33bad34ba983e209e1ab101, type: 3}
   - {fileID: 21300000, guid: e384983a83faec049957a724f393a323, type: 3}
+  - {fileID: 21300000, guid: 7d7d1153c8536744d9ec4fbdde470019, type: 3}
+  - {fileID: 21300000, guid: 73b1541c47192114dba59879b60ea015, type: 3}
   characterNames:
   - ROBIN
   - BUBBLE
+  - TUQUI
+  - FLUFLU
   p1CharacterImage: {fileID: 142266523}
   p1CharacterName: {fileID: 830446710}
   p2CharacterImage: {fileID: 419194923}
