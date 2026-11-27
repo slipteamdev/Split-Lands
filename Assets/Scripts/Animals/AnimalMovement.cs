@@ -4,6 +4,7 @@ using UnityEngine;
 public class AnimalMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 1.0f;
+    [SerializeField] private float atraccionForce = 3.0f;
 
     private Vector3 objetive;
     private Vector3 velocity;
@@ -29,6 +30,47 @@ public class AnimalMovement : MonoBehaviour
         moveInput = objetive - transform.position;
         moveInput = moveInput.normalized;
 
+        if (AnimalSpawner.liras.Count > 0 && this.gameObject.GetComponent<Caracol>() == null && this.gameObject.GetComponent<Monkey>() == null) // si hay liras
+        {
+            GameObject nearest = null;
+            float minDist = float.MaxValue;
+            foreach (GameObject lira in AnimalSpawner.liras)
+            {
+                if (lira == null) continue;
+
+                float distance = Vector2.Distance(this.transform.position, lira.transform.position);
+                if (distance < minDist)
+                {
+                    minDist = distance;
+                    nearest = lira;
+                }
+            }
+
+            if (nearest != null)
+            {
+                if (Vector3.Distance(this.transform.position, nearest.transform.position) > 1.0f)
+                {
+                    Vector2 dir = nearest.transform.position - this.transform.position;
+                    dir = dir.normalized * atraccionForce;
+                    moveInput = moveInput + dir;
+                    moveInput = moveInput.normalized;
+                }
+            }
+
+            /*
+
+            foreach (GameObject lira in AnimalSpawner.liras)
+            {
+                if (Vector3.Distance(this.transform.position, lira.transform.position) > 1.0f)
+                {
+                    Vector2 dir = lira.transform.position - this.transform.position;
+                    dir = dir.normalized * atraccionForce; 
+                    moveInput = moveInput + dir;
+                }
+            }
+            moveInput = moveInput.normalized;
+            */
+        }
 
 
         velocity = new Vector3(moveInput.x, moveInput.y, 0.0f) * speed;
@@ -88,10 +130,6 @@ public class AnimalMovement : MonoBehaviour
     }
 
     public void AssignObjetive(Vector3 pos) // AQUI MANDALE POSITION, NO LOCALPOSITION, quero llorar
-    {
-        objetive = pos;
-    }
-    public void DarInercia(Vector3 dir)
     {
         objetive = pos;
     }

@@ -5301,6 +5301,7 @@ MonoBehaviour:
   - {fileID: 631714098628029026, guid: a7dc2263043eeef4288edca6cf677c42, type: 3}
   - {fileID: 7746478453934550715, guid: 04c7dce142240da4390093269a976a50, type: 3}
   - {fileID: 81023399797005958, guid: c98e74be83715f64eab8b9bf3263874b, type: 3}
+  - {fileID: 5353632618127704417, guid: 83b8a287472d54f4fb680b9794dbdd1b, type: 3}
   typeProbabilities:
   - type: 0
     weight: 30

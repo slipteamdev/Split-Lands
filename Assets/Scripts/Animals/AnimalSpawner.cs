@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimalSpawner : MonoBehaviour
 {
     public static List<GameObject> allAnimals = new List<GameObject>();
+    public static List<GameObject> liras;
+    public static List<GameObject> pestes;
 
     public List<GameObject> animals = new List<GameObject>();
     public List<Transform> puntosSpawn = new List<Transform>();
@@ -18,6 +20,22 @@ public class AnimalSpawner : MonoBehaviour
     private float tiempoReal;
 
 
+    public static void AddPeste(GameObject obj)
+    {
+        pestes.Add(obj);
+    }
+    public static void RemovePeste(GameObject obj)
+    {
+        pestes.Remove(obj);
+    }
+    public static void AddLira(GameObject obj)
+    {
+        liras.Add(obj);
+    }
+    public static void RemoveLira(GameObject obj)
+    {
+        liras.Remove(obj);
+    }
     public static void AddAnimal(GameObject obj)
     {
         allAnimals.Add(obj);
@@ -34,7 +52,9 @@ public class AnimalSpawner : MonoBehaviour
     {
         animalsParent = this.gameObject;
         allAnimals = new List<GameObject>();
-        StartCoroutine(SpawnLoop());
+        liras = new List<GameObject>();
+        pestes = new List<GameObject>();
+    StartCoroutine(SpawnLoop());
     }
 
     IEnumerator SpawnLoop()
