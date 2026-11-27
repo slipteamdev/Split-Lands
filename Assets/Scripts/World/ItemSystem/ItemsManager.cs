@@ -10,7 +10,7 @@ public class ItemsManager : MonoBehaviour
     [SerializeField] private Material[] materials; // me cago en la putaaa
 
     [SerializeField] private ItemRandomizer itemRandomizer;
-    
+
 
     // esto es para probarlo
     [SerializeField] private GameObject[] array;
@@ -34,9 +34,9 @@ public class ItemsManager : MonoBehaviour
         staticRandomizer = itemRandomizer;
     }
 
-    public static GameObject SpawnRandomItem(Vector3 position, Quaternion rotation, Transform parent)
+    public static GameObject SpawnRandomItem(Vector3 position, Quaternion rotation, Transform parent, ItemType[] allowedTypes = null, ItemTier[] allowedTiers = null)
     {
-        GameObject itemPrefab = staticRandomizer.GetRandomItemPrefab();
+        GameObject itemPrefab = staticRandomizer.GetRandomItemPrefab(allowedTypes, allowedTiers);
         if (itemPrefab == null) return null;
 
         GameObject obj = Instantiate(itemPrefab, position, rotation, parent);
