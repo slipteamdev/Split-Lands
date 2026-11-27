@@ -226,6 +226,8 @@ MonoBehaviour:
   characterSprites:
   - {fileID: 21300000, guid: 97daa22db33bad34ba983e209e1ab101, type: 3}
   - {fileID: 21300000, guid: e384983a83faec049957a724f393a323, type: 3}
+  - {fileID: 21300000, guid: 7d7d1153c8536744d9ec4fbdde470019, type: 3}
+  - {fileID: 21300000, guid: 73b1541c47192114dba59879b60ea015, type: 3}
   winnerImage: {fileID: 1565722055}
   winnerTerritoryText: {fileID: 2064708595}
   loserImage: {fileID: 136329482}

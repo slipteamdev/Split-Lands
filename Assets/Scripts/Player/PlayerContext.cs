@@ -18,12 +18,11 @@ public class PlayerContext : MonoBehaviour
     public GameObject[] tormenta = new GameObject[2];
 
 
-
     public Canvas canvas { get; private set; }
 
     public float CooldownSpeedMultiplier { get; private set; } = 1.0f;
     public float MovementSpeedMultiplier { get; private set; } = 1.0f;
-    public float StunDurationMultiplier { get; private set; } = 1.0f;
+    [field: SerializeField] public float StunDurationMultiplier { get; private set; } = 1.0f;
 
     public void Awake()
     {

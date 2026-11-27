@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Jaula
   itemName: Jaula de cristal
   itemImage: {fileID: 3302256881343739570}
-  type: 4
+  type: 3
   tier: 1
   playerContext: {fileID: 0}
   desvanecimiento: 2

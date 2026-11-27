@@ -1971,6 +1971,7 @@ MonoBehaviour:
   characterSprites:
   - {fileID: 21300000, guid: 97daa22db33bad34ba983e209e1ab101, type: 3}
   - {fileID: 21300000, guid: e384983a83faec049957a724f393a323, type: 3}
+  - {fileID: 21300000, guid: 7d7d1153c8536744d9ec4fbdde470019, type: 3}
   p1CharacterImage: {fileID: 162924666}
   p1PreviousButton: {fileID: 1265093064}
   p1NextButton: {fileID: 1881359051}
@@ -1991,8 +1992,6 @@ MonoBehaviour:
   p2ReadyButtonText: {fileID: 257089804}
   countdown: {fileID: 1352665947}
   countdownText: {fileID: 2034681123}
-  p1PressedId: -1
-  p2PressedId: -1
   scaleMultiplier: 1.15
   animationDuration: 0.15
 --- !u!4 &519096594
@@ -6273,6 +6272,7 @@ MonoBehaviour:
   characterPrefabs:
   - {fileID: 8916958064133750043, guid: a369b7a6aa983df43a0d25288471cb42, type: 3}
   - {fileID: 8206895613054730755, guid: d0f3d2b1ad78777489f7617c458b994f, type: 3}
+  - {fileID: 61643615991159963, guid: 47da23578c48e9643961a9c94fbd76c8, type: 3}
   gameResult: 0
 --- !u!1 &1955857149
 GameObject:
